@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Caso Sapira — Pablo Renedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..900&display=swap">
+<style>
+:root{
+  /* misma paleta que los dos artefactos */
+  --bone:#EFEBE6;
+  --paper:#F8F7F5;
+  --burgundy:#562B2A;
+  --red:#D6363E;
+  --ink:#494848;
+  --ink-2:#6E6A66;
+  --muted:#8B8681;
+  --cream:#FCF6F2;
+  --line:rgba(73,72,72,.16);
+  --gut:clamp(1.25rem,5vw,3.5rem);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bone);color:var(--ink);
+  font-family:"DM Sans","Helvetica Neue",Arial,sans-serif;
+  font-optical-sizing:none;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+
+/* ── cabecera ── */
+header{background:var(--burgundy);color:var(--cream);padding:1.5rem var(--gut) 1.7rem}
+header .mark{display:block;width:5.6rem;height:auto;margin:0 0 1.7rem}
+header .meta{
+  font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;
+  color:rgba(252,246,242,.6);display:flex;flex-wrap:wrap;gap:.35rem 1.5rem;
+  margin:0 0 1rem;max-width:none;
+}
+header .meta .live{color:#E9968F}
+h1{
+  font-size:clamp(1.9rem,6vw,3.1rem);font-weight:400;line-height:1.04;
+  letter-spacing:-.02em;margin:0;max-width:26ch;text-wrap:balance;
+}
+header p{
+  font-size:clamp(1rem,2.6vw,1.2rem);font-weight:300;line-height:1.5;
+  max-width:48ch;margin:1.2rem 0 0;color:rgba(252,246,242,.82);
+}
+
+/* ── piezas ── */
+main{padding:clamp(2rem,6vw,3.4rem) var(--gut);flex:1;width:100%;max-width:64rem;margin:0 auto}
+.eyebrow{
+  font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--muted);margin:0 0 1.2rem;
+}
+.pieces{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:780px){ .pieces{grid-template-columns:1fr 1fr} }
+
+a.piece{
+  background:var(--paper);color:inherit;text-decoration:none;
+  display:flex;flex-direction:column;gap:.75rem;
+  padding:1.5rem 1.4rem 1.6rem;
+  transition:background .15s ease;
+}
+a.piece:hover,a.piece:focus-visible{background:#fff;outline:none}
+a.piece:focus-visible{box-shadow:inset 0 0 0 2px var(--red)}
+.piece .no{
+  font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--red);display:flex;align-items:center;gap:.45rem;
+}
+.piece .no::before{content:"";width:.42rem;height:.42rem;border-radius:50%;background:var(--red);flex:none}
+.piece h2{
+  font-size:clamp(1.3rem,3.4vw,1.7rem);font-weight:400;line-height:1.15;
+  letter-spacing:-.015em;margin:0;text-wrap:balance;
+}
+.piece .desc{font-size:.95rem;line-height:1.55;color:var(--ink-2);margin:0}
+.piece .how{
+  font-size:.82rem;line-height:1.5;color:var(--muted);margin:0;
+  padding-top:.75rem;border-top:1px solid var(--line);
+}
+.piece .go{
+  margin-top:auto;padding-top:.5rem;
+  font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--burgundy);
+}
+.piece .go::after{content:" \2192"}
+
+/* ── nota de uso ── */
+.note{
+  margin:1.6rem 0 0;padding:1.1rem 1.2rem;
+  background:rgba(214,54,62,.055);border-left:3px solid var(--red);
+  font-size:.9rem;line-height:1.55;
+}
+.note b{font-weight:700}
+.note p{margin:0}
+.note p + p{margin-top:.55rem}
+
+footer{
+  border-top:1px solid var(--line);padding:1.3rem var(--gut);
+  font-size:.76rem;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:.35rem 1.6rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="mark" src="data:image/png;base64,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" alt="Sapira">
+  <p class="meta">
+    <span class="live">Caso práctico</span>
+    <span>AI Deployment Director</span>
+    <span>Pablo Renedo</span>
+  </p>
+  <h1>Cierre de Fase&nbsp;0 y arranque de Fase&nbsp;1</h1>
+  <p>Dos piezas: el deck con el que abro la conversación y el documento que la sostiene cuando se pone concreta.</p>
+</header>
+
+<main>
+  <p class="eyebrow">Las dos piezas</p>
+
+  <div class="pieces">
+    <a class="piece" href="deck/">
+      <span class="no">Pieza 01</span>
+      <h2>Executive Deck</h2>
+      <p class="desc">La presentación de defensa: el problema, la tesis y la propuesta de Fase&nbsp;1 en formato slide 16:9.</p>
+      <p class="how">Se navega con las flechas ← → o tocando los puntos de abajo. Mejor en horizontal si lo abres en el móvil.</p>
+      <span class="go">Abrir el deck</span>
+    </a>
+
+    <a class="piece" href="documento/">
+      <span class="no">Pieza 02</span>
+      <h2>AP Fase 1</h2>
+      <p class="desc">El documento largo: business case, plan de las primeras semanas, criterios y el <em>ask</em> concreto.</p>
+      <p class="how">Scroll normal, con índice lateral en pantalla grande. Dos capas opcionales: <b>manifiesto</b> (el lenguaje de Sapira detrás de cada sección) y <b>procedencia</b> (qué cifra sale del caso y cuál he construido yo).</p>
+      <span class="go">Abrir el documento</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <p><b>Para leer en el metro:</b> las dos piezas son HTML autocontenido — una vez cargada la página, funciona sin cobertura. El deck está pensado para pantalla ancha; el documento se lee bien en vertical.</p>
+    <p><b>Para los entrevistadores:</b> empezad por el deck. El documento es el respaldo, no hace falta leerlo entero para seguir la conversación.</p>
+  </div>
+</main>
+
+<footer>
+  <span>Pablo Renedo</span>
+  <span>Caso Sapira · AI Deployment Director</span>
+  <span>Material preparado para la entrevista</span>
+</footer>
+
+</body>
+</html>
