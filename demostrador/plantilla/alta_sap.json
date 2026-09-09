@@ -1,0 +1,153 @@
+{
+  "plantilla": "Alta de personal · SAP HCM",
+  "version": "1.3",
+  "vigente_desde": "2026-01-01",
+  "descripcion": "Estructura del alta que se escribe en SAP HCM. Un slot por campo de infotipo. Los valores llegan vacíos: los rellena el agente a partir de los documentos del expediente y del alta de RR. HH. Nada se escribe en SAP hasta que un gestor aprueba.",
+  "nota": "Contenido sintético construido para el demostrador de la Fase 0. No reproduce la configuración real de ningún sistema.",
+  "infotipos": [
+    {
+      "codigo": "0002",
+      "nombre": "Datos personales",
+      "campos": [
+        {
+          "campo": "Apellidos",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Nombre",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "NIF / NIE",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Fecha de nacimiento",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Nacionalidad",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        }
+      ]
+    },
+    {
+      "codigo": "0006",
+      "nombre": "Direcciones",
+      "campos": [
+        {
+          "campo": "Domicilio",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Código postal",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Población",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        },
+        {
+          "campo": "Provincia",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "documento_identidad.pdf"
+        }
+      ]
+    },
+    {
+      "codigo": "0009",
+      "nombre": "Datos bancarios",
+      "campos": [
+        {
+          "campo": "IBAN",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "certificado_titularidad.pdf"
+        },
+        {
+          "campo": "Titular de la cuenta",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "certificado_titularidad.pdf"
+        }
+      ]
+    },
+    {
+      "codigo": "0013",
+      "nombre": "Seguridad Social",
+      "campos": [
+        {
+          "campo": "NAF",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "informe_afiliacion.pdf"
+        },
+        {
+          "campo": "Régimen",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "informe_afiliacion.pdf"
+        }
+      ]
+    },
+    {
+      "codigo": "0001",
+      "nombre": "Asignación organizativa",
+      "campos": [
+        {
+          "campo": "Centro",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "alta_rrhh"
+        },
+        {
+          "campo": "Función",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "alta_rrhh"
+        }
+      ]
+    },
+    {
+      "codigo": "0016",
+      "nombre": "Elementos del contrato",
+      "campos": [
+        {
+          "campo": "Tipo de contrato",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "alta_rrhh"
+        },
+        {
+          "campo": "Fecha de llamamiento",
+          "valor": null,
+          "obligatorio": true,
+          "fuente_esperada": "alta_rrhh"
+        },
+        {
+          "campo": "Antigüedad reconocida",
+          "valor": null,
+          "obligatorio": false,
+          "fuente_esperada": "alta_rrhh"
+        }
+      ]
+    }
+  ]
+}

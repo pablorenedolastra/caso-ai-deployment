@@ -1,0 +1,242 @@
+{
+  "expediente": "AP-2026-08844",
+  "origen": "cache_sintetica",
+  "recibido": "2026-09-08T08:15:00",
+  "persona": "BELTRÁN NUÑO, SERGIO",
+  "documentos": [
+    "documento_identidad.pdf",
+    "certificado_titularidad.pdf",
+    "informe_afiliacion.pdf"
+  ],
+  "campos": [
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Apellidos",
+      "valor": "BELTRÁN NUÑO",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.99,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Nombre",
+      "valor": "SERGIO",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.99,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "NIF",
+      "valor": "29471508K",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Fecha de nacimiento",
+      "valor": "1996-08-05",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Nacionalidad",
+      "valor": "Española",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.96,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Domicilio",
+      "valor": "C/ Pintor Sorolla, 3, 5º A",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.91,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Código postal",
+      "valor": "46002",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Población",
+      "valor": "Valencia",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Provincia",
+      "valor": "Valencia",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0009 · Datos bancarios",
+      "campo": "IBAN",
+      "valor": "ES91 0182 5566 72 0000 771204",
+      "origen_doc": "certificado_titularidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0009 · Datos bancarios",
+      "campo": "Titular de la cuenta",
+      "valor": "BELTRAN NUÑO, SERGIO",
+      "origen_doc": "certificado_titularidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0013 · Seguridad Social",
+      "campo": "NAF",
+      "valor": "46 09887412 05",
+      "origen_doc": "informe_afiliacion.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.96,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0013 · Seguridad Social",
+      "campo": "Régimen",
+      "valor": "General",
+      "origen_doc": "informe_afiliacion.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0001 · Asignación organizativa",
+      "campo": "Centro",
+      "valor": "Parque Levante",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0001 · Asignación organizativa",
+      "campo": "Función",
+      "valor": "Operador de atracciones · categoría A",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Tipo de contrato",
+      "valor": "Fijo discontinuo",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Fecha de llamamiento",
+      "valor": "2026-09-21",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Antigüedad reconocida",
+      "valor": "4 temporadas",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    }
+  ],
+  "convenio": [
+    {
+      "id": "CONV-03",
+      "resultado": "ok",
+      "detalle": "Persona mayor de edad en la fecha de llamamiento"
+    },
+    {
+      "id": "CONV-07",
+      "resultado": "ok",
+      "detalle": "El titular del certificado coincide con la persona del alta"
+    },
+    {
+      "id": "CONV-11",
+      "resultado": "ok",
+      "detalle": "NAF presente y coherente con el documento identificativo"
+    },
+    {
+      "id": "CONV-14",
+      "resultado": "ok",
+      "detalle": "«Operador de atracciones · categoría A» figura en el anexo II de categorías"
+    },
+    {
+      "id": "CONV-22",
+      "resultado": "ok",
+      "detalle": "Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Levante"
+    },
+    {
+      "id": "CONV-28",
+      "resultado": "ok",
+      "detalle": "4 temporadas previas reconocidas a efectos de nivel"
+    },
+    {
+      "id": "CONV-31",
+      "resultado": "no_aplica",
+      "detalle": "No aplica: persona mayor de 18 años"
+    },
+    {
+      "id": "CONV-35",
+      "resultado": "ok",
+      "detalle": "Identidad, titularidad bancaria y afiliación aportadas"
+    }
+  ],
+  "resumen": "Expediente completo y coherente. Nada que revisar.",
+  "decision": "listo_para_aprobar",
+  "motivos_excepcion": [],
+  "tiempo_agente_s": 8.2,
+  "modelo": "claude-opus-5",
+  "version_convenio": "2026.08",
+  "minutos_hoy": 14
+}

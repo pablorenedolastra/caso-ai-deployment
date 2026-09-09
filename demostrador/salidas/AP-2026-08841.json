@@ -1,0 +1,242 @@
+{
+  "expediente": "AP-2026-08841",
+  "origen": "cache_sintetica",
+  "recibido": "2026-09-08T07:41:00",
+  "persona": "FERRER AMAT, LUCÍA",
+  "documentos": [
+    "documento_identidad.pdf",
+    "certificado_titularidad.pdf",
+    "informe_afiliacion.pdf"
+  ],
+  "campos": [
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Apellidos",
+      "valor": "FERRER AMAT",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.99,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Nombre",
+      "valor": "LUCÍA",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.99,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "NIF",
+      "valor": "48219073X",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Fecha de nacimiento",
+      "valor": "1999-04-17",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0002 · Datos personales",
+      "campo": "Nacionalidad",
+      "valor": "Española",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.96,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Domicilio",
+      "valor": "C/ Alcalde Reig, 42, 3º B",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.91,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Código postal",
+      "valor": "46006",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Población",
+      "valor": "Valencia",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0006 · Direcciones",
+      "campo": "Provincia",
+      "valor": "Valencia",
+      "origen_doc": "documento_identidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0009 · Datos bancarios",
+      "campo": "IBAN",
+      "valor": "ES13 0081 0158 18 0001 234567",
+      "origen_doc": "certificado_titularidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0009 · Datos bancarios",
+      "campo": "Titular de la cuenta",
+      "valor": "FERRER AMAT, LUCIA",
+      "origen_doc": "certificado_titularidad.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.97,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0013 · Seguridad Social",
+      "campo": "NAF",
+      "valor": "46 10084521 33",
+      "origen_doc": "informe_afiliacion.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.96,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0013 · Seguridad Social",
+      "campo": "Régimen",
+      "valor": "General",
+      "origen_doc": "informe_afiliacion.pdf",
+      "origen_pagina": 1,
+      "confianza": 0.98,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0001 · Asignación organizativa",
+      "campo": "Centro",
+      "valor": "Parque Norte",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0001 · Asignación organizativa",
+      "campo": "Función",
+      "valor": "Atención al visitante",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Tipo de contrato",
+      "valor": "Fijo discontinuo",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Fecha de llamamiento",
+      "valor": "2026-09-21",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    },
+    {
+      "infotipo": "0016 · Elementos del contrato",
+      "campo": "Antigüedad reconocida",
+      "valor": "2 temporadas",
+      "origen_doc": "alta_rrhh",
+      "origen_pagina": 1,
+      "confianza": 1.0,
+      "estado": "ok",
+      "motivo": ""
+    }
+  ],
+  "convenio": [
+    {
+      "id": "CONV-03",
+      "resultado": "ok",
+      "detalle": "Persona mayor de edad en la fecha de llamamiento"
+    },
+    {
+      "id": "CONV-07",
+      "resultado": "ok",
+      "detalle": "El titular del certificado coincide con la persona del alta"
+    },
+    {
+      "id": "CONV-11",
+      "resultado": "ok",
+      "detalle": "NAF presente y coherente con el documento identificativo"
+    },
+    {
+      "id": "CONV-14",
+      "resultado": "ok",
+      "detalle": "«Atención al visitante» figura en el anexo II de categorías"
+    },
+    {
+      "id": "CONV-22",
+      "resultado": "ok",
+      "detalle": "Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"
+    },
+    {
+      "id": "CONV-28",
+      "resultado": "ok",
+      "detalle": "2 temporadas previas reconocidas a efectos de nivel"
+    },
+    {
+      "id": "CONV-31",
+      "resultado": "no_aplica",
+      "detalle": "No aplica: persona mayor de 18 años"
+    },
+    {
+      "id": "CONV-35",
+      "resultado": "ok",
+      "detalle": "Identidad, titularidad bancaria y afiliación aportadas"
+    }
+  ],
+  "resumen": "Expediente completo y coherente. Nada que revisar.",
+  "decision": "listo_para_aprobar",
+  "motivos_excepcion": [],
+  "tiempo_agente_s": 7.8,
+  "modelo": "claude-opus-5",
+  "version_convenio": "2026.08",
+  "minutos_hoy": 14
+}

@@ -1,0 +1,110 @@
+{
+  "version": "2026.08",
+  "vigencia_desde": "2026-01-01",
+  "ambito": "Parques de ocio y alojamiento · fijos discontinuos y eventuales",
+  "reglas": [
+    {
+      "id": "CONV-03",
+      "titulo": "Edad mínima de contratación",
+      "texto": "No se admite el alta de menores de 16 años. Entre 16 y 18 se requiere autorización paterna adjunta.",
+      "campos": [
+        "0002.fecha_nacimiento"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-07",
+      "titulo": "Titularidad de la cuenta bancaria",
+      "texto": "El IBAN de abono debe estar a nombre del propio trabajador. No se admiten cuentas de terceros ni cotitularidades no acreditadas.",
+      "campos": [
+        "0009.iban",
+        "0009.titular",
+        "0002.nif"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-11",
+      "titulo": "Número de afiliación a la Seguridad Social",
+      "texto": "El NAF es obligatorio en el alta y debe corresponder al NIF/NIE declarado.",
+      "campos": [
+        "0013.naf",
+        "0002.nif"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-14",
+      "titulo": "Categoría profesional existente",
+      "texto": "La función declarada debe existir en el anexo II de categorías profesionales del convenio.",
+      "campos": [
+        "0001.funcion"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-22",
+      "titulo": "Ventana de llamamiento del fijo discontinuo",
+      "texto": "En contrato fijo discontinuo, la fecha de llamamiento debe caer dentro de la ventana de temporada declarada para el centro.",
+      "campos": [
+        "0016.tipo_contrato",
+        "0016.fecha_llamamiento"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-28",
+      "titulo": "Antigüedad reconocida por temporadas previas",
+      "texto": "Las temporadas completas anteriores en el mismo grupo computan a efectos de nivel retributivo y deben reflejarse en el alta.",
+      "campos": [
+        "0016.antiguedad_reconocida"
+      ],
+      "severidad": "advertencia"
+    },
+    {
+      "id": "CONV-31",
+      "titulo": "Restricción de menores en atracciones categoría B",
+      "texto": "Los menores de 18 años no pueden ser asignados a atracciones de categoría B ni a puestos con manejo de maquinaria.",
+      "campos": [
+        "0002.fecha_nacimiento",
+        "0001.funcion"
+      ],
+      "severidad": "bloqueante"
+    },
+    {
+      "id": "CONV-35",
+      "titulo": "Documentación obligatoria completa",
+      "texto": "El expediente de alta requiere documento de identidad en vigor, certificado de titularidad bancaria e informe de afiliación a la Seguridad Social.",
+      "campos": [
+        "documentos"
+      ],
+      "severidad": "bloqueante"
+    }
+  ],
+  "anexo_ii_categorias": [
+    "Atención al visitante",
+    "Operador de atracciones · categoría A",
+    "Operador de atracciones · categoría B",
+    "Restauración · ayudante de cocina",
+    "Restauración · camarero/a",
+    "Limpieza y mantenimiento de zonas",
+    "Recepción de alojamiento",
+    "Camarero/a de pisos",
+    "Socorrista"
+  ],
+  "ventanas_temporada": {
+    "Parque Norte": {
+      "desde": "2026-03-14",
+      "hasta": "2026-11-01"
+    },
+    "Hotel Lakeside": {
+      "desde": "2026-02-01",
+      "hasta": "2026-12-20"
+    },
+    "Parque Levante": {
+      "desde": "2026-03-28",
+      "hasta": "2026-10-18"
+    }
+  },
+  "umbral_confianza": 0.85
+}

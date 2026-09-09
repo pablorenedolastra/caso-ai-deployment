@@ -1,0 +1,843 @@
+<!-- ------------------------------------------------------------------
+  REPUESTO · generado por scripts/repuesto.py — no editar a mano.
+
+  Copia autocontenida del demostrador: los datos viajan dentro de este fichero.
+  Se abre con doble clic, sin servidor y sin conexion, con las tres altas ya
+  rellenas. Los enlaces a los PDF apuntan a ../expedientes/, asi que hay que
+  dejarlo donde esta.
+------------------------------------------------------------------- -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Altas · Artificial PARK · repuesto</title>
+<style>
+:root{
+  --bone:#EFEBE6; --paper:#F8F7F5; --white:#FFF; --chip:#E4E1DC;
+  --burgundy:#562B2A; --red:#D6363E; --ink:#3C3B3A; --ink2:#6E6A66; --muted:#918C86;
+  --cream:#FCF6F2; --line:rgba(60,59,58,.15); --line2:rgba(60,59,58,.07);
+  --ok:#2E6B5E; --ok-bg:rgba(46,107,94,.09);
+  --warn:#B07A16; --warn-bg:rgba(176,122,22,.11);
+  --bad:#C0392F; --bad-bg:rgba(192,57,47,.08);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--sans);
+     font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+/* ── barra superior ── */
+.top{display:flex;align-items:center;gap:1.1rem;padding:.7rem 1.4rem;
+     background:var(--burgundy);color:var(--cream);position:sticky;top:0;z-index:20}
+.top .mark{font-weight:800;letter-spacing:-.02em;font-size:1rem}
+.top .sep{width:1px;height:1.1rem;background:rgba(252,246,242,.25)}
+.top .ctx{font-size:.78rem;opacity:.78;letter-spacing:.02em}
+.top .right{margin-left:auto;display:flex;align-items:center;gap:.95rem}
+.pill{font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;
+      padding:.22rem .5rem;border:1px solid rgba(252,246,242,.32);color:var(--cream);
+      border-radius:2px;opacity:.72}
+.badge{font-size:.75rem;font-weight:700;background:var(--red);color:#fff;
+       padding:.24rem .6rem;border-radius:2px;letter-spacing:.01em;white-space:nowrap}
+.badge.cero{background:rgba(252,246,242,.18);color:var(--cream);font-weight:600}
+.top button.link{background:none;border:0;color:var(--cream);opacity:.8;font-size:.8rem;
+                 text-decoration:underline;text-underline-offset:3px;padding:.2rem}
+.top button.link:hover{opacity:1}
+
+/* ── marco ── */
+.marco{display:grid;grid-template-columns:20rem minmax(0,1fr);height:calc(100vh - 2.9rem)}
+@media (max-width:860px){.marco{grid-template-columns:1fr;height:auto}}
+
+/* ── cola ── */
+.cola{background:var(--paper);border-right:1px solid var(--line);overflow-y:auto}
+.cola h2{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.12em;
+         text-transform:uppercase;color:var(--muted);margin:0;padding:1rem 1.1rem .6rem}
+.item{display:block;width:100%;text-align:left;background:none;border:0;
+      border-bottom:1px solid var(--line2);padding:.85rem 1.1rem}
+.item:hover{background:var(--chip)}
+.item[aria-current="true"]{background:var(--white);box-shadow:inset 3px 0 0 var(--red)}
+.item .id{font-family:var(--mono);font-size:.67rem;color:var(--muted);letter-spacing:.04em}
+.item .nm{font-weight:600;margin:.15rem 0 .3rem;font-size:.93rem;line-height:1.25}
+.item .meta{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--ink2)}
+.item .cn{margin-left:auto;font-family:var(--mono);font-size:.67rem;color:var(--muted)}
+.dot{width:.42rem;height:.42rem;border-radius:50%;flex:none}
+.dot.ok{background:var(--ok)} .dot.exc{background:var(--red)}
+.dot.done{background:var(--muted)} .dot.pend{background:var(--warn)}
+.item.cerrado .nm{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.cola .pie{padding:.9rem 1.1rem;font-size:.73rem;color:var(--muted);line-height:1.5;
+           border-top:1px solid var(--line2)}
+
+/* ── panel ── */
+.panel{overflow-y:auto;padding:1.5rem clamp(1.1rem,3vw,2.4rem) 3rem}
+.vacio{display:grid;place-items:center;height:100%;color:var(--muted);font-size:.9rem}
+
+.cab{display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.cab h1{font-size:1.5rem;font-weight:600;letter-spacing:-.015em;margin:.1rem 0 .25rem;line-height:1.15}
+.cab .sub{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.cab .agente{margin-left:auto;text-align:right;font-size:.74rem;color:var(--ink2);line-height:1.6}
+.cab .agente b{display:block;font-family:var(--mono);font-size:1.05rem;color:var(--ink);font-weight:600}
+
+.banda{display:flex;align-items:flex-start;gap:.7rem;padding:.85rem 1rem;margin-bottom:1.3rem;
+       border-left:3px solid;font-size:.92rem}
+.banda.ok{background:var(--ok-bg);border-color:var(--ok)}
+.banda.exc{background:var(--bad-bg);border-color:var(--bad)}
+.banda .t{font-weight:700;letter-spacing:.01em}
+.banda ul{margin:.4rem 0 0;padding-left:1.1rem;font-size:.85rem}
+.banda li{margin-bottom:.2rem}
+
+.cols{display:grid;gap:1.4rem;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);align-items:start}
+@media (max-width:1080px){.cols{grid-template-columns:1fr}}
+
+h3.sec{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.12em;
+       text-transform:uppercase;color:var(--muted);margin:0 0 .5rem;
+       display:flex;align-items:baseline;gap:.5rem}
+h3.sec .aux{margin-left:auto;text-transform:none;letter-spacing:0;font-family:var(--sans)}
+
+/* ── arranque: plantilla vacia y procesado ── */
+.arranque{border:1px solid var(--line);background:var(--white);padding:1rem 1.1rem;
+          margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.arranque .txt{font-size:.85rem;color:var(--ink2);line-height:1.5;max-width:30rem}
+.arranque .txt b{color:var(--ink)}
+.arranque .der{margin-left:auto;display:flex;gap:.55rem;align-items:center}
+.barra{height:2px;background:var(--chip);margin:.75rem 0 0;position:relative;overflow:hidden}
+.barra i{position:absolute;inset:0 auto 0 0;background:var(--red);width:0;transition:width .18s linear}
+.ticker{font-family:var(--mono);font-size:.72rem;color:var(--ink2);margin-top:.5rem;
+        display:flex;align-items:center;gap:.5rem;min-height:1.1rem}
+.ticker .sp{width:.5rem;height:.5rem;border:1.5px solid var(--red);border-top-color:transparent;
+            border-radius:50%;animation:gira .7s linear infinite;flex:none}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+/* ── tabla de campos ── */
+.grupo{border:1px solid var(--line);background:var(--white);margin-bottom:.75rem}
+.grupo>.gh{font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.08em;
+           background:var(--chip);color:var(--ink2);padding:.42rem .8rem;border-bottom:1px solid var(--line);
+           display:flex;gap:.6rem}
+.grupo>.gh .n{margin-left:auto;font-weight:400;opacity:.7}
+.campo{display:grid;grid-template-columns:10.5rem minmax(0,1fr) 8.5rem 5.4rem 1.4rem;gap:.7rem;
+       align-items:center;padding:.5rem .8rem;border-bottom:1px solid var(--line2);position:relative}
+.grupo .campo:last-child{border-bottom:0}
+.campo.mal{background:var(--bad-bg)}
+.campo.duda{background:var(--warn-bg)}
+.campo.marcado{box-shadow:inset 3px 0 0 var(--burgundy)}
+.campo .k{font-size:.8rem;color:var(--ink2)}
+.campo .v{font-family:var(--mono);font-size:.85rem;word-break:break-word}
+.campo .v.vacio{color:var(--bad);font-style:italic;font-family:var(--sans)}
+.campo .porq{grid-column:2/-1;font-size:.78rem;color:var(--bad);line-height:1.45;padding-top:.15rem}
+.campo.duda .porq{color:var(--warn)}
+.src{font-family:var(--mono);font-size:.63rem;letter-spacing:.02em;color:var(--ink2);
+     border:1px solid var(--line);padding:.16rem .34rem;text-decoration:none;
+     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+a.src:hover{border-color:var(--red);color:var(--red)}
+.conf{display:flex;align-items:center;gap:.35rem;justify-content:flex-end}
+.conf .bar{width:2.6rem;height:.3rem;background:var(--chip);position:relative}
+.conf .bar i{position:absolute;inset:0 auto 0 0;display:block}
+.conf .n{font-family:var(--mono);font-size:.7rem;min-width:2.1rem;text-align:right}
+.g-ok{background:var(--ok)} .g-warn{background:var(--warn)} .g-bad{background:var(--bad)}
+.t-ok{color:var(--ok)} .t-warn{color:var(--warn)} .t-bad{color:var(--bad)}
+
+/* slots vacios de la plantilla */
+.campo.slot .v i{display:block;height:.62rem;width:min(11rem,60%);
+                 border:1px dashed rgba(60,59,58,.28);background:repeating-linear-gradient(
+                 -45deg,transparent 0 4px,rgba(60,59,58,.05) 4px 8px)}
+.campo.slot .src{opacity:.3}
+.campo.slot .conf .n{color:var(--muted)}
+.campo.slot .k{color:var(--muted)}
+.aparece{animation:entra .32s cubic-bezier(.2,.7,.3,1)}
+@keyframes entra{from{opacity:0;transform:translateY(-3px);background:rgba(214,54,62,.10)}
+                 to{opacity:1;transform:none}}
+
+/* ── convenio ── */
+.regla{display:grid;grid-template-columns:1.3rem 1fr;gap:.55rem;padding:.55rem .8rem;
+       border-bottom:1px solid var(--line2);align-items:start}
+.regla:last-child{border-bottom:0}
+.regla .ic{font-family:var(--mono);font-size:.8rem;font-weight:700;line-height:1.35}
+.regla .id{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:.04em}
+.regla .tt{font-size:.83rem;font-weight:600;line-height:1.3;margin:.05rem 0 .1rem}
+.regla .de{font-size:.78rem;color:var(--ink2);line-height:1.4}
+.regla.na{opacity:.5}
+.regla.pend{opacity:.35}
+.regla.pend .ic{color:var(--muted)}
+
+/* ── comentarios ── */
+.mas{opacity:0;background:none;border:1px solid var(--line);color:var(--ink2);
+     width:1.35rem;height:1.35rem;line-height:1;padding:0;font-size:.9rem;border-radius:2px;
+     transition:opacity .12s}
+.campo:hover .mas,.mas:focus-visible{opacity:1}
+.mas:hover{border-color:var(--burgundy);color:var(--burgundy)}
+.mrk{display:inline-grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;
+     background:var(--burgundy);color:var(--cream);font-size:.68rem;font-weight:700;
+     font-family:var(--mono);flex:none}
+.pop{grid-column:1/-1;border-top:1px solid var(--line2);padding:.65rem 0 .2rem;margin-top:.4rem}
+.pop textarea{width:100%;border:1px solid var(--line);background:var(--paper);font:inherit;
+              font-size:.83rem;padding:.5rem .6rem;resize:vertical;min-height:3.6rem;color:var(--ink)}
+.pop textarea:focus{outline:2px solid var(--burgundy);outline-offset:-1px;background:var(--white)}
+.pop .fila{display:flex;gap:.45rem;align-items:center;margin-top:.45rem}
+.pop .fila .ay{font-size:.72rem;color:var(--muted);margin-left:auto}
+.mini{border:1px solid var(--line);background:var(--white);padding:.3rem .7rem;font-size:.78rem;
+      font-weight:600;border-radius:2px}
+.mini.pri{background:var(--burgundy);border-color:var(--burgundy);color:var(--cream)}
+.mini:disabled{opacity:.4;cursor:not-allowed}
+
+.rail{border:1px solid var(--line);background:var(--white);margin-bottom:.75rem}
+.rail .vacia{padding:.8rem;font-size:.79rem;color:var(--muted);line-height:1.5}
+.cmt{display:grid;grid-template-columns:1.3rem 1fr;gap:.55rem;padding:.6rem .8rem;
+     border-bottom:1px solid var(--line2);align-items:start}
+.rail .cmt:last-of-type{border-bottom:0}
+.cmt .campo-n{font-family:var(--mono);font-size:.66rem;color:var(--red);letter-spacing:.04em}
+.cmt .tx{font-size:.83rem;line-height:1.45;margin:.15rem 0 .2rem;white-space:pre-wrap}
+.cmt .fi{font-size:.7rem;color:var(--muted);display:flex;gap:.5rem;align-items:center}
+.cmt .quitar{background:none;border:0;color:var(--muted);font-size:.7rem;padding:0;
+             text-decoration:underline;text-underline-offset:2px;margin-left:auto}
+.cmt .quitar:hover{color:var(--bad)}
+.rail .anadir{width:100%;border:0;border-top:1px solid var(--line2);background:var(--paper);
+              padding:.55rem;font-size:.78rem;color:var(--ink2);text-align:center}
+.rail .anadir:hover{background:var(--chip);color:var(--ink)}
+
+/* ── acciones ── */
+.acc{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.4rem;padding-top:1.2rem;
+     border-top:1px solid var(--line)}
+.btn{border:1px solid var(--line);background:var(--white);color:var(--ink);
+     padding:.62rem 1.1rem;font-size:.88rem;font-weight:600;letter-spacing:.01em}
+.btn:hover{border-color:var(--ink2)}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.btn.pri:hover{background:#b92c33;border-color:#b92c33}
+.btn.ko{border-color:var(--bad);color:var(--bad)}
+.btn.ko:hover{background:var(--bad-bg)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled:hover{border-color:var(--line);background:var(--white)}
+.btn.pri:disabled:hover{background:var(--red)}
+.acc .nota{font-size:.78rem;color:var(--muted);align-self:center;max-width:26rem;line-height:1.45}
+
+/* ── resolucion ── */
+.res{border:1px solid;padding:1.2rem 1.3rem;margin-top:1.3rem}
+.res.ok{border-color:var(--ok);background:var(--ok-bg)}
+.res.ko{border-color:var(--bad);background:var(--bad-bg)}
+.res .t{font-weight:700;margin-bottom:.5rem}
+.res.ok .t{color:var(--ok)} .res.ko .t{color:var(--bad)}
+.res pre{font-family:var(--mono);font-size:.76rem;background:var(--white);
+         border:1px solid var(--line);padding:.7rem .8rem;margin:.6rem 0 0;overflow-x:auto;
+         white-space:pre-wrap}
+.res .fine{font-size:.8rem;color:var(--ink2);margin-top:.6rem}
+
+/* ── cajones ── */
+.cajon{position:fixed;inset:0;background:rgba(30,26,24,.55);z-index:40;display:none}
+.cajon[open]{display:block}
+.cajon .hoja{position:absolute;right:0;top:0;bottom:0;width:min(42rem,100%);
+             background:var(--paper);overflow-y:auto;padding:1.4rem 1.6rem 3rem;
+             box-shadow:-8px 0 32px rgba(0,0,0,.2)}
+.cajon h2{font-size:1.15rem;margin:0 0 .2rem}
+.cajon .meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:1.1rem}
+.cajon .cerrar{position:absolute;top:1rem;right:1.2rem;background:none;border:0;font-size:1.3rem;
+               color:var(--muted);line-height:1}
+.rcard{border:1px solid var(--line);background:var(--white);padding:.7rem .85rem;margin-bottom:.5rem}
+.rcard .rid{font-family:var(--mono);font-size:.68rem;color:var(--red);letter-spacing:.06em}
+.rcard .rt{font-weight:600;font-size:.9rem;margin:.1rem 0 .2rem}
+.rcard .rx{font-size:.83rem;color:var(--ink2);line-height:1.5}
+.rcard .rs{font-family:var(--mono);font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;
+           color:var(--muted);margin-top:.35rem}
+.aviso{border-left:3px solid var(--warn);background:var(--warn-bg);padding:.8rem .95rem;
+       font-size:.84rem;line-height:1.5;margin-bottom:1.1rem}
+.codigo{font-family:var(--mono);font-size:.72rem;background:var(--white);border:1px solid var(--line);
+        padding:.9rem 1rem;overflow-x:auto;line-height:1.55;white-space:pre;margin:0}
+.log{font-family:var(--mono);font-size:.75rem;border:1px solid var(--line);background:var(--white)}
+.log .ln{display:grid;grid-template-columns:5.2rem 8.5rem 1fr;gap:.7rem;padding:.45rem .8rem;
+         border-bottom:1px solid var(--line2);align-items:baseline}
+.log .ln:last-child{border-bottom:0}
+.log .ln .h{color:var(--muted)}
+.log .ln .e{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.log .ln .e.aprobada{color:var(--ok)} .log .ln .e.rechazada{color:var(--bad)}
+.log .ln .e.comentario{color:var(--burgundy)} .log .ln .e.procesado{color:var(--ink2)}
+.log .ln .d{font-family:var(--sans);font-size:.8rem;line-height:1.4}
+</style>
+<script>
+window.REPUESTO = true;
+window.PRECARGA = {"../salidas/AP-2026-08841.json":{"expediente":"AP-2026-08841","origen":"cache_sintetica","recibido":"2026-09-08T07:41:00","persona":"FERRER AMAT, LUCÍA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"FERRER AMAT","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"LUCÍA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"48219073X","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"1999-04-17","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Alcalde Reig, 42, 3º B","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46006","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES13 0081 0158 18 0001 234567","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"FERRER AMAT, LUCIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10084521 33","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Atención al visitante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"2 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Atención al visitante» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"2 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Expediente completo y coherente. Nada que revisar.","decision":"listo_para_aprobar","motivos_excepcion":[],"tiempo_agente_s":7.8,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08842.json":{"expediente":"AP-2026-08842","origen":"cache_sintetica","recibido":"2026-09-08T07:52:00","persona":"RIVAS POVEDA, ÓSCAR","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"RIVAS POVEDA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"ÓSCAR","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"53870142W","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2003-11-02","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"Avda. del Puerto, 118, 1º","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46023","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES91 2100 0418 45 0200 051332","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"POVEDA SANCHIS, MANUELA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.71,"estado":"revisar","motivo":"El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10233907 81","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Restauración · camarero/a","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"1 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"falla","detalle":"El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación."},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Restauración · camarero/a» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"1 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Todo correcto salvo la cuenta: el certificado está a nombre de otra persona. Hay que pedir un certificado a nombre del trabajador.","decision":"excepcion","motivos_excepcion":["CONV-07 · El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación.","Titular de la cuenta · El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"],"tiempo_agente_s":9.1,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08843.json":{"expediente":"AP-2026-08843","origen":"cache_sintetica","recibido":"2026-09-08T08:03:00","persona":"EL AMRANI BOUZID, NADIA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"EL AMRANI BOUZID","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"NADIA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIE","valor":"X7392841L","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2001-01-29","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Marroquí","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Sagunto, 7, bajo","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46009","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES09 1465 0100 96 0019 382745","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"EL AMRANI BOUZID, NADIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.0,"estado":"ausente","motivo":"El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible."},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.44,"estado":"revisar","motivo":"Se lee «Genera…» parcialmente; inferido, no confirmado"},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Hotel Lakeside","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Camarero/a de pisos","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-28","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"0 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"falla","detalle":"No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible."},{"id":"CONV-14","resultado":"ok","detalle":"«Camarero/a de pisos» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-28 dentro de la ventana de temporada de Hotel Lakeside"},{"id":"CONV-28","resultado":"no_aplica","detalle":"Sin temporadas previas en el grupo"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"falla","detalle":"Falta informe de afiliación legible a la Seguridad Social"}],"resumen":"El informe de afiliación está ilegible y falta el NAF. Hay que volver a pedir el documento antes de dar el alta.","decision":"excepcion","motivos_excepcion":["CONV-11 · No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible.","CONV-35 · Falta informe de afiliación legible a la Seguridad Social","NAF · El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible.","Régimen · Se lee «Genera…» parcialmente; inferido, no confirmado"],"tiempo_agente_s":11.4,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/reglas.json":{"version":"2026.08","vigencia_desde":"2026-01-01","ambito":"Parques de ocio y alojamiento · fijos discontinuos y eventuales","reglas":[{"id":"CONV-03","titulo":"Edad mínima de contratación","texto":"No se admite el alta de menores de 16 años. Entre 16 y 18 se requiere autorización paterna adjunta.","campos":["0002.fecha_nacimiento"],"severidad":"bloqueante"},{"id":"CONV-07","titulo":"Titularidad de la cuenta bancaria","texto":"El IBAN de abono debe estar a nombre del propio trabajador. No se admiten cuentas de terceros ni cotitularidades no acreditadas.","campos":["0009.iban","0009.titular","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-11","titulo":"Número de afiliación a la Seguridad Social","texto":"El NAF es obligatorio en el alta y debe corresponder al NIF/NIE declarado.","campos":["0013.naf","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-14","titulo":"Categoría profesional existente","texto":"La función declarada debe existir en el anexo II de categorías profesionales del convenio.","campos":["0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-22","titulo":"Ventana de llamamiento del fijo discontinuo","texto":"En contrato fijo discontinuo, la fecha de llamamiento debe caer dentro de la ventana de temporada declarada para el centro.","campos":["0016.tipo_contrato","0016.fecha_llamamiento"],"severidad":"bloqueante"},{"id":"CONV-28","titulo":"Antigüedad reconocida por temporadas previas","texto":"Las temporadas completas anteriores en el mismo grupo computan a efectos de nivel retributivo y deben reflejarse en el alta.","campos":["0016.antiguedad_reconocida"],"severidad":"advertencia"},{"id":"CONV-31","titulo":"Restricción de menores en atracciones categoría B","texto":"Los menores de 18 años no pueden ser asignados a atracciones de categoría B ni a puestos con manejo de maquinaria.","campos":["0002.fecha_nacimiento","0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-35","titulo":"Documentación obligatoria completa","texto":"El expediente de alta requiere documento de identidad en vigor, certificado de titularidad bancaria e informe de afiliación a la Seguridad Social.","campos":["documentos"],"severidad":"bloqueante"}],"anexo_ii_categorias":["Atención al visitante","Operador de atracciones · categoría A","Operador de atracciones · categoría B","Restauración · ayudante de cocina","Restauración · camarero/a","Limpieza y mantenimiento de zonas","Recepción de alojamiento","Camarero/a de pisos","Socorrista"],"ventanas_temporada":{"Parque Norte":{"desde":"2026-03-14","hasta":"2026-11-01"},"Hotel Lakeside":{"desde":"2026-02-01","hasta":"2026-12-20"},"Parque Levante":{"desde":"2026-03-28","hasta":"2026-10-18"}},"umbral_confianza":0.85},"../plantilla/alta_sap.json":{"plantilla":"Alta de personal · SAP HCM","version":"1.3","vigente_desde":"2026-01-01","descripcion":"Estructura del alta que se escribe en SAP HCM. Un slot por campo de infotipo. Los valores llegan vacíos: los rellena el agente a partir de los documentos del expediente y del alta de RR. HH. Nada se escribe en SAP hasta que un gestor aprueba.","nota":"Contenido sintético construido para el demostrador de la Fase 0. No reproduce la configuración real de ningún sistema.","infotipos":[{"codigo":"0002","nombre":"Datos personales","campos":[{"campo":"Apellidos","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nombre","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"NIF / NIE","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Fecha de nacimiento","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nacionalidad","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0006","nombre":"Direcciones","campos":[{"campo":"Domicilio","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Código postal","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Población","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Provincia","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0009","nombre":"Datos bancarios","campos":[{"campo":"IBAN","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"},{"campo":"Titular de la cuenta","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"}]},{"codigo":"0013","nombre":"Seguridad Social","campos":[{"campo":"NAF","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"},{"campo":"Régimen","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"}]},{"codigo":"0001","nombre":"Asignación organizativa","campos":[{"campo":"Centro","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Función","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"}]},{"codigo":"0016","nombre":"Elementos del contrato","campos":[{"campo":"Tipo de contrato","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Fecha de llamamiento","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Antigüedad reconocida","valor":null,"obligatorio":false,"fuente_esperada":"alta_rrhh"}]}]}};
+</script>
+</head>
+<body>
+
+<header class="top">
+  <span class="mark">sapira</span>
+  <span class="sep"></span>
+  <span class="ctx">Artificial PARK · Onboarding documental · <b style="opacity:.9">copia de repuesto</b></span>
+  <span class="right">
+    <span class="badge" id="badge">—</span>
+    <span class="pill" id="pipe">demostrador local</span>
+    <button class="link" id="verPlantilla">Plantilla SAP</button>
+    <button class="link" id="verReglas">Reglas del convenio</button>
+    <button class="link" id="verLog">Registro</button>
+  </span>
+</header>
+
+<div class="marco">
+  <aside class="cola">
+    <h2 id="colaTit">Pendientes de validación</h2>
+    <div id="lista"></div>
+    <div class="pie">Los expedientes y sus documentos están en
+      <code>prototipo/expedientes/</code>. Las reglas, en <code>convenio/reglas.yaml</code>.</div>
+  </aside>
+  <section class="panel" id="panel">
+    <div class="vacio">Selecciona un alta de la cola.</div>
+  </section>
+</div>
+
+<div class="cajon" id="cajonReglas" role="dialog" aria-modal="true" aria-label="Reglas del convenio">
+  <div class="hoja">
+    <button class="cerrar" data-cerrar="cajonReglas" aria-label="Cerrar">&times;</button>
+    <h2>Base de conocimiento</h2>
+    <p class="meta" id="cvMeta"></p>
+    <div class="aviso">
+      Esto no está programado en el agente: es un fichero que mantiene Recursos Humanos
+      (<code>convenio/reglas.yaml</code>). Cambiar una regla aquí cambia lo que el agente
+      valida, sin tocar el software.
+    </div>
+    <div id="cvReglas"></div>
+  </div>
+</div>
+
+<div class="cajon" id="cajonPlantilla" role="dialog" aria-modal="true" aria-label="Plantilla SAP">
+  <div class="hoja">
+    <button class="cerrar" data-cerrar="cajonPlantilla" aria-label="Cerrar">&times;</button>
+    <h2>Plantilla del alta · SAP HCM</h2>
+    <p class="meta" id="plMeta"></p>
+    <div class="aviso">
+      Este es el fichero tal y como está en la carpeta: <code>plantilla/alta_sap.json</code>.
+      Dieciocho slots vacíos, uno por campo de infotipo. El agente no inventa la estructura
+      del alta: la rellena.
+    </div>
+    <pre class="codigo" id="plJson"></pre>
+  </div>
+</div>
+
+<div class="cajon" id="cajonLog" role="dialog" aria-modal="true" aria-label="Registro de auditoría">
+  <div class="hoja">
+    <button class="cerrar" data-cerrar="cajonLog" aria-label="Cerrar">&times;</button>
+    <h2>Registro de auditoría</h2>
+    <p class="meta" id="lgMeta"></p>
+    <div class="aviso">
+      Cada procesado, cada comentario y cada decisión queda con su hora y su autor. Si alguien
+      pregunta seis meses después por qué se dio de alta a una persona, la respuesta está aquí.
+    </div>
+    <div class="log" id="lgLista"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const IDS = ["AP-2026-08841","AP-2026-08842","AP-2026-08843"];
+const MIN_HOY = 14;                 // baseline medido en las semanas 1-2
+const MIN_GESTOR = 4;               // lo que cuesta revisar y decidir con el agente delante
+const GESTOR = "Marta Sanchis · RR. HH.";
+const CLAVE = "sapira.demo.v2";
+const RELLENO = new URLSearchParams(location.search).has("relleno") || !!window.REPUESTO;
+// En repuesto/alta-rellena.html los JSON viajan incrustados en la propia pagina (window.PRECARGA),
+// asi que funciona con doble clic y sin servidor. Aqui se leen del disco por fetch.
+const cargarJSON = ruta => (window.PRECARGA && window.PRECARGA[ruta])
+  ? Promise.resolve(window.PRECARGA[ruta])
+  : fetch(ruta).then(r => r.json());
+
+const estado = {
+  datos:{}, reglas:null, plantilla:null, actual:null,
+  procesado:new Set(), comentarios:{}, resolucion:{}, registro:[],
+  animando:false, saltar:false, popAbierto:null
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const claseConf = c => c >= 0.85 ? "ok" : (c >= 0.5 ? "warn" : "bad");
+const ahora = () => new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+
+/* ── persistencia ─────────────────────────────────────────────── */
+function guardar(){
+  try{ localStorage.setItem(CLAVE, JSON.stringify({
+    procesado:[...estado.procesado], comentarios:estado.comentarios,
+    resolucion:estado.resolucion, registro:estado.registro })); }catch(e){}
+}
+function cargar(){
+  try{
+    const s = JSON.parse(localStorage.getItem(CLAVE) || "null");
+    if(!s) return;
+    estado.procesado = new Set(s.procesado || []);
+    estado.comentarios = s.comentarios || {};
+    estado.resolucion = s.resolucion || {};
+    estado.registro = s.registro || [];
+  }catch(e){}
+}
+function anotar(id, tipo, texto){
+  estado.registro.unshift({ hora:ahora(), id, tipo, texto, autor:GESTOR });
+  guardar();
+}
+
+/* ── arranque ─────────────────────────────────────────────────── */
+async function arrancar(){
+  const rs = await Promise.all(IDS.map(id => cargarJSON(`../salidas/${id}.json`)));
+  IDS.forEach((id,i) => estado.datos[id] = rs[i]);
+  estado.reglas    = await cargarJSON("../salidas/reglas.json");
+  estado.plantilla = await cargarJSON("../plantilla/alta_sap.json");
+
+  cargar();
+  if(RELLENO) IDS.forEach(id => estado.procesado.add(id));
+
+  $("#pipe").textContent = "demostrador local · datos sintéticos";
+  $("#pipe").title = "Expedientes, convenio y salidas son ficticios y viven en esta carpeta. "
+                   + "El demostrador no llama a ningún servicio ni está conectado a SAP.";
+
+  pintarCola(); pintarReglas(); pintarPlantilla();
+  abrir(IDS[0]);
+}
+
+/* ── cola ─────────────────────────────────────────────────────── */
+function pendientes(){ return IDS.filter(id => !estado.resolucion[id]).length; }
+
+function pintarCola(){
+  const p = pendientes();
+  $("#colaTit").textContent = `Pendientes de validación · ${p}`;
+  const b = $("#badge");
+  b.textContent = p === 0 ? "cola vacía" : `${p} pendiente${p===1?"":"s"} de validación`;
+  b.className = "badge" + (p === 0 ? " cero" : "");
+
+  $("#lista").innerHTML = IDS.map(id => {
+    const d = estado.datos[id], r = estado.resolucion[id];
+    const nc = (estado.comentarios[id] || []).length;
+    let cls = "pend", txt = "Sin procesar";
+    if(r){ cls = "done"; txt = r.tipo === "aprobada" ? "Aprobada · enviada a SAP" : "Rechazada · devuelta a RR. HH."; }
+    else if(estado.procesado.has(id)){
+      const exc = d.decision === "excepcion";
+      cls = exc ? "exc" : "ok";
+      txt = exc ? "Revisar antes de aprobar" : "Lista para aprobar";
+    }
+    return `<button class="item ${r?"cerrado":""}" data-id="${id}" aria-current="${id===estado.actual}">
+      <span class="id">${esc(id)} · ${esc(d.recibido.slice(11,16))}</span>
+      <div class="nm">${esc(d.persona)}</div>
+      <div class="meta"><span class="dot ${cls}"></span>${esc(txt)}
+        <span class="cn">${nc ? nc + (nc===1?" comentario":" comentarios") : ""}</span></div>
+    </button>`;
+  }).join("");
+  $("#lista").querySelectorAll(".item").forEach(b =>
+    b.addEventListener("click", () => { if(!estado.animando) abrir(b.dataset.id); }));
+}
+
+/* ── filas de campo ───────────────────────────────────────────── */
+function slotVacio(slot, i){
+  return `<div class="campo slot" id="f-${i}">
+    <span class="k">${esc(slot.campo)}</span>
+    <span class="v"><i></i></span>
+    <span class="src">${esc(slot.fuente_esperada.replace(".pdf",""))}</span>
+    <span class="conf"><span class="bar"></span><span class="n">—</span></span>
+    <span></span>
+  </div>`;
+}
+
+function filaCampo(c, i){
+  const id = estado.actual;
+  const cerrado = !!estado.resolucion[id];
+  const mal = c.estado === "ausente", duda = c.estado === "revisar";
+  const g = claseConf(c.confianza);
+  const mios = (estado.comentarios[id] || []).filter(x => x.indice === i);
+  const src = c.origen_doc === "alta_rrhh"
+    ? `<span class="src" title="Dato del proceso de contratación, no de un PDF">alta RR. HH.</span>`
+    : `<a class="src" target="_blank" rel="noopener"
+         href="../expedientes/${id}/${encodeURIComponent(c.origen_doc)}#page=${c.origen_pagina}"
+         title="Abrir ${esc(c.origen_doc)}, página ${c.origen_pagina}">${esc(c.origen_doc.replace(".pdf",""))}</a>`;
+  const marca = mios.length
+    ? `<span class="mrk" title="${esc(mios.length + ' comentario(s)')}">${mios[0].n}</span>`
+    : (cerrado ? "" : `<button class="mas" data-cmt="${i}" title="Comentar este campo" aria-label="Comentar ${esc(c.campo)}">+</button>`);
+  return `<div class="campo ${mal?"mal":duda?"duda":""} ${mios.length?"marcado":""}" id="f-${i}">
+    <span class="k">${esc(c.campo)}</span>
+    <span class="v ${c.valor?"":"vacio"}">${c.valor ? esc(c.valor) : "no legible"}</span>
+    ${src}
+    <span class="conf"><span class="bar"><i class="g-${g}" style="width:${Math.round(c.confianza*100)}%"></i></span>
+      <span class="n t-${g}">${c.confianza.toFixed(2)}</span></span>
+    ${marca}
+    ${c.motivo ? `<span class="porq">${esc(c.motivo)}</span>` : ""}
+  </div>`;
+}
+
+function filaRegla(c, tit, pend){
+  const icon = { ok:["✓","t-ok"], falla:["✕","t-bad"], no_aplica:["–",""] };
+  const [i, cl] = icon[c.resultado];
+  if(pend) return `<div class="regla pend" id="r-${c.id}">
+      <span class="ic">·</span><span><span class="id">${esc(c.id)}</span>
+      <div class="tt">${esc(tit[c.id] || "")}</div><div class="de">evaluando…</div></span></div>`;
+  return `<div class="regla ${c.resultado==="no_aplica"?"na":""}" id="r-${c.id}">
+    <span class="ic ${cl}">${i}</span>
+    <span><span class="id">${esc(c.id)}</span>
+      <div class="tt">${esc(tit[c.id] || "")}</div>
+      <div class="de">${esc(c.detalle)}</div></span></div>`;
+}
+
+/* ── panel de expediente ──────────────────────────────────────── */
+function abrir(id){
+  estado.actual = id; estado.popAbierto = null;
+  const d = estado.datos[id];
+  const hecho = estado.procesado.has(id);
+  const res = estado.resolucion[id];
+  const exc = d.decision === "excepcion";
+  const tit = Object.fromEntries((estado.reglas?.reglas || []).map(r => [r.id, r.titulo]));
+
+  // columna izquierda: la plantilla, vacia o rellena
+  let k = 0;
+  const tabla = estado.plantilla.infotipos.map(it => {
+    const filas = it.campos.map(slot => {
+      const i = k++;
+      return hecho ? filaCampo(d.campos[i], i) : slotVacio(slot, i);
+    }).join("");
+    return `<div class="grupo"><div class="gh">${esc(it.codigo)} · ${esc(it.nombre)}
+      <span class="n">${it.campos.length} campos</span></div>${filas}</div>`;
+  }).join("");
+
+  const reglas = d.convenio.map(c => filaRegla(c, tit, !hecho)).join("");
+
+  const arranque = hecho ? "" : `
+    <div class="arranque" id="arranque">
+      <div class="txt"><b>Plantilla vacía.</b> Dieciocho campos esperando.
+        En la carpeta hay tres documentos de esta persona y las reglas del convenio.
+        El agente los lee y prepara el alta; no escribe nada en SAP.</div>
+      <div class="der">
+        <button class="btn pri" id="procesar">Procesar con el agente</button>
+      </div>
+      <div style="flex-basis:100%" id="progreso" hidden>
+        <div class="barra"><i id="barraI"></i></div>
+        <div class="ticker" id="ticker"></div>
+      </div>
+    </div>`;
+
+  const banda = !hecho ? "" : (exc
+    ? `<div class="banda exc"><div><span class="t">Revisar antes de aprobar</span>
+         <ul>${d.motivos_excepcion.map(m => `<li>${esc(m)}</li>`).join("")}</ul></div></div>`
+    : `<div class="banda ok"><div><span class="t">Listo para aprobar</span> — ${esc(d.resumen)}</div></div>`);
+
+  $("#panel").innerHTML = `
+    <div class="cab">
+      <div><div class="sub">${esc(id)} · recibido ${esc(d.recibido.slice(11,16))} · convenio ${esc(d.version_convenio)}</div>
+        <h1>${esc(d.persona)}</h1>
+        <div class="sub">${d.documentos.length} documentos en el expediente · plantilla SAP v${esc(estado.plantilla.version)}</div></div>
+      <div class="agente"><b>${hecho ? d.tiempo_agente_s + "s" : "—"}</b>tiempo del agente<br>
+        <span style="color:var(--muted)">hoy son ${MIN_HOY} min de gestor</span></div>
+    </div>
+    ${arranque}${banda}
+    <div class="cols">
+      <div><h3 class="sec">Alta preparada · plantilla SAP HCM
+        <span class="aux" id="contadorCampos"></span></h3>${tabla}</div>
+      <div>
+        <h3 class="sec">Convenio · ${d.convenio.length} reglas</h3>
+        <div class="grupo" id="colReglas">${reglas}</div>
+        <h3 class="sec">Comentarios del gestor</h3>
+        <div class="rail" id="rail"></div>
+      </div>
+    </div>
+    <div id="zonaAcc"></div>`;
+
+  pintarRail();
+  pintarAcciones();
+  pintarContador();
+  $("#panel").scrollTop = 0;
+  pintarCola();
+
+  const pb = $("#procesar");
+  if(pb) pb.addEventListener("click", () => procesar(id));
+}
+
+function pintarContador(){
+  const el = $("#contadorCampos"); if(!el) return;
+  const hecho = estado.procesado.has(estado.actual);
+  el.textContent = hecho ? "18 de 18 rellenos" : "0 de 18 rellenos";
+  el.style.color = hecho ? "var(--ok)" : "var(--muted)";
+}
+
+/* ── el procesado, campo a campo ──────────────────────────────── */
+let _tid = null, _res = null;
+function dormir(ms){
+  if(estado.saltar) return Promise.resolve();
+  return new Promise(r => { _res = r; _tid = setTimeout(() => { _tid=null; _res=null; r(); }, ms); });
+}
+function saltarYa(){
+  estado.saltar = true;
+  if(_tid){ clearTimeout(_tid); _tid = null; }
+  if(_res){ const r = _res; _res = null; r(); }
+}
+
+async function procesar(id){
+  const d = estado.datos[id];
+  estado.animando = true; estado.saltar = false;
+
+  const btn = $("#procesar"); btn.disabled = true; btn.textContent = "Procesando…";
+  btn.insertAdjacentHTML("afterend",
+    `<button class="mini" id="saltar" title="Ir al final">Saltar</button>`);
+  $("#saltar").addEventListener("click", saltarYa);
+  $("#progreso").hidden = false;
+
+  const total = d.campos.length + d.convenio.length;
+  let n = 0;
+  const avance = () => { n++; $("#barraI").style.width = (n/total*100).toFixed(1) + "%"; };
+  const tick = t => { $("#ticker").innerHTML = `<span class="sp"></span>${esc(t)}`; };
+
+  const ms = d.tiempo_agente_s * 1000;
+  const msCampo = (ms * 0.60) / d.campos.length;
+  const msRegla = (ms * 0.40) / d.convenio.length;
+
+  tick("abriendo el expediente…");
+  await dormir(Math.min(600, ms * 0.08));
+
+  let docActual = null;
+  for(let i = 0; i < d.campos.length; i++){
+    const c = d.campos[i];
+    if(c.origen_doc !== docActual){
+      docActual = c.origen_doc;
+      tick(docActual === "alta_rrhh"
+        ? "cruzando con el alta de RR. HH.…"
+        : `leyendo ${docActual} · página ${c.origen_pagina}…`);
+      await dormir(msCampo * 0.9);
+    }
+    const fila = document.getElementById("f-" + i);
+    if(fila){
+      fila.outerHTML = filaCampo(c, i);
+      document.getElementById("f-" + i).classList.add("aparece");
+    }
+    avance();
+    const el = $("#contadorCampos");
+    if(el) el.textContent = `${i+1} de ${d.campos.length} rellenos`;
+    await dormir(msCampo);
+  }
+
+  tick(`contrastando con el convenio ${esc(d.version_convenio)}…`);
+  await dormir(msRegla * 0.8);
+  const tit = Object.fromEntries((estado.reglas?.reglas || []).map(r => [r.id, r.titulo]));
+  for(const c of d.convenio){
+    const el = document.getElementById("r-" + c.id);
+    if(el){
+      el.outerHTML = filaRegla(c, tit, false);
+      document.getElementById("r-" + c.id).classList.add("aparece");
+    }
+    avance();
+    await dormir(msRegla);
+  }
+
+  estado.procesado.add(id);
+  anotar(id, "procesado",
+    `${d.campos.length} campos extraídos · ${d.convenio.length} reglas evaluadas · ${d.tiempo_agente_s}s`);
+  estado.animando = false;
+  abrir(id);
+  pintarContador();
+}
+
+/* ── comentarios ──────────────────────────────────────────────── */
+function siguienteN(id){
+  const cs = estado.comentarios[id] || [];
+  return cs.reduce((m,c) => Math.max(m, c.n), 0) + 1;
+}
+
+function abrirPop(indice){
+  cerrarPop();
+  const id = estado.actual;
+  const d = estado.datos[id];
+  const nombre = indice === -1 ? "General" : d.campos[indice].campo;
+  const destino = indice === -1 ? $("#rail") : document.getElementById("f-" + indice);
+  if(!destino) return;
+  const html = `<div class="pop" id="pop">
+      <textarea id="popTxt" placeholder="Comentario sobre «${esc(nombre)}»…"></textarea>
+      <div class="fila">
+        <button class="mini pri" id="popOk">Comentar</button>
+        <button class="mini" id="popNo">Cancelar</button>
+        <span class="ay">${esc(GESTOR)}</span>
+      </div>
+    </div>`;
+  if(indice === -1) destino.insertAdjacentHTML("beforeend", `<div class="cmt" style="grid-template-columns:1fr">${html}</div>`);
+  else destino.insertAdjacentHTML("beforeend", html);
+  estado.popAbierto = indice;
+  $("#popTxt").focus();
+  $("#popNo").addEventListener("click", cerrarPop);
+  $("#popOk").addEventListener("click", () => guardarComentario(indice, nombre));
+  $("#popTxt").addEventListener("keydown", e => {
+    if(e.key === "Enter" && (e.metaKey || e.ctrlKey)) guardarComentario(indice, nombre);
+    if(e.key === "Escape"){ e.stopPropagation(); cerrarPop(); }
+  });
+}
+function cerrarPop(){
+  const p = $("#pop");
+  if(p){ const c = p.closest(".cmt"); (c && c.contains(p) && c.children.length === 1 ? c : p).remove(); }
+  estado.popAbierto = null;
+}
+function guardarComentario(indice, nombre){
+  const t = $("#popTxt").value.trim();
+  if(!t){ $("#popTxt").focus(); return; }
+  const id = estado.actual;
+  (estado.comentarios[id] ||= []).push(
+    { n:siguienteN(id), indice, campo:nombre, texto:t, hora:ahora(), autor:GESTOR });
+  anotar(id, "comentario", `«${nombre}» — ${t}`);
+  guardar();
+  abrir(id);
+}
+function quitarComentario(n){
+  const id = estado.actual;
+  estado.comentarios[id] = (estado.comentarios[id] || []).filter(c => c.n !== n);
+  guardar(); abrir(id);
+}
+
+function pintarRail(){
+  const id = estado.actual;
+  const cs = estado.comentarios[id] || [];
+  const cerrado = !!estado.resolucion[id];
+  const hecho = estado.procesado.has(id);
+  const rail = $("#rail"); if(!rail) return;
+
+  const cuerpo = cs.length
+    ? cs.map(c => `<div class="cmt">
+        <span class="mrk">${c.n}</span>
+        <span><span class="campo-n">${esc(c.campo)}</span>
+          <div class="tx">${esc(c.texto)}</div>
+          <div class="fi">${esc(c.autor)} · ${esc(c.hora)}
+            ${cerrado ? "" : `<button class="quitar" data-quitar="${c.n}">quitar</button>`}</div></span>
+      </div>`).join("")
+    : `<div class="vacia">${hecho
+        ? "Ningún comentario todavía. Pasa por encima de un campo y pulsa <b>+</b> para anclar uno."
+        : "Disponible cuando el agente haya preparado el alta."}</div>`;
+
+  rail.innerHTML = cuerpo + (hecho && !cerrado
+    ? `<button class="anadir" id="cmtGeneral">+ Comentario general</button>` : "");
+
+  rail.querySelectorAll("[data-quitar]").forEach(b =>
+    b.addEventListener("click", () => quitarComentario(Number(b.dataset.quitar))));
+  const g = $("#cmtGeneral");
+  if(g) g.addEventListener("click", () => abrirPop(-1));
+
+  document.querySelectorAll("[data-cmt]").forEach(b =>
+    b.addEventListener("click", () => abrirPop(Number(b.dataset.cmt))));
+}
+
+/* ── OK / KO ──────────────────────────────────────────────────── */
+function pintarAcciones(){
+  const id = estado.actual;
+  const d = estado.datos[id];
+  const z = $("#zonaAcc"); if(!z) return;
+  const res = estado.resolucion[id];
+  const cs = estado.comentarios[id] || [];
+
+  if(!estado.procesado.has(id)){ z.innerHTML = ""; return; }
+
+  if(res){
+    const lista = cs.length
+      ? `\n\nComentarios adjuntos:\n` + cs.map(c => `  [${c.n}] ${c.campo} — ${c.texto}`).join("\n")
+      : "";
+    z.innerHTML = res.tipo === "aprobada"
+      ? `<div class="res ok"><div class="t">✓ Alta escrita en SAP HCM · ${esc(res.hora)}</div>
+          <div>Aprobada por ${esc(res.autor)}. Hasta ese clic no se había escrito nada.</div>
+          <pre>BAPI_EMPLOYEE_ENQUEUE  → ${esc(id)}
+HR_INFOTYPE_OPERATION  → 0002, 0006, 0009, 0013, 0001, 0016   [OK]
+BAPI_EMPLOYEE_DEQUEUE  → commit  ·  ${MIN_GESTOR} min de gestor${esc(lista)}</pre>
+          <div class="fine">Simulado: el demostrador no está conectado a SAP. Esa conexión es lo que construye la Fase&nbsp;1.</div>
+        </div>`
+      : `<div class="res ko"><div class="t">✕ Alta rechazada · devuelta a RR. HH. · ${esc(res.hora)}</div>
+          <div>Rechazada por ${esc(res.autor)}. No se ha escrito nada en SAP. El expediente
+            vuelve a Recursos Humanos con el motivo por escrito.</div>
+          <pre>ESTADO                 → RECHAZADA
+NOTIFICADO A           → RR. HH. · responsable del centro
+INFOTIPOS ESCRITOS     → ninguno${esc(lista)}</pre>
+          <div class="fine">El agente no vuelve a intervenir: la corrección la hace una persona.</div>
+        </div>`;
+    return;
+  }
+
+  const exc = d.decision === "excepcion";
+  z.innerHTML = `<div class="acc">
+      <button class="btn pri" id="aprobar" ${exc?"disabled":""}>Aprobar y enviar a SAP</button>
+      <button class="btn ko" id="rechazar">Rechazar</button>
+      <span class="nota" id="notaAcc">${exc
+        ? "El agente no deja aprobar esto: hay una regla del convenio en falla. La decisión no la toma el modelo, la calcula la política."
+        : "Nada se escribe en SAP hasta este clic. Ni ahora, ni en producción."}</span>
+    </div>`;
+
+  $("#aprobar")?.addEventListener("click", () => resolver("aprobada"));
+  $("#rechazar").addEventListener("click", () => {
+    if(!cs.length){
+      $("#notaAcc").innerHTML = `<b style="color:var(--bad)">Para rechazar hace falta al menos un comentario.</b>
+        Ancla uno en el campo que falla: es lo que verá quien tenga que corregirlo.`;
+      abrirPop(exc ? indiceProblema(d) : -1);
+      return;
+    }
+    resolver("rechazada");
+  });
+}
+
+function indiceProblema(d){
+  const i = d.campos.findIndex(c => c.estado === "ausente" || c.estado === "revisar");
+  return i === -1 ? -1 : i;
+}
+
+function resolver(tipo){
+  const id = estado.actual;
+  const cs = estado.comentarios[id] || [];
+  estado.resolucion[id] = { tipo, hora:ahora(), autor:GESTOR, comentarios:cs.length };
+  anotar(id, tipo, tipo === "aprobada"
+    ? `Escritura en SAP HCM · 6 infotipos${cs.length ? ` · ${cs.length} comentario(s) adjunto(s)` : ""}`
+    : `Devuelta a RR. HH. · ${cs.length} comentario(s)`);
+  guardar();
+  abrir(id);
+}
+
+/* ── cajones ──────────────────────────────────────────────────── */
+function pintarReglas(){
+  const r = estado.reglas;
+  $("#cvMeta").textContent =
+    `Convenio propio de Artificial PARK · versión ${r.version} · ${r.reglas.length} reglas · umbral de confianza ${r.umbral_confianza}`;
+  $("#cvReglas").innerHTML = r.reglas.map(x => `
+    <div class="rcard"><div class="rid">${esc(x.id)}</div>
+      <div class="rt">${esc(x.titulo)}</div>
+      <div class="rx">${esc(x.texto)}</div>
+      <div class="rs">${esc(x.severidad)} · ${esc((x.campos||[]).join(", "))}</div></div>`).join("");
+}
+function pintarPlantilla(){
+  const p = estado.plantilla;
+  const n = p.infotipos.reduce((s,i) => s + i.campos.length, 0);
+  $("#plMeta").textContent =
+    `plantilla/alta_sap.json · versión ${p.version} · ${p.infotipos.length} infotipos · ${n} campos`;
+  $("#plJson").textContent = JSON.stringify(p, null, 2);
+}
+function pintarLog(){
+  const r = estado.registro;
+  $("#lgMeta").textContent = `${r.length} evento${r.length===1?"":"s"} en esta sesión · orden inverso`;
+  $("#lgLista").innerHTML = r.length
+    ? r.map(e => `<div class="ln"><span class="h">${esc(e.hora)}</span>
+        <span><span class="e ${esc(e.tipo)}">${esc(e.tipo)}</span><br>
+          <span class="h" style="font-size:.66rem">${esc(e.id)}</span></span>
+        <span class="d">${esc(e.texto)}</span></div>`).join("")
+    : `<div class="ln" style="grid-template-columns:1fr"><span class="d"
+         style="color:var(--muted)">Todavía no ha pasado nada. Procesa un alta.</span></div>`;
+}
+
+document.querySelectorAll("[data-cerrar]").forEach(b =>
+  b.addEventListener("click", () => $("#" + b.dataset.cerrar).removeAttribute("open")));
+document.querySelectorAll(".cajon").forEach(c =>
+  c.addEventListener("click", e => { if(e.target === c) c.removeAttribute("open"); }));
+$("#verReglas").addEventListener("click", () => $("#cajonReglas").setAttribute("open",""));
+$("#verPlantilla").addEventListener("click", () => $("#cajonPlantilla").setAttribute("open",""));
+$("#verLog").addEventListener("click", () => { pintarLog(); $("#cajonLog").setAttribute("open",""); });
+document.getElementById("reiniciar")?.addEventListener("click", () => {
+  if(!confirm("Deja la demo como recién arrancada: sin procesar, sin comentarios, sin decisiones.")) return;
+  try{ localStorage.removeItem(CLAVE); }catch(e){}
+  location.href = location.pathname;
+});
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape"){
+    if(estado.popAbierto !== null){ cerrarPop(); return; }
+    document.querySelectorAll(".cajon[open]").forEach(c => c.removeAttribute("open"));
+  }
+});
+
+arrancar().catch(err => {
+  $("#panel").innerHTML = `<div class="vacio" style="text-align:center;max-width:32rem">
+    <div><b>No se han podido cargar los datos.</b><br><br>
+    Abre el demostrador con <code>./servir.sh</code> y ve a
+    <code>http://localhost:8765/app/</code>.<br>
+    Abrir el fichero directamente con doble clic no funciona: el navegador bloquea la lectura de los JSON.
+    <br><br>Si estás en la reunión y esto ha fallado, abre
+    <code>repuesto/alta-rellena.html</code> con doble clic.
+    <br><br><span style="font-size:.8rem;color:var(--muted)">${esc(err.message)}</span></div></div>`;
+});
+</script>
+</body>
+</html>
