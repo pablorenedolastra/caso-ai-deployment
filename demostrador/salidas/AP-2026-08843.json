@@ -240,6 +240,36 @@
     "NAF · El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible.",
     "Régimen · Se lee «Genera…» parcialmente; inferido, no confirmado"
   ],
+  "revisiones": [
+    {
+      "tipo": "regla",
+      "id": "CONV-11",
+      "campo": "NAF",
+      "indice": 11,
+      "detalle": "No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible."
+    },
+    {
+      "tipo": "regla",
+      "id": "CONV-35",
+      "campo": null,
+      "indice": -1,
+      "detalle": "Falta informe de afiliación legible a la Seguridad Social"
+    },
+    {
+      "tipo": "campo",
+      "id": null,
+      "campo": "Régimen",
+      "indice": 12,
+      "detalle": "Se lee «Genera…» parcialmente; inferido, no confirmado"
+    }
+  ],
+  "accion": {
+    "a": "nadia.elamrani@correo-ejemplo.es",
+    "cc": "rrhh.lakeside@artificialpark-ejemplo.es",
+    "asunto": "AP-2026-08843 · Informe de afiliación legible",
+    "pide": "Informe de afiliación a la Seguridad Social en calidad legible",
+    "cuerpo": "Hola Nadia:\n\nEstamos preparando tu alta y el informe de afiliación que nos has mandado no se lee: el número de afiliación sale cortado y borroso en el escaneo.\n\nNecesitamos que nos lo vuelvas a enviar. Lo puedes descargar en PDF desde la sede electrónica de la Seguridad Social con Cl@ve o certificado digital, y así se ve perfecto.\n\nNo hace falta que vayas a ninguna oficina.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"
+  },
   "tiempo_agente_s": 11.4,
   "modelo": "claude-opus-5",
   "version_convenio": "2026.08",

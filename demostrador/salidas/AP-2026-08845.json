@@ -1,8 +1,8 @@
 {
-  "expediente": "AP-2026-08844",
+  "expediente": "AP-2026-08845",
   "origen": "cache_sintetica",
-  "recibido": "2026-09-08T08:15:00",
-  "persona": "BELTRÁN NUÑO, SERGIO",
+  "recibido": "2026-09-08T08:27:00",
+  "persona": "MONTALT SERRA, IKER",
   "documentos": [
     "documento_identidad.pdf",
     "certificado_titularidad.pdf",
@@ -12,7 +12,7 @@
     {
       "infotipo": "0002 · Datos personales",
       "campo": "Apellidos",
-      "valor": "BELTRÁN NUÑO",
+      "valor": "MONTALT SERRA",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.99,
@@ -22,7 +22,7 @@
     {
       "infotipo": "0002 · Datos personales",
       "campo": "Nombre",
-      "valor": "SERGIO",
+      "valor": "IKER",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.99,
@@ -32,7 +32,7 @@
     {
       "infotipo": "0002 · Datos personales",
       "campo": "NIF",
-      "valor": "29471508K",
+      "valor": "51204863D",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.98,
@@ -42,7 +42,7 @@
     {
       "infotipo": "0002 · Datos personales",
       "campo": "Fecha de nacimiento",
-      "valor": "1996-08-05",
+      "valor": "2009-06-14",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.97,
@@ -62,7 +62,7 @@
     {
       "infotipo": "0006 · Direcciones",
       "campo": "Domicilio",
-      "valor": "C/ Pintor Sorolla, 3, 5º A",
+      "valor": "C/ Xàtiva, 21, 4º",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.91,
@@ -72,7 +72,7 @@
     {
       "infotipo": "0006 · Direcciones",
       "campo": "Código postal",
-      "valor": "46002",
+      "valor": "46007",
       "origen_doc": "documento_identidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.98,
@@ -102,7 +102,7 @@
     {
       "infotipo": "0009 · Datos bancarios",
       "campo": "IBAN",
-      "valor": "ES91 0182 5566 72 0000 771204",
+      "valor": "ES25 0128 0733 24 0100 456188",
       "origen_doc": "certificado_titularidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.98,
@@ -112,7 +112,7 @@
     {
       "infotipo": "0009 · Datos bancarios",
       "campo": "Titular de la cuenta",
-      "valor": "BELTRAN NUÑO, SERGIO",
+      "valor": "MONTALT SERRA, IKER",
       "origen_doc": "certificado_titularidad.pdf",
       "origen_pagina": 1,
       "confianza": 0.97,
@@ -122,7 +122,7 @@
     {
       "infotipo": "0013 · Seguridad Social",
       "campo": "NAF",
-      "valor": "46 09887412 05",
+      "valor": "46 10456188 92",
       "origen_doc": "informe_afiliacion.pdf",
       "origen_pagina": 1,
       "confianza": 0.96,
@@ -152,7 +152,7 @@
     {
       "infotipo": "0001 · Asignación organizativa",
       "campo": "Función",
-      "valor": "Operador de atracciones · categoría A",
+      "valor": "Atención al visitante",
       "origen_doc": "alta_rrhh",
       "origen_pagina": 1,
       "confianza": 1.0,
@@ -182,7 +182,7 @@
     {
       "infotipo": "0016 · Elementos del contrato",
       "campo": "Antigüedad reconocida",
-      "valor": "4 temporadas",
+      "valor": "0 temporadas",
       "origen_doc": "alta_rrhh",
       "origen_pagina": 1,
       "confianza": 1.0,
@@ -193,8 +193,8 @@
   "convenio": [
     {
       "id": "CONV-03",
-      "resultado": "ok",
-      "detalle": "Persona mayor de edad en la fecha de llamamiento"
+      "resultado": "falla",
+      "detalle": "La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."
     },
     {
       "id": "CONV-07",
@@ -209,7 +209,7 @@
     {
       "id": "CONV-14",
       "resultado": "ok",
-      "detalle": "«Operador de atracciones · categoría A» figura en el anexo II de categorías"
+      "detalle": "«Atención al visitante» figura en el anexo II de categorías"
     },
     {
       "id": "CONV-22",
@@ -218,13 +218,13 @@
     },
     {
       "id": "CONV-28",
-      "resultado": "ok",
-      "detalle": "4 temporadas previas reconocidas a efectos de nivel"
+      "resultado": "no_aplica",
+      "detalle": "Sin temporadas previas en el grupo"
     },
     {
       "id": "CONV-31",
       "resultado": "no_aplica",
-      "detalle": "No aplica: persona mayor de 18 años"
+      "detalle": "Persona menor de 18 años, pero «Atención al visitante» no es atracción de categoría B ni implica manejo de maquinaria"
     },
     {
       "id": "CONV-35",
@@ -232,12 +232,28 @@
       "detalle": "Identidad, titularidad bancaria y afiliación aportadas"
     }
   ],
-  "resumen": "Expediente completo y coherente. Nada que revisar.",
-  "decision": "listo_para_aprobar",
-  "motivos_excepcion": [],
-  "revisiones": [],
-  "accion": null,
-  "tiempo_agente_s": 8.2,
+  "resumen": "Los datos están completos, pero la persona es menor de edad en el llamamiento y falta la autorización paterna que exige el convenio. Hay que pedirla antes del alta.",
+  "decision": "excepcion",
+  "motivos_excepcion": [
+    "CONV-03 · La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."
+  ],
+  "revisiones": [
+    {
+      "tipo": "regla",
+      "id": "CONV-03",
+      "campo": "Fecha de nacimiento",
+      "indice": 3,
+      "detalle": "La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."
+    }
+  ],
+  "accion": {
+    "a": "iker.montalt@correo-ejemplo.es",
+    "cc": "rrhh.levante@artificialpark-ejemplo.es",
+    "asunto": "AP-2026-08845 · Autorización paterna para el alta",
+    "pide": "Autorización paterna o del tutor legal, firmada",
+    "cuerpo": "Hola Iker:\n\nTenemos tu expediente completo y todo está correcto. Solo nos falta un documento.\n\nComo el día del llamamiento aún tendrás 17 años, el convenio nos pide la autorización firmada de tu padre, madre o tutor legal para poder dar el alta.\n\nTe adjuntamos el modelo: basta con rellenarlo, firmarlo y devolvérnoslo escaneado junto con el DNI de quien firma.\n\nEn cuanto lo tengamos, cerramos el alta.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"
+  },
+  "tiempo_agente_s": 8.9,
   "modelo": "claude-opus-5",
   "version_convenio": "2026.08",
   "minutos_hoy": 14

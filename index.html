@@ -58,7 +58,7 @@ main{padding:clamp(2rem,6vw,3.4rem) var(--gut);flex:1;width:100%;max-width:64rem
   color:var(--muted);margin:0 0 1.2rem;
 }
 .pieces{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-@media (min-width:780px){ .pieces{grid-template-columns:1fr 1fr} }
+@media (min-width:780px){ .pieces{grid-template-columns:1fr 1fr} a.piece.ancha{grid-column:1/-1} }
 
 a.piece{
   background:var(--paper);color:inherit;text-decoration:none;
@@ -119,7 +119,7 @@ footer{
 </header>
 
 <main>
-  <p class="eyebrow">Las dos piezas</p>
+  <p class="eyebrow">Las tres piezas</p>
 
   <div class="pieces">
     <a class="piece" href="deck/">
@@ -137,11 +137,19 @@ footer{
       <p class="how">Scroll normal, con índice lateral en pantalla grande. Dos capas opcionales: <b>manifiesto</b> (el lenguaje de Sapira detrás de cada sección) y <b>procedencia</b> (qué cifra sale del caso y cuál he construido yo).</p>
       <span class="go">Abrir el documento</span>
     </a>
+
+    <a class="piece ancha" href="demostrador/app/">
+      <span class="no">Pieza 03</span>
+      <h2>Demostrador · Onboarding documental</h2>
+      <p class="desc">El prototipo funcionando: cinco altas de temporada, la plantilla de SAP&nbsp;HCM que empieza vacía y un agente que la rellena campo a campo con la procedencia y la confianza de cada dato.</p>
+      <p class="how">Se usa: abre un alta y pulsa <b>Procesar con el agente</b>. Cada dato enlaza al PDF del que sale. Puedes comentar cualquier campo, aprobar, rechazar o dejar el alta en progreso pidiendo lo que falta. Datos y documentos son sintéticos y no está conectado a SAP: nada se escribe en ningún sistema.</p>
+      <span class="go">Abrir el demostrador</span>
+    </a>
   </div>
 
   <div class="note">
-    <p><b>Para leer en el metro:</b> las dos piezas son HTML autocontenido — una vez cargada la página, funciona sin cobertura. El deck está pensado para pantalla ancha; el documento se lee bien en vertical.</p>
-    <p><b>Para los entrevistadores:</b> empezad por el deck. El documento es el respaldo, no hace falta leerlo entero para seguir la conversación.</p>
+    <p><b>Para leer en el metro:</b> las tres piezas son HTML autocontenido — una vez cargada la página, funciona sin cobertura. El deck está pensado para pantalla ancha; el documento se lee bien en vertical.</p>
+    <p><b>Para los entrevistadores:</b> empezad por el deck. El documento es el respaldo, no hace falta leerlo entero para seguir la conversación. El demostrador se entiende en dos minutos y se puede trastear sin romper nada.</p>
   </div>
 </main>
 

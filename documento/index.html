@@ -551,8 +551,48 @@ body.pv .pvbtn span{opacity:.85}
   .wrap{padding-left:0}
   body{font-size:11pt;background:#fff}
   section{break-inside:avoid;padding:1.4rem 0}
-  .opp .body{display:block!important}
+  .opp .body,.foldout > .body{display:block!important}
+  .foldout > summary::before{content:""}
+  .finale{min-height:0}
   svg.plot{min-width:0}
+}
+/* ══════════ distintivo de razon (piramide) ══════════ */
+.eyebrow .rsn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:1.2rem;height:1.2rem;border-radius:50%;
+  border:1.5px solid var(--red);color:var(--red);
+  font-size:.66rem;font-weight:800;letter-spacing:0;line-height:1;flex:none;
+}
+.on-burgundy .eyebrow .rsn{border-color:var(--burgundy-num);color:var(--burgundy-num)}
+
+/* ══════════ desplegable de la hoja de ruta ══════════ */
+.foldout{border:1px solid var(--line);background:var(--paper);margin:2rem 0 0;color:var(--ink)}
+.foldout > summary{
+  list-style:none;cursor:pointer;padding:1rem 1.15rem;
+  font-size:.94rem;font-weight:600;color:var(--ink);
+  display:flex;align-items:baseline;gap:.65rem;
+}
+.foldout > summary::-webkit-details-marker{display:none}
+.foldout > summary::before{content:"+";color:var(--red);font-weight:800;font-size:1.05rem;line-height:1}
+.foldout[open] > summary::before{content:"–"}
+.foldout > summary:hover{background:var(--chip)}
+.foldout > .body{padding:.2rem 1.15rem 1.3rem;border-top:1px solid var(--line)}
+.foldout > .body .lead{font-size:1rem;font-weight:300;margin:1.1rem 0 1.3rem;max-width:56ch}
+/* las tarjetas claras dentro de una seccion burgundy no pueden heredar el crema */
+.on-burgundy .opp{color:var(--ink)}
+.on-burgundy .compound > div{color:var(--ink)}
+.on-burgundy .ask{color:var(--ink)}
+.on-burgundy .pact > div{color:var(--ink)}
+
+/* ══════════ el cierre ══════════ */
+.finale{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.finale .thanks{
+  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;
+  color:rgba(252,246,242,.55);margin:0 0 2.4rem;max-width:none;
+}
+.finale .bigq{
+  font-size:clamp(2.1rem,6.2vw,5rem);font-weight:300;line-height:1.03;
+  letter-spacing:-.025em;margin:0;max-width:23ch;text-wrap:balance;
 }
 </style>
 
@@ -608,49 +648,72 @@ body.pv .pvbtn span{opacity:.85}
   </div>
 </header>
 
-<!-- ═══════════════ 01 ═══════════════ -->
-<section class="on-bone" id="s1" data-nav="Los tres entregables">
-  <p class="eyebrow"><span class="no">01</span> Lo que hay hoy encima de la mesa</p>
-  <h2>Hace ocho semanas firmasteis tres entregables. Están los tres.</h2>
+
+<!-- ═══════════════ 00 ═══════════════ -->
+<section class="on-burgundy" id="s0" data-nav="Firmad la Fase 1, empezad el 28-S" data-num="00">
+  <p class="eyebrow"><span class="no">00</span> La recomendación</p>
+  <h2>Firmad la Fase 1 y arrancad el 28 de septiembre.</h2>
   <p class="lead">
-    No es una reunión de venta. Es la sesión de cierre de algo que ya pagasteis, y la
-    única forma honesta de empezar es enseñar el recibo.
+    390.000 €, y el precio no se mueve. Con vuestros propios números, el proyecto
+    completo —Fase 0 incluida— se paga en el mes 10,6 y devuelve 1,43× dentro de los
+    doce primeros meses. Tres razones, en este orden.
   </p>
+
   <div class="pact">
     <div>
-      <p class="k">Entregable 1</p>
-      <p>Un demostrador en vivo sobre expedientes reales de AP: onboarding documental,
-      funcionando, con vuestros PDFs. <strong>Sección 05.</strong></p>
+      <p class="k">Razón ①</p>
+      <p>Tenéis un problema de calendario, no de datos. La desviación existe desde el
+      día 8 y no la veis hasta seis semanas después. <strong>Sección 01.</strong></p>
     </div>
     <div>
-      <p class="k">Entregable 2</p>
-      <p>La hoja de ruta priorizada, con el criterio de priorización a la vista, y el caso
-      de negocio del proyecto completo. <strong>Secciones 06 y 07.</strong></p>
+      <p class="k">Razón ②</p>
+      <p>Y pagáis 4.023 horas al año sin verlas. Medidas en vuestra casa, y ya
+      demostrado que un agente las quita. <strong>Secciones 02 y 03.</strong></p>
     </div>
     <div>
-      <p class="k">Entregable 3</p>
-      <p>El plan y el precio cerrados de la Fase 1 —o la recomendación escrita de no
-      seguir. <strong>Sección 08.</strong></p>
+      <p class="k">Razón ③</p>
+      <p>Arreglar las dos cosas vale 662.644 € al año en régimen. Y la temporada, que
+      es donde se juega, pasa una vez. <strong>Sección 04.</strong></p>
     </div>
   </div>
+
   <p class="small">
-    Los tres se sostienen sobre el baseline que medimos en las semanas 1 y 2 dentro de
-    vuestra casa. Cada cifra de este documento dice de dónde sale y cuál es su margen de
-    error. Las que no medimos nosotros están marcadas como lo que son: supuestos que
-    vosotros tenéis que confirmar.
+    Los tres entregables que firmasteis hace ocho semanas están los tres: el demostrador
+    en vivo (sección 03), la hoja de ruta priorizada con su criterio a la vista
+    (desplegable de la 05) y el plan y el precio cerrados de la Fase 1 (sección 05).
+    Esto no es una reunión de venta: es la sesión de cierre de algo que ya pagasteis, y
+    cada cifra de este documento dice de dónde sale y cuál es su margen de error.
   </p>
+
+  <div class="mf-note">
+    <span class="tag">Uso interno · <span class="src">cómo se abre la reunión</span></span>
+    <p>Esta pantalla es tu primer minuto. Dices la recomendación, dices las tres razones
+    y callas. No expliques la estructura del documento: las tres razones <em>son</em> las
+    tres secciones siguientes y eso se entiende solo.</p>
+    <p><b>Si preguntan el precio antes de tiempo</b>, ya está contestado aquí — y
+    contestado con el payback al lado, que es la única forma de darlo.</p>
+  </div>
 
   <div class="pv-note">
     <span class="tag">Procedencia · uso interno</span>
-    <p>Los tres entregables y su redacción salen literalmente del brief (punto 3) y de la oferta (secciones 3 y 5). <span class="pvc caso">Caso</span></p>
-    <p>El calendario «baseline en las semanas 1 y 2» también es de la oferta. <b>Lo que ese baseline dice</b> —los minutos, las horas, los días de retraso— no está en ningún documento: es tuyo. Ver sección 03.</p>
+    <p><b>Esta sección no introduce ninguna cifra nueva.</b> Las tres razones y los tres
+    números salen de las secciones 01, 02, 03 y 04, y su procedencia está declarada allí.
+    <span class="pvc der">Derivado</span></p>
+    <p>Los números de portada son la salida del modelo de la sección 04 en su punto de
+    partida. Si mueves la fracción recuperada en la sala, esta pantalla no se recalcula:
+    dilo como «en el escenario medio» y señala la 04.</p>
+    <p>Los tres entregables y su redacción salen literalmente del brief (punto 3) y de la
+    oferta (secciones 3 y 5). <span class="pvc caso">Caso</span></p>
+    <p>El calendario «baseline en las semanas 1 y 2» también es de la oferta. <b>Lo que
+    ese baseline dice</b> —los minutos, las horas, los días de retraso— no está en ningún
+    documento: es tuyo. Ver sección 02.</p>
   </div>
 
 </section>
 
-<!-- ═══════════════ 02 ═══════════════ -->
-<section class="on-burgundy" id="s2" data-nav="Las dos versiones">
-  <p class="eyebrow"><span class="no">02</span> El diagnóstico</p>
+<!-- ═══════════════ 01 · razón ① ═══════════════ -->
+<section class="on-burgundy" id="s1" data-nav="Dos versiones, y las dos son verdad" data-num="01">
+  <p class="eyebrow"><span class="no">01</span><span class="rsn">①</span> El diagnóstico</p>
   <h2>Artificial PARK tiene dos versiones de sí misma. Y las dos son verdad.</h2>
   <p class="lead">
     Hay un cuadrante que el comité sella el día 25 y que es la referencia legal. Hay otro
@@ -808,9 +871,10 @@ body.pv .pvbtn span{opacity:.85}
 
 </section>
 
-<!-- ═══════════════ 03 ═══════════════ -->
-<section class="on-paper" id="s3" data-nav="Lo que medimos">
-  <p class="eyebrow"><span class="no">03</span> El baseline · semanas 1–2</p>
+
+<!-- ═══════════════ 02 · razón ② ═══════════════ -->
+<section class="on-paper" id="s2" data-nav="5.448 h que no veis en el presupuesto" data-num="02">
+  <p class="eyebrow"><span class="no">02</span><span class="rsn">②</span> El baseline · semanas 1–2</p>
   <h2>No os falta software. Os sobran huecos entre sistemas.</h2>
   <p class="lead">
     SAP HCM, Skello, BOARD y Docusign cubren bien sus funciones. Lo que consume miles de
@@ -922,7 +986,7 @@ body.pv .pvbtn span{opacity:.85}
     Las <strong>5.448 h</strong> medidas son el techo: lo que estas seis familias cuestan
     hoy. Las <strong>4.023 h</strong> liberables son lo que un agente puede quitar de
     encima sin renunciar a la supervisión. El caso de negocio se construye sobre las
-    segundas, y el 4–6 % se monetiza aparte: las dos palancas, en la sección 06.
+    segundas, y el 4–6 % se monetiza aparte: las dos palancas, en la sección 04.
   </p>
 
   <div class="mf-note">
@@ -942,15 +1006,16 @@ body.pv .pvbtn span{opacity:.85}
     <p>Del caso: las <b>seis familias</b> de subprocesos (oferta 2.3), las <b>10.000</b> altas/año (brief), los <b>~8.000</b> correos/año y los <b>~100</b> movimientos de condiciones al día (oferta 2.3). <span class="pvc caso">Caso</span></p>
     <p>Los <b>25.000</b> movimientos de condiciones/año son los ~100 diarios anualizados. <span class="pvc der">Derivado</span></p>
     <p>Construido por ti: <b>todos los minutos por unidad</b>, hoy y con agente (14→4, 3→1, 9→2, 4→0,5, 25→5, 840→120); los volúmenes de <b>6.000</b> llamamientos, <b>600</b> de bolsa de eventos y <b>13</b> informes; y por tanto los dos totales, las <b>5.448 h medidas</b> y las <b>4.023 h liberables</b>. <span class="pvc inv">Inventado</span></p>
-    <p>El <b>4–6 %</b> del bloque de la derecha sí es suyo: os lo dijeron por correo. Aquí sólo se muestra; se monetiza en la sección 06. <span class="pvc caso">Caso</span></p>
+    <p>El <b>4–6 %</b> del bloque de la derecha sí es suyo: os lo dijeron por correo. Aquí sólo se muestra; se monetiza en la sección 04. <span class="pvc caso">Caso</span></p>
     <p><b>Ojo al reparto:</b> los volúmenes son suyos, los minutos son tuyos, y tanto las horas medidas como las liberadas son el producto de los dos. Ninguno de los dos totales es un dato del caso aunque los dos se apoyen en datos del caso.</p>
   </div>
 
 </section>
 
-<!-- ═══════════════ 04 ═══════════════ -->
-<section class="on-panel" id="s4" data-nav="El demostrador">
-  <p class="eyebrow"><span class="no">04</span> El demostrador · en vivo</p>
+
+<!-- ═══════════════ 03 · razón ② ═══════════════ -->
+<section class="on-panel" id="s3" data-nav="Catorce minutos pasan a cuatro" data-num="03">
+  <p class="eyebrow"><span class="no">03</span><span class="rsn">②</span> El demostrador · en vivo</p>
   <h2>Un alta que hoy tarda catorce minutos, delante de vosotros, en cuatro.</h2>
   <p class="lead">
     Lo que vais a ver funciona sobre expedientes reales de AP en un entorno aislado. No
@@ -1048,87 +1113,10 @@ body.pv .pvbtn span{opacity:.85}
 
 </section>
 
-<!-- ═══════════════ 05 ═══════════════ -->
-<section class="on-bone" id="s5" data-nav="La hoja de ruta">
-  <p class="eyebrow"><span class="no">05</span> La hoja de ruta priorizada</p>
-  <h2>El plan es una propuesta con criterio. La ejecución tendrá cintura para pivotar.</h2>
-  <p class="lead">
-    Cada oportunidad se puntúa sobre cinco ejes medidos en la Fase 0. Abrid cualquiera
-    para ver por qué está donde está —incluidas las que decidimos aplazar.
-  </p>
 
-  <div id="oppList"></div>
-
-  <div class="compound">
-    <div>
-      <p class="w">Oleada 1</p>
-      <p class="t">Onboarding + Archivo</p>
-      <p class="d">Reglas del convenio y tipos de documento. El agente aprende a leer AP.</p>
-      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento arranca con pocos nodos conectados.">
-        <g fill="#562B2A"><circle cx="22" cy="22" r="3.4"/><circle cx="44" cy="14" r="3.4"/><circle cx="40" cy="32" r="3.4"/></g>
-        <g stroke="#562B2A" stroke-opacity=".4"><line x1="22" y1="22" x2="44" y2="14"/><line x1="22" y1="22" x2="40" y2="32"/></g>
-      </svg>
-    </div>
-    <div>
-      <p class="w">Oleada 2</p>
-      <p class="t">Panel de los dos cuadrantes</p>
-      <p class="d">Reutiliza el convenio ya codificado y suma presupuesto, cuadrante y fichaje.</p>
-      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento se densifica al añadir cuadrantes y presupuesto.">
-        <g fill="#562B2A"><circle cx="18" cy="20" r="3.4"/><circle cx="38" cy="12" r="3.4"/><circle cx="36" cy="31" r="3.4"/><circle cx="58" cy="22" r="3.4"/><circle cx="72" cy="12" r="3.4"/><circle cx="76" cy="33" r="3.4"/></g>
-        <g stroke="#562B2A" stroke-opacity=".4"><line x1="18" y1="20" x2="38" y2="12"/><line x1="18" y1="20" x2="36" y2="31"/><line x1="38" y1="12" x2="58" y2="22"/><line x1="36" y1="31" x2="58" y2="22"/><line x1="58" y1="22" x2="72" y2="12"/><line x1="58" y1="22" x2="76" y2="33"/></g>
-      </svg>
-    </div>
-    <div>
-      <p class="w">Oleada 3</p>
-      <p class="t">Llamamientos + informes RLT</p>
-      <p class="d">Ya conoce personas, expedientes y fechas. Coste marginal más bajo que la 2.</p>
-      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento reutiliza casi todo el contexto anterior.">
-        <g fill="#562B2A"><circle cx="14" cy="20" r="3.4"/><circle cx="32" cy="11" r="3.4"/><circle cx="30" cy="31" r="3.4"/><circle cx="50" cy="21" r="3.4"/><circle cx="64" cy="11" r="3.4"/><circle cx="68" cy="33" r="3.4"/><circle cx="86" cy="20" r="3.4"/><circle cx="100" cy="31" r="3.4"/></g>
-        <g stroke="#562B2A" stroke-opacity=".4"><line x1="14" y1="20" x2="32" y2="11"/><line x1="14" y1="20" x2="30" y2="31"/><line x1="32" y1="11" x2="50" y2="21"/><line x1="30" y1="31" x2="50" y2="21"/><line x1="50" y1="21" x2="64" y2="11"/><line x1="50" y1="21" x2="68" y2="33"/><line x1="64" y1="11" x2="86" y2="20"/><line x1="68" y1="33" x2="86" y2="20"/><line x1="86" y1="20" x2="100" y2="31"/></g>
-      </svg>
-    </div>
-    <div>
-      <p class="w">Después</p>
-      <p class="t">Talento sobre SAP</p>
-      <p class="d">La necesidad que motivó Workday. Fuera de la Fase 1 hasta tener volumetría.</p>
-      <svg viewBox="0 0 120 44" role="img" aria-label="Los nodos de talento aparecen sin conectar todavía a la base.">
-        <g fill="#562B2A" fill-opacity=".35"><circle cx="14" cy="20" r="3.4"/><circle cx="32" cy="11" r="3.4"/><circle cx="30" cy="31" r="3.4"/><circle cx="50" cy="21" r="3.4"/><circle cx="64" cy="11" r="3.4"/><circle cx="68" cy="33" r="3.4"/><circle cx="86" cy="20" r="3.4"/></g>
-        <g fill="none" stroke="#D6363E" stroke-width="1.3"><circle cx="104" cy="15" r="3.6"/><circle cx="106" cy="33" r="3.6"/></g>
-      </svg>
-    </div>
-  </div>
-  <p class="small" style="margin-top:.9rem">
-    Cada oleada reutiliza el contexto y las fuentes que conectó la anterior. Por eso el
-    coste marginal baja: la Oleada 3 no vuelve a aprender qué es un fijo discontinuo en
-    AP. Nuestro objetivo declarado es <strong>−25% de coste por oleada</strong> respecto a
-    la anterior, y está en las métricas de la sección 08.
-  </p>
-
-  <div class="mf-note">
-    <span class="tag">Manifiesto / web · <span class="src">"Compound — each new use case is faster. The system already knows your operations."</span></span>
-    <p>Sapira vende cuatro fases en su web: Capture Knowledge, Deliver Prototype, Deploy,
-    y <em>Compound</em>. La cuarta es la que convierte un deal de 300k en un cliente de
-    varios años, y es la que casi nadie sabe contar sin sonar a "y luego os vendemos más".</p>
-    <p>La forma honesta de contarla es la que está en tu propia oferta: el coste marginal
-    baja porque el contexto se acumula. Eso te deja poner un número —"−25% por oleada"— y
-    un número es una promesa; "sinergias" es humo.</p>
-    <p><b>Esto es también tu palanca de expansión.</b> El brief dice que si el discovery y
-    el primer despliegue van bien, los dos siguientes deals son expansión del mismo
-    cliente. Esta sección es donde se planta esa semilla, sin pedirla.</p>
-  </div>
-
-  <div class="pv-note">
-    <span class="tag">Procedencia · uso interno</span>
-    <p>Del caso: las oportunidades listadas y su descripción salen de la oferta 4.1 y 4.2, incluida la razón por la que talento queda fuera hasta tener volumetría. Que la priorización formal es entregable de la Fase 0 también es de la oferta. <span class="pvc caso">Caso</span></p>
-    <p>El aplazamiento de la bolsa de eventos descansa en un <b>supuesto tuyo</b>, ahora explícito en el propio texto: que la casuística sigue abierta porque se recoge en la apertura del ciclo anual y en julio no constaba cierre. No te lo ha confirmado nadie. <span class="pvc inv">Inventado</span></p>
-    <p>Construido por ti: <b>las puntuaciones de los cinco ejes</b>, el orden concreto de las oleadas y el objetivo de <b>−25 % de coste por oleada</b>. La oferta afirma que el coste marginal baja, pero no pone número. <span class="pvc inv">Inventado</span></p>
-  </div>
-
-</section>
-
-<!-- ═══════════════ 06 ═══════════════ -->
-<section class="on-paper" id="s6" data-nav="El caso de negocio">
-  <p class="eyebrow"><span class="no">06</span> El caso de negocio</p>
+<!-- ═══════════════ 04 · razón ③ ═══════════════ -->
+<section class="on-paper" id="s4" data-nav="La desviación paga esto, las horas no" data-num="04">
+  <p class="eyebrow"><span class="no">04</span><span class="rsn">③</span> El caso de negocio</p>
   <h2>Las horas no pagan este proyecto. La desviación, sí.</h2>
   <p class="lead">
     Este proyecto tiene dos palancas y no valen lo mismo. Las horas que libera la
@@ -1166,7 +1154,7 @@ body.pv .pvbtn span{opacity:.85}
           <p class="fl">Horas liberadas al año <span class="tagf">medido</span></p>
           <p class="fv" id="oHoras">4.023 h</p>
           <p class="fn">Cronometrado con vuestros gestores en las semanas 1–2, sobre volúmenes
-          vuestros. No es una proyección: es el baseline de la sección 03, y está congelado.</p>
+          vuestros. No es una proyección: es el baseline de la sección 02, y está congelado.</p>
           <div class="bar">
             <input type="range" id="kHoras" min="2000" max="6000" step="1" value="4023"
                    aria-label="Horas liberadas al año">
@@ -1249,7 +1237,7 @@ body.pv .pvbtn span{opacity:.85}
 
         <h4>Horas liberadas · 4.023 h/año <span class="tagf">medido</span></h4>
         <p>Volúmenes vuestros, minutos por unidad cronometrados con vuestro equipo en las
-        semanas 1–2. Las seis familias y su desglose están en la sección 03: 5.448 h es el
+        semanas 1–2. Las seis familias y su desglose están en la sección 02: 5.448 h es el
         techo —lo que cuestan hoy— y 4.023 h lo que un agente puede quitar de encima.
         <span class="src">Fuente: baseline de la Fase 0 · brief del caso (10.000 movimientos/año, ~8.000 correos/año, ~100 movimientos de condiciones/día).</span></p>
 
@@ -1381,7 +1369,7 @@ body.pv .pvbtn span{opacity:.85}
               <tr><td>&nbsp;&nbsp;→ de desviación, dentro del primer año</td><td class="num" id="tDesv12">550.000 € (100 %)</td><td>El panel llega antes de junio</td></tr>
               <tr class="total"><td>Impacto realizado en los 12 primeros meses</td><td class="num" id="t12">643.198 €</td><td>Con la rampa y las dos estacionalidades</td></tr>
               <tr><td>Coste Fase 0 (ya pagada)</td><td class="num">60.000 €</td><td>Contrato firmado en julio</td></tr>
-              <tr><td>Coste Fase 1</td><td class="num">390.000 €</td><td>Precio fijo · sección 07</td></tr>
+              <tr><td>Coste Fase 1</td><td class="num">390.000 €</td><td>Precio fijo · sección 05</td></tr>
               <tr class="total"><td>Coste total a recuperar</td><td class="num">450.000 €</td><td>Fase 0 incluida, como prometimos</td></tr>
             </tbody>
           </table>
@@ -1430,9 +1418,10 @@ body.pv .pvbtn span{opacity:.85}
 
 </section>
 
-<!-- ═══════════════ 07 ═══════════════ -->
-<section class="on-burgundy" id="s7" data-nav="La Fase 1">
-  <p class="eyebrow"><span class="no">07</span> La propuesta</p>
+
+<!-- ═══════════════ 05 · el cómo ═══════════════ -->
+<section class="on-burgundy" id="s5" data-nav="Tres oleadas, 24 semanas, 390.000 €" data-num="05">
+  <p class="eyebrow"><span class="no">05</span> La Fase 1</p>
   <h2>Fase 1: tres oleadas, 24 semanas, 390.000 €.</h2>
   <p class="lead">
     La Fase 0 demostró y diseñó. La Fase 1 construye lo demostrado y lo pone en producción,
@@ -1461,7 +1450,8 @@ body.pv .pvbtn span{opacity:.85}
       <p class="k">Estructura de pago</p>
       <p class="v">30 / 40 / 30</p>
       <p class="n">30% a la firma. 40% repartido en los tres hitos de puesta en producción.
-      30% como success fee, ligado a las métricas de la sección 08.</p>
+      30% como success fee, ligado a las métricas del apéndice B, que llevan escrita la
+      decisión que activa cada una.</p>
     </div>
     <div>
       <p class="k">Quién hace qué</p>
@@ -1488,96 +1478,62 @@ body.pv .pvbtn span{opacity:.85}
     lo valioso, en ese orden.
   </p>
 
-  <div class="mf-note">
-    <span class="tag">Manifiesto · <span class="src">"Coordination as infrastructure"</span> · <span class="src">"Processes that understand themselves"</span></span>
-    <p>Los tres activos que el manifiesto promete —coordinación como infraestructura,
-    memoria operativa fuera de las personas, procesos que se entienden a sí mismos— se
-    reparten limpiamente entre tus tres oleadas. Nómbralos así cuando presentes el plan:
-    la Oleada 1 es memoria operativa, la Oleada 2 es coordinación como infraestructura, la
-    Oleada 3 es procesos que se explican solos.</p>
-    <p>Eso convierte un listado de proyectos en la ejecución de una tesis. Es la diferencia
-    entre un proveedor y alguien que sabe qué está construyendo.</p>
-    <p><b>Nombra Pharo aquí, no antes.</b> La web lo describe como <em>"one engine,
-    infinite configurations. Shaped by your operations, not by a predefined system."</em>
-    Dicho en la sección del precio, contesta sin que la hagan la pregunta de por qué esto
-    cuesta 390k y no es un paquete: no compráis un producto configurado, compráis vuestra
-    operación ejecutable sobre un motor que ya existe.</p>
+  <div class="compound">
+    <div>
+      <p class="w">Oleada 1</p>
+      <p class="t">Onboarding + Archivo</p>
+      <p class="d">Reglas del convenio y tipos de documento. El agente aprende a leer AP.</p>
+      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento arranca con pocos nodos conectados.">
+        <g fill="#562B2A"><circle cx="22" cy="22" r="3.4"/><circle cx="44" cy="14" r="3.4"/><circle cx="40" cy="32" r="3.4"/></g>
+        <g stroke="#562B2A" stroke-opacity=".4"><line x1="22" y1="22" x2="44" y2="14"/><line x1="22" y1="22" x2="40" y2="32"/></g>
+      </svg>
+    </div>
+    <div>
+      <p class="w">Oleada 2</p>
+      <p class="t">Panel de los dos cuadrantes</p>
+      <p class="d">Reutiliza el convenio ya codificado y suma presupuesto, cuadrante y fichaje.</p>
+      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento se densifica al añadir cuadrantes y presupuesto.">
+        <g fill="#562B2A"><circle cx="18" cy="20" r="3.4"/><circle cx="38" cy="12" r="3.4"/><circle cx="36" cy="31" r="3.4"/><circle cx="58" cy="22" r="3.4"/><circle cx="72" cy="12" r="3.4"/><circle cx="76" cy="33" r="3.4"/></g>
+        <g stroke="#562B2A" stroke-opacity=".4"><line x1="18" y1="20" x2="38" y2="12"/><line x1="18" y1="20" x2="36" y2="31"/><line x1="38" y1="12" x2="58" y2="22"/><line x1="36" y1="31" x2="58" y2="22"/><line x1="58" y1="22" x2="72" y2="12"/><line x1="58" y1="22" x2="76" y2="33"/></g>
+      </svg>
+    </div>
+    <div>
+      <p class="w">Oleada 3</p>
+      <p class="t">Llamamientos + informes RLT</p>
+      <p class="d">Ya conoce personas, expedientes y fechas. Coste marginal más bajo que la 2.</p>
+      <svg viewBox="0 0 120 44" role="img" aria-label="La base de conocimiento reutiliza casi todo el contexto anterior.">
+        <g fill="#562B2A"><circle cx="14" cy="20" r="3.4"/><circle cx="32" cy="11" r="3.4"/><circle cx="30" cy="31" r="3.4"/><circle cx="50" cy="21" r="3.4"/><circle cx="64" cy="11" r="3.4"/><circle cx="68" cy="33" r="3.4"/><circle cx="86" cy="20" r="3.4"/><circle cx="100" cy="31" r="3.4"/></g>
+        <g stroke="#562B2A" stroke-opacity=".4"><line x1="14" y1="20" x2="32" y2="11"/><line x1="14" y1="20" x2="30" y2="31"/><line x1="32" y1="11" x2="50" y2="21"/><line x1="30" y1="31" x2="50" y2="21"/><line x1="50" y1="21" x2="64" y2="11"/><line x1="50" y1="21" x2="68" y2="33"/><line x1="64" y1="11" x2="86" y2="20"/><line x1="68" y1="33" x2="86" y2="20"/><line x1="86" y1="20" x2="100" y2="31"/></g>
+      </svg>
+    </div>
+    <div>
+      <p class="w">Después</p>
+      <p class="t">Talento sobre SAP</p>
+      <p class="d">La necesidad que motivó Workday. Fuera de la Fase 1 hasta tener volumetría.</p>
+      <svg viewBox="0 0 120 44" role="img" aria-label="Los nodos de talento aparecen sin conectar todavía a la base.">
+        <g fill="#562B2A" fill-opacity=".35"><circle cx="14" cy="20" r="3.4"/><circle cx="32" cy="11" r="3.4"/><circle cx="30" cy="31" r="3.4"/><circle cx="50" cy="21" r="3.4"/><circle cx="64" cy="11" r="3.4"/><circle cx="68" cy="33" r="3.4"/><circle cx="86" cy="20" r="3.4"/></g>
+        <g fill="none" stroke="#D6363E" stroke-width="1.3"><circle cx="104" cy="15" r="3.6"/><circle cx="106" cy="33" r="3.6"/></g>
+      </svg>
+    </div>
   </div>
-
-  <div class="pv-note">
-    <span class="tag">Procedencia · uso interno</span>
-    <p>Del caso: el modelo por fases con recomendación honesta de no seguir, y que el objetivo del ejercicio es cerrar la Fase 1 por <b>más de 300k</b> (brief 5). <span class="pvc caso">Caso</span></p>
-    <p>Todo lo demás de esta sección es tuyo: el reparto <b>150 / 170 / 70</b>, las <b>24 semanas</b> y el calendario de las tres oleadas, el <b>30 / 40 / 30</b>, el <b>2 + 1</b> de equipo y las condiciones de parada limpia. <span class="pvc inv">Inventado</span></p>
-  </div>
-
-</section>
-
-<!-- ═══════════════ 08 ═══════════════ -->
-<section class="on-bone" id="s8" data-nav="Cómo se mide">
-  <p class="eyebrow"><span class="no">08</span> Las métricas</p>
-  <h2>Seis números. Cada uno con la decisión que activa si falla.</h2>
-  <p class="lead">
-    Una métrica que no dispara ninguna decisión es un adorno. Estas se revisan en la
-    cadencia indicada y cada una tiene escrito qué pasa si no se cumple.
-  </p>
-  <div class="tblwrap">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Métrica</th><th scope="col" class="num">Baseline</th>
-          <th scope="col" class="num">Objetivo</th><th scope="col">Cadencia</th>
-          <th scope="col">Decisión que activa</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Minutos por alta documental</td><td class="num">14</td><td class="num">≤ 4</td><td>Semanal</td>
-          <td>Si &gt;6 durante dos semanas, se revisan umbrales antes de ampliar volumen.</td>
-        </tr>
-        <tr>
-          <td>Altas sin intervención humana</td><td class="num">0%</td><td class="num">≥ 70%</td><td>Semanal</td>
-          <td>Si &lt;50% en la semana 6, no se abre la Oleada 2.</td>
-        </tr>
-        <tr>
-          <td>Correos archivados sin excepción</td><td class="num">0%</td><td class="num">≥ 85%</td><td>Semanal</td>
-          <td>Por debajo de 70%, se amplía la base de conocimiento antes de escalar.</td>
-        </tr>
-        <tr>
-          <td>Días hasta detectar una desviación de horas</td><td class="num">21–42</td><td class="num">≤ 1</td><td>Diaria</td>
-          <td>Si &gt;3 días, la Oleada 2 no se considera cerrada ni se factura su hito.</td>
-        </tr>
-        <tr>
-          <td>Horas reales vs. planificadas</td><td class="num">no medible hoy</td><td class="num">desv. ≤ 1%</td><td>Mensual</td>
-          <td>Dos meses por encima de 2% convoca comité de revisión con el CFO.</td>
-        </tr>
-        <tr>
-          <td>Coste de la oleada vs. la anterior</td><td class="num">—</td><td class="num">−25%</td><td>Por oleada</td>
-          <td>Si no baja, la siguiente oleada se renegocia a la baja o no se firma.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="small" style="margin-top:1rem">
-    Todas se miden contra el baseline de las semanas 1–2, no contra una estimación
-    posterior. El baseline está congelado y es vuestro.
+  <p class="small" style="margin-top:.9rem">
+    Cada oleada reutiliza el contexto y las fuentes que conectó la anterior. Por eso el
+    coste marginal baja: la Oleada 3 no vuelve a aprender qué es un fijo discontinuo en
+    AP. Nuestro objetivo declarado es <strong>−25% de coste por oleada</strong> respecto a
+    la anterior, y está en las métricas del apéndice B.
   </p>
 
-  <div class="pv-note">
-    <span class="tag">Procedencia · uso interno</span>
-    <p><b>Los doce números de esta tabla son tuyos: los seis baselines y los seis objetivos.</b> Ninguno aparece en el brief ni en la oferta. <span class="pvc inv">Inventado</span></p>
-    <p>El más expuesto es el baseline de <b>21–42 días</b> hasta detectar una desviación, porque es el que sostiene el caso de negocio entero. Es la traducción a días de las <b>tres a seis semanas</b> que sí son del caso, y es exactamente la horquilla que dibuja el gráfico de la sección 02 con su switch. Que los tres sitios digan lo mismo es lo que te deja defenderlo sin dudar.</p>
-  </div>
-
-</section>
-
-<!-- ═══════════════ 09 ═══════════════ -->
-<section class="on-bone hr-top" id="s9" data-nav="La decisión de hoy">
-  <p class="eyebrow"><span class="no">09</span> La decisión</p>
-  <h2>Lo que pedimos hoy no es una firma. Es una fecha.</h2>
-  <p class="lead">
-    Tenéis el baseline, el demostrador y el caso de negocio. Lo único que falta para que
-    la Oleada 1 arranque en dos semanas es que decidáis tres cosas en esta reunión.
+  <details class="foldout">
+    <summary>Por qué este orden y no otro · las cinco puntuaciones</summary>
+    <div class="body">
+      <p class="lead">
+    Cada oportunidad se puntúa sobre cinco ejes medidos en la Fase 0. Abrid cualquiera
+    para ver por qué está donde está —incluidas las que decidimos aplazar.
   </p>
+      <div id="oppList"></div>
+    </div>
+  </details>
+
   <div class="ask">
     <p class="k">El acuerdo que buscamos al salir de esta sala</p>
     <ul>
@@ -1598,16 +1554,64 @@ body.pv .pvbtn span{opacity:.85}
     no de descuento.
   </p>
 
+  <div class="mf-note">
+    <span class="tag">Manifiesto · <span class="src">"Coordination as infrastructure"</span> · <span class="src">"Processes that understand themselves"</span></span>
+    <p>Los tres activos que el manifiesto promete —coordinación como infraestructura,
+    memoria operativa fuera de las personas, procesos que se entienden a sí mismos— se
+    reparten limpiamente entre tus tres oleadas. Nómbralos así cuando presentes el plan:
+    la Oleada 1 es memoria operativa, la Oleada 2 es coordinación como infraestructura, la
+    Oleada 3 es procesos que se explican solos.</p>
+    <p>Eso convierte un listado de proyectos en la ejecución de una tesis. Es la diferencia
+    entre un proveedor y alguien que sabe qué está construyendo.</p>
+    <p><b>Nombra Pharo aquí, no antes.</b> La web lo describe como <em>"one engine,
+    infinite configurations. Shaped by your operations, not by a predefined system."</em>
+    Dicho en la sección del precio, contesta sin que la hagan la pregunta de por qué esto
+    cuesta 390k y no es un paquete: no compráis un producto configurado, compráis vuestra
+    operación ejecutable sobre un motor que ya existe.</p>
+    <span class="tag" style="margin-top:1.1rem">Manifiesto / web · <span class="src">"Compound — each new use case is faster. The system already knows your operations."</span></span>
+    <p>Sapira vende cuatro fases en su web: Capture Knowledge, Deliver Prototype, Deploy,
+    y <em>Compound</em>. La cuarta es la que convierte un deal de 300k en un cliente de
+    varios años, y es la que casi nadie sabe contar sin sonar a "y luego os vendemos más".</p>
+    <p>La forma honesta de contarla es la que está en tu propia oferta: el coste marginal
+    baja porque el contexto se acumula. Eso te deja poner un número —"−25% por oleada"— y
+    un número es una promesa; "sinergias" es humo.</p>
+    <p><b>Esto es también tu palanca de expansión.</b> El brief dice que si el discovery y
+    el primer despliegue van bien, los dos siguientes deals son expansión del mismo
+    cliente. Esta sección es donde se planta esa semilla, sin pedirla.</p>
+  </div>
+
   <div class="pv-note">
     <span class="tag">Procedencia · uso interno</span>
+    <p>Del caso: el modelo por fases con recomendación honesta de no seguir, y que el objetivo del ejercicio es cerrar la Fase 1 por <b>más de 300k</b> (brief 5). <span class="pvc caso">Caso</span></p>
+    <p>Todo lo demás de esta sección es tuyo: el reparto <b>150 / 170 / 70</b>, las <b>24 semanas</b> y el calendario de las tres oleadas, el <b>30 / 40 / 30</b>, el <b>2 + 1</b> de equipo y las condiciones de parada limpia. <span class="pvc inv">Inventado</span></p>
+    <p>Del caso: las oportunidades listadas y su descripción salen de la oferta 4.1 y 4.2, incluida la razón por la que talento queda fuera hasta tener volumetría. Que la priorización formal es entregable de la Fase 0 también es de la oferta. <span class="pvc caso">Caso</span></p>
+    <p>El aplazamiento de la bolsa de eventos descansa en un <b>supuesto tuyo</b>, ahora explícito en el propio texto: que la casuística sigue abierta porque se recoge en la apertura del ciclo anual y en julio no constaba cierre. No te lo ha confirmado nadie. <span class="pvc inv">Inventado</span></p>
+    <p>Construido por ti: <b>las puntuaciones de los cinco ejes</b>, el orden concreto de las oleadas y el objetivo de <b>−25 % de coste por oleada</b>. La oferta afirma que el coste marginal baja, pero no pone número. <span class="pvc inv">Inventado</span></p>
     <p>Del caso: que el objetivo de la reunión es salir con un go-ahead o un compromiso verbal equivalente con alcance, hito y fecha (brief 3 y 5). <span class="pvc caso">Caso</span></p>
     <p>Construido por ti: el alcance concreto que pides, el hito de la semana 6 y la fecha del <b>lunes 28 de septiembre</b>. <span class="pvc inv">Inventado</span></p>
   </div>
 
 </section>
 
+<!-- ═══════════════ 06 · el cierre ═══════════════ -->
+<section class="on-burgundy finale" id="s6" data-nav="Gracias · la pregunta" data-num="06">
+  <p class="thanks">Gracias.</p>
+  <p class="bigq">¿Empezamos a controlar el coste de personas como controláis la producción?</p>
+
+  <div class="mf-note">
+    <span class="tag">Uso interno · <span class="src">cómo se cierra</span></span>
+    <p>La frase es suya, no tuya: «controlar el coste de personas como se controla la
+    producción» es su estrategia declarada, y la sección 01 la cita literal. Cerrar
+    devolviéndosela convierte el <em>ask</em> en su propia idea.</p>
+    <p><b>Dila y calla.</b> El silencio después de esta pregunta trabaja para ti. El
+    acuerdo concreto —alcance, hito y fecha— ya está sobre la mesa al final de la 05: no
+    hace falta repetirlo aquí.</p>
+  </div>
+
+</section>
+
 <!-- ═══════════════ apéndices ═══════════════ -->
-<section class="on-bone hr-top" id="sA" data-nav="Por qué Workday no falló" data-num="A">
+<section class="on-bone hr-top" id="sA" data-nav="Workday no fue un problema de software" data-num="A">
     <div class="apxband">
     <p class="apxk">Ap&eacute;ndices &middot; material de respaldo</p>
     <p>Lo que viene a partir de aqu&iacute; no forma parte del recorrido de la sesi&oacute;n. Est&aacute;
@@ -1671,8 +1675,68 @@ body.pv .pvbtn span{opacity:.85}
 
 </section>
 
-<section class="on-bone closer" id="sB" data-nav="Anexo" data-num="B">
-  <p class="eyebrow"><span class="no">B</span> Anexo</p>
+
+<!-- ═══════════════ apéndice B ═══════════════ -->
+<section class="on-bone hr-top" id="sB" data-nav="Cada métrica activa una decisión" data-num="B">
+  <p class="eyebrow"><span class="no">B</span> Cómo se mide</p>
+  <h2>Seis números. Cada uno con la decisión que activa si falla.</h2>
+  <p class="lead">
+    Una métrica que no dispara ninguna decisión es un adorno. Estas se revisan en la
+    cadencia indicada y cada una tiene escrito qué pasa si no se cumple.
+  </p>
+  <div class="tblwrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Métrica</th><th scope="col" class="num">Baseline</th>
+          <th scope="col" class="num">Objetivo</th><th scope="col">Cadencia</th>
+          <th scope="col">Decisión que activa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minutos por alta documental</td><td class="num">14</td><td class="num">≤ 4</td><td>Semanal</td>
+          <td>Si &gt;6 durante dos semanas, se revisan umbrales antes de ampliar volumen.</td>
+        </tr>
+        <tr>
+          <td>Altas sin intervención humana</td><td class="num">0%</td><td class="num">≥ 70%</td><td>Semanal</td>
+          <td>Si &lt;50% en la semana 6, no se abre la Oleada 2.</td>
+        </tr>
+        <tr>
+          <td>Correos archivados sin excepción</td><td class="num">0%</td><td class="num">≥ 85%</td><td>Semanal</td>
+          <td>Por debajo de 70%, se amplía la base de conocimiento antes de escalar.</td>
+        </tr>
+        <tr>
+          <td>Días hasta detectar una desviación de horas</td><td class="num">21–42</td><td class="num">≤ 1</td><td>Diaria</td>
+          <td>Si &gt;3 días, la Oleada 2 no se considera cerrada ni se factura su hito.</td>
+        </tr>
+        <tr>
+          <td>Horas reales vs. planificadas</td><td class="num">no medible hoy</td><td class="num">desv. ≤ 1%</td><td>Mensual</td>
+          <td>Dos meses por encima de 2% convoca comité de revisión con el CFO.</td>
+        </tr>
+        <tr>
+          <td>Coste de la oleada vs. la anterior</td><td class="num">—</td><td class="num">−25%</td><td>Por oleada</td>
+          <td>Si no baja, la siguiente oleada se renegocia a la baja o no se firma.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:1rem">
+    Todas se miden contra el baseline de las semanas 1–2, no contra una estimación
+    posterior. El baseline está congelado y es vuestro.
+  </p>
+
+  <div class="pv-note">
+    <span class="tag">Procedencia · uso interno</span>
+    <p><b>Los doce números de esta tabla son tuyos: los seis baselines y los seis objetivos.</b> Ninguno aparece en el brief ni en la oferta. <span class="pvc inv">Inventado</span></p>
+    <p>El más expuesto es el baseline de <b>21–42 días</b> hasta detectar una desviación, porque es el que sostiene el caso de negocio entero. Es la traducción a días de las <b>tres a seis semanas</b> que sí son del caso, y es exactamente la horquilla que dibuja el gráfico de la sección 01 con su switch. Que los tres sitios digan lo mismo es lo que te deja defenderlo sin dudar.</p>
+  </div>
+
+</section>
+
+
+<section class="on-bone closer" id="sC" data-nav="Lo que todavía no sabemos" data-num="C">
+  <p class="eyebrow"><span class="no">C</span> Anexo</p>
   <h2>Lo que todavía no sabemos.</h2>
   <p class="lead">
     Tres cosas que no pudimos cerrar en ocho semanas y que afectan al plan. Las ponemos
@@ -1703,7 +1767,7 @@ body.pv .pvbtn span{opacity:.85}
   </h2>
   <p class="lead">
     Un documento que mezcla lo medido con lo supuesto no se puede auditar. Cada número de
-    estas nueve secciones y sus dos apéndices cae en una de estas tres categorías, y
+    estas siete secciones y sus tres apéndices cae en una de estas tres categorías, y
     aquí decimos en cuál.
   </p>
   <div class="qs">
@@ -1720,7 +1784,7 @@ body.pv .pvbtn span{opacity:.85}
     <div>
       <p class="k">Supuesto a validar</p>
       <p>No lo hemos medido nosotros. Va marcado como tal cada vez que aparece, y el modelo
-      de la sección 06 lo deja abierto para que lo mováis.</p>
+      de la sección 04 lo deja abierto para que lo mováis.</p>
     </div>
   </div>
 
@@ -1730,18 +1794,18 @@ body.pv .pvbtn span{opacity:.85}
         <tr><th scope="col">Cifra</th><th scope="col">Dónde</th><th scope="col">Categoría</th></tr>
       </thead>
       <tbody>
-        <tr><td>~2.000 fijos discontinuos · 10.000 movimientos/año · ~8.000 correos/año · ~100 movimientos de condiciones al día</td><td>03, 05</td><td>Dato vuestro</td></tr>
-        <tr><td>25.000 movimientos de condiciones al año</td><td>03</td><td>Dato vuestro, anualizado</td></tr>
-        <tr><td>Minutos por unidad hoy y con agente, y los totales de 5.448 h medidas y 4.023 h liberables</td><td>03, 04</td><td>Medido en las semanas 1–2</td></tr>
-        <tr><td>21–42 días (tres a seis semanas) hasta detectar una desviación de horas</td><td>02, 08</td><td><strong>Dato vuestro</strong>, puesto en días por nosotros</td></tr>
-        <tr><td>Día 8, los días 29 y 50 del switch, y las curvas de los dos gráficos</td><td>02</td><td><strong>Ilustrativo</strong> sobre el patrón medido</td></tr>
-        <tr><td>28 € de coste por hora liberada</td><td>06</td><td><strong>Supuesto a validar</strong></td></tr>
-        <tr><td>4–6 % de desviación entre horas planificadas y reales en temporada alta</td><td>03, 06</td><td><strong>Dato vuestro</strong>, por correo</td></tr>
-        <tr><td>26 / 44 / 57 M€ de masa bajo cuadrante en temporada alta</td><td>06</td><td><strong>Nuestra estimación</strong>, derivada y a la vista</td></tr>
-        <tr><td>12 / 20 / 25 % de esa desviación recuperada con detección diaria</td><td>06</td><td><strong>Supuesto a validar por vuestro CFO</strong></td></tr>
-        <tr><td>390.000 € de la Fase 1, calendario y reparto por oleada</td><td>07</td><td>Nuestra propuesta, acotada por el techo de la sección 06</td></tr>
-        <tr><td>Los seis objetivos de la tabla de métricas</td><td>08</td><td>Nuestro compromiso</td></tr>
-        <tr><td>4 semanas si hay que construir la integración BOARD–Skello</td><td>Ap. B</td><td>Nuestra estimación</td></tr>
+        <tr><td>~2.000 fijos discontinuos · 10.000 movimientos/año · ~8.000 correos/año · ~100 movimientos de condiciones al día</td><td>02</td><td>Dato vuestro</td></tr>
+        <tr><td>25.000 movimientos de condiciones al año</td><td>02</td><td>Dato vuestro, anualizado</td></tr>
+        <tr><td>Minutos por unidad hoy y con agente, y los totales de 5.448 h medidas y 4.023 h liberables</td><td>02, 03</td><td>Medido en las semanas 1–2</td></tr>
+        <tr><td>21–42 días (tres a seis semanas) hasta detectar una desviación de horas</td><td>01, Ap. B</td><td><strong>Dato vuestro</strong>, puesto en días por nosotros</td></tr>
+        <tr><td>Día 8, los días 29 y 50 del switch, y las curvas de los dos gráficos</td><td>01</td><td><strong>Ilustrativo</strong> sobre el patrón medido</td></tr>
+        <tr><td>28 € de coste por hora liberada</td><td>04</td><td><strong>Supuesto a validar</strong></td></tr>
+        <tr><td>4–6 % de desviación entre horas planificadas y reales en temporada alta</td><td>02, 04</td><td><strong>Dato vuestro</strong>, por correo</td></tr>
+        <tr><td>44 M€ de masa bajo cuadrante en temporada alta</td><td>04</td><td><strong>Nuestra estimación</strong>, derivada y a la vista</td></tr>
+        <tr><td>15 / 25 / 50 % de esa desviación recuperada con detección diaria</td><td>04</td><td><strong>Supuesto a validar por vuestro CFO</strong></td></tr>
+        <tr><td>390.000 € de la Fase 1, calendario y reparto por oleada</td><td>05</td><td>Nuestra propuesta, a precio fijo</td></tr>
+        <tr><td>Los seis objetivos de la tabla de métricas</td><td>Ap. B</td><td>Nuestro compromiso</td></tr>
+        <tr><td>4 semanas si hay que construir la integración BOARD–Skello</td><td>Ap. C</td><td>Nuestra estimación</td></tr>
       </tbody>
     </table>
   </div>
@@ -1760,6 +1824,7 @@ body.pv .pvbtn span{opacity:.85}
   </div>
 
 </section>
+
 
 <div class="colophon">
   <span>Documento confidencial · borrador para discusión</span>
@@ -1879,7 +1944,7 @@ body.pv .pvbtn span{opacity:.85}
     },
     {
       nm:"Panel de control de horas · los dos cuadrantes",
-      sub:"Presupuesto, cuadrante real y fichaje no se cruzan a tiempo · sección 02",
+      sub:"Presupuesto, cuadrante real y fichaje no se cruzan a tiempo · sección 01",
       wave:"Oleada 2", cls:"w2",
       why:"Aquí está el caso de negocio y aquí está la herida. No es Oleada 1 porque necesita las tres fuentes conectadas —incluida la integración BOARD–Skello, que hoy no existe— y porque conviene que el equipo ya haya visto funcionar un agente antes de tocar el control de coste. La oferta lo ponía más tarde; lo hemos adelantado a propósito.",
       c:[["Volumen",3],["Reglas claras, sin zonas grises",3],["Independencia de integraciones",1],["Riesgo bajo y supervisión simple",3],["Contexto que reutiliza",5]]

@@ -107,9 +107,6 @@ h3.sec .aux{margin-left:auto;text-transform:none;letter-spacing:0;font-family:va
 .barra i{position:absolute;inset:0 auto 0 0;background:var(--red);width:0;transition:width .18s linear}
 .ticker{font-family:var(--mono);font-size:.72rem;color:var(--ink2);margin-top:.5rem;
         display:flex;align-items:center;gap:.5rem;min-height:1.1rem}
-.ticker .sp{width:.5rem;height:.5rem;border:1.5px solid var(--red);border-top-color:transparent;
-            border-radius:50%;animation:gira .7s linear infinite;flex:none}
-@keyframes gira{to{transform:rotate(360deg)}}
 
 /* ── tabla de campos ── */
 .grupo{border:1px solid var(--line);background:var(--white);margin-bottom:.75rem}
@@ -252,10 +249,107 @@ a.src:hover{border-color:var(--red);color:var(--red)}
 .log .ln .e.aprobada{color:var(--ok)} .log .ln .e.rechazada{color:var(--bad)}
 .log .ln .e.comentario{color:var(--burgundy)} .log .ln .e.procesado{color:var(--ink2)}
 .log .ln .d{font-family:var(--sans);font-size:.8rem;line-height:1.4}
+/* ── secciones de la cola ── */
+.seccion{border-top:1px solid var(--line2)}
+.seccion:first-child{border-top:0}
+.sh{width:100%;display:flex;align-items:center;gap:.5rem;background:none;border:0;
+    font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);padding:.75rem 1.1rem .4rem;text-align:left}
+button.sh:hover{color:var(--ink)}
+.sh .c{margin-left:auto;font-size:.66rem;letter-spacing:.04em;background:var(--chip);
+       color:var(--ink2);padding:.06rem .38rem;border-radius:2px;text-transform:none}
+.sh .tri{display:inline-block;width:.6rem;font-size:.6rem;transition:transform .15s}
+.sh[aria-expanded="true"] .tri{transform:rotate(90deg)}
+.seccion.plegada .cuerpo{display:none}
+.seccion .nada{padding:0 1.1rem .7rem;font-size:.73rem;color:var(--muted);font-style:italic}
+.dot.prog{background:var(--warn)} .dot.nuevo{background:var(--red)}
+.dot.acep{background:var(--ok)} .dot.rech{background:var(--bad)}
+.item .sig{margin-left:auto;font-family:var(--mono);font-size:.62rem;color:var(--warn);
+           letter-spacing:.03em}
+.lote-btn{width:calc(100% - 2.2rem);margin:.9rem 1.1rem .2rem;background:var(--burgundy);
+          border:1px solid var(--burgundy);color:var(--cream);padding:.6rem .8rem;
+          font-size:.83rem;font-weight:600;border-radius:2px;display:flex;
+          align-items:center;justify-content:center;gap:.45rem}
+.lote-btn:hover{background:#42201f}
+.lote-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── vista de lote ── */
+.lote{border:1px solid var(--line);background:var(--white)}
+.lote .lh{display:grid;grid-template-columns:9rem minmax(0,1fr) 11rem 3.4rem;gap:.7rem;
+          font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--ink2);background:var(--chip);padding:.45rem .9rem;border-bottom:1px solid var(--line)}
+.lote .lr{display:grid;grid-template-columns:9rem minmax(0,1fr) 11rem 3.4rem;gap:.7rem;
+          padding:.6rem .9rem;border-bottom:1px solid var(--line2);align-items:center;font-size:.85rem}
+.lote .lr:last-child{border-bottom:0}
+.lote .lr .ex{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.lote .lr .nm{font-weight:600}
+.lote .lr .st{font-size:.79rem;color:var(--muted)}
+.lote .lr .tm{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:right}
+.lote .lr.hecha .st{color:var(--ok);font-weight:600}
+.lote .lr.rev .st{color:var(--bad);font-weight:600}
+.lote .lr.curso{background:var(--warn-bg)}
+.sp{width:.55rem;height:.55rem;border:1.5px solid var(--red);border-top-color:transparent;
+    border-radius:50%;animation:gira .7s linear infinite;display:inline-block;flex:none}
+@keyframes gira{to{transform:rotate(360deg)}}
+.tally{display:flex;gap:1.4rem;margin-top:1rem;flex-wrap:wrap;align-items:center}
+.tally .n{font-family:var(--mono);font-size:1.5rem;font-weight:600;line-height:1}
+.tally .l{font-size:.76rem;color:var(--ink2);line-height:1.35}
+
+/* ── campos senalados por una regla en falla ── */
+.campo.tocado{box-shadow:inset 3px 0 0 var(--bad)}
+.tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;background:var(--bad);
+     color:#fff;padding:.08rem .3rem;border-radius:2px;margin-left:.4rem;vertical-align:.08em}
+
+/* ── seguimiento ── */
+.seg{border:1px solid var(--warn);background:var(--warn-bg);padding:1rem 1.15rem;margin-bottom:1.3rem}
+.seg .t{font-weight:700;color:var(--warn);margin-bottom:.4rem}
+.seg dl{display:grid;grid-template-columns:8.5rem 1fr;gap:.3rem .8rem;margin:.6rem 0 0;font-size:.85rem}
+.seg dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+        color:var(--ink2);padding-top:.15rem}
+.seg dd{margin:0}
+
+/* ── modales ── */
+.modal{position:fixed;inset:0;background:rgba(30,26,24,.6);z-index:60;display:none;
+       align-items:center;justify-content:center;padding:1.5rem}
+.modal[open]{display:flex}
+.modal .caja{background:var(--paper);width:min(40rem,100%);max-height:88vh;overflow-y:auto;
+             box-shadow:0 24px 60px rgba(0,0,0,.3);border-top:3px solid var(--burgundy)}
+.modal .caja.ok{border-top-color:var(--ok)}
+.modal .caja.ko{border-top-color:var(--bad)}
+.modal .caja.aviso{border-top-color:var(--warn)}
+.modal .mh{padding:1.2rem 1.4rem .2rem}
+.modal .mh .ico{font-size:1.4rem;line-height:1;margin-bottom:.45rem}
+.modal .mh h2{font-size:1.15rem;margin:0 0 .25rem;letter-spacing:-.01em}
+.modal .mh .sub{font-size:.85rem;color:var(--ink2);line-height:1.5}
+.modal .mb{padding:1rem 1.4rem 0}
+.modal .mf{display:flex;gap:.6rem;justify-content:flex-end;padding:1.2rem 1.4rem;flex-wrap:wrap}
+.modal .mf .izq{margin-right:auto}
+.modal pre{font-family:var(--mono);font-size:.75rem;background:var(--white);
+           border:1px solid var(--line);padding:.7rem .8rem;margin:0;overflow-x:auto;white-space:pre-wrap}
+.rev{display:grid;grid-template-columns:1.5rem 1fr;gap:.6rem;padding:.65rem .8rem;
+     border-bottom:1px solid var(--line2);align-items:start;background:var(--white)}
+.rev:last-child{border-bottom:0}
+.rev .ic{color:var(--bad);font-family:var(--mono);font-weight:700}
+.rev .cn{font-weight:600;font-size:.87rem}
+.rev .de{font-size:.81rem;color:var(--ink2);line-height:1.45;margin-top:.1rem}
+.rev .rid{font-family:var(--mono);font-size:.62rem;color:var(--red);letter-spacing:.05em}
+.cuadro{border:1px solid var(--line);background:var(--white);margin-bottom:.9rem}
+.cuadro>.ch{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;
+            text-transform:uppercase;background:var(--chip);color:var(--ink2);
+            padding:.4rem .8rem;border-bottom:1px solid var(--line)}
+.mail dl{display:grid;grid-template-columns:5rem 1fr;gap:.25rem .8rem;padding:.7rem .8rem;
+         font-size:.83rem;border-bottom:1px solid var(--line2);margin:0}
+.mail dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;
+         color:var(--muted);padding-top:.18rem}
+.mail dd{margin:0;word-break:break-word}
+.mail textarea{width:100%;border:0;border-radius:0;background:var(--white);font:inherit;
+               font-size:.83rem;line-height:1.6;padding:.8rem;resize:vertical;min-height:12rem;
+               color:var(--ink);display:block}
+.mail textarea:focus{outline:2px solid var(--burgundy);outline-offset:-2px}
 </style>
 <script>
 window.REPUESTO = true;
-window.PRECARGA = {"../salidas/AP-2026-08841.json":{"expediente":"AP-2026-08841","origen":"cache_sintetica","recibido":"2026-09-08T07:41:00","persona":"FERRER AMAT, LUCÍA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"FERRER AMAT","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"LUCÍA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"48219073X","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"1999-04-17","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Alcalde Reig, 42, 3º B","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46006","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES13 0081 0158 18 0001 234567","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"FERRER AMAT, LUCIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10084521 33","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Atención al visitante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"2 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Atención al visitante» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"2 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Expediente completo y coherente. Nada que revisar.","decision":"listo_para_aprobar","motivos_excepcion":[],"tiempo_agente_s":7.8,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08842.json":{"expediente":"AP-2026-08842","origen":"cache_sintetica","recibido":"2026-09-08T07:52:00","persona":"RIVAS POVEDA, ÓSCAR","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"RIVAS POVEDA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"ÓSCAR","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"53870142W","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2003-11-02","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"Avda. del Puerto, 118, 1º","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46023","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES91 2100 0418 45 0200 051332","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"POVEDA SANCHIS, MANUELA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.71,"estado":"revisar","motivo":"El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10233907 81","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Restauración · camarero/a","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"1 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"falla","detalle":"El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación."},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Restauración · camarero/a» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"1 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Todo correcto salvo la cuenta: el certificado está a nombre de otra persona. Hay que pedir un certificado a nombre del trabajador.","decision":"excepcion","motivos_excepcion":["CONV-07 · El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación.","Titular de la cuenta · El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"],"tiempo_agente_s":9.1,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08843.json":{"expediente":"AP-2026-08843","origen":"cache_sintetica","recibido":"2026-09-08T08:03:00","persona":"EL AMRANI BOUZID, NADIA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"EL AMRANI BOUZID","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"NADIA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIE","valor":"X7392841L","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2001-01-29","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Marroquí","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Sagunto, 7, bajo","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46009","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES09 1465 0100 96 0019 382745","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"EL AMRANI BOUZID, NADIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.0,"estado":"ausente","motivo":"El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible."},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.44,"estado":"revisar","motivo":"Se lee «Genera…» parcialmente; inferido, no confirmado"},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Hotel Lakeside","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Camarero/a de pisos","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-28","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"0 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"falla","detalle":"No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible."},{"id":"CONV-14","resultado":"ok","detalle":"«Camarero/a de pisos» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-28 dentro de la ventana de temporada de Hotel Lakeside"},{"id":"CONV-28","resultado":"no_aplica","detalle":"Sin temporadas previas en el grupo"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"falla","detalle":"Falta informe de afiliación legible a la Seguridad Social"}],"resumen":"El informe de afiliación está ilegible y falta el NAF. Hay que volver a pedir el documento antes de dar el alta.","decision":"excepcion","motivos_excepcion":["CONV-11 · No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible.","CONV-35 · Falta informe de afiliación legible a la Seguridad Social","NAF · El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible.","Régimen · Se lee «Genera…» parcialmente; inferido, no confirmado"],"tiempo_agente_s":11.4,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/reglas.json":{"version":"2026.08","vigencia_desde":"2026-01-01","ambito":"Parques de ocio y alojamiento · fijos discontinuos y eventuales","reglas":[{"id":"CONV-03","titulo":"Edad mínima de contratación","texto":"No se admite el alta de menores de 16 años. Entre 16 y 18 se requiere autorización paterna adjunta.","campos":["0002.fecha_nacimiento"],"severidad":"bloqueante"},{"id":"CONV-07","titulo":"Titularidad de la cuenta bancaria","texto":"El IBAN de abono debe estar a nombre del propio trabajador. No se admiten cuentas de terceros ni cotitularidades no acreditadas.","campos":["0009.iban","0009.titular","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-11","titulo":"Número de afiliación a la Seguridad Social","texto":"El NAF es obligatorio en el alta y debe corresponder al NIF/NIE declarado.","campos":["0013.naf","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-14","titulo":"Categoría profesional existente","texto":"La función declarada debe existir en el anexo II de categorías profesionales del convenio.","campos":["0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-22","titulo":"Ventana de llamamiento del fijo discontinuo","texto":"En contrato fijo discontinuo, la fecha de llamamiento debe caer dentro de la ventana de temporada declarada para el centro.","campos":["0016.tipo_contrato","0016.fecha_llamamiento"],"severidad":"bloqueante"},{"id":"CONV-28","titulo":"Antigüedad reconocida por temporadas previas","texto":"Las temporadas completas anteriores en el mismo grupo computan a efectos de nivel retributivo y deben reflejarse en el alta.","campos":["0016.antiguedad_reconocida"],"severidad":"advertencia"},{"id":"CONV-31","titulo":"Restricción de menores en atracciones categoría B","texto":"Los menores de 18 años no pueden ser asignados a atracciones de categoría B ni a puestos con manejo de maquinaria.","campos":["0002.fecha_nacimiento","0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-35","titulo":"Documentación obligatoria completa","texto":"El expediente de alta requiere documento de identidad en vigor, certificado de titularidad bancaria e informe de afiliación a la Seguridad Social.","campos":["documentos"],"severidad":"bloqueante"}],"anexo_ii_categorias":["Atención al visitante","Operador de atracciones · categoría A","Operador de atracciones · categoría B","Restauración · ayudante de cocina","Restauración · camarero/a","Limpieza y mantenimiento de zonas","Recepción de alojamiento","Camarero/a de pisos","Socorrista"],"ventanas_temporada":{"Parque Norte":{"desde":"2026-03-14","hasta":"2026-11-01"},"Hotel Lakeside":{"desde":"2026-02-01","hasta":"2026-12-20"},"Parque Levante":{"desde":"2026-03-28","hasta":"2026-10-18"}},"umbral_confianza":0.85},"../plantilla/alta_sap.json":{"plantilla":"Alta de personal · SAP HCM","version":"1.3","vigente_desde":"2026-01-01","descripcion":"Estructura del alta que se escribe en SAP HCM. Un slot por campo de infotipo. Los valores llegan vacíos: los rellena el agente a partir de los documentos del expediente y del alta de RR. HH. Nada se escribe en SAP hasta que un gestor aprueba.","nota":"Contenido sintético construido para el demostrador de la Fase 0. No reproduce la configuración real de ningún sistema.","infotipos":[{"codigo":"0002","nombre":"Datos personales","campos":[{"campo":"Apellidos","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nombre","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"NIF / NIE","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Fecha de nacimiento","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nacionalidad","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0006","nombre":"Direcciones","campos":[{"campo":"Domicilio","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Código postal","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Población","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Provincia","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0009","nombre":"Datos bancarios","campos":[{"campo":"IBAN","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"},{"campo":"Titular de la cuenta","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"}]},{"codigo":"0013","nombre":"Seguridad Social","campos":[{"campo":"NAF","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"},{"campo":"Régimen","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"}]},{"codigo":"0001","nombre":"Asignación organizativa","campos":[{"campo":"Centro","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Función","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"}]},{"codigo":"0016","nombre":"Elementos del contrato","campos":[{"campo":"Tipo de contrato","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Fecha de llamamiento","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Antigüedad reconocida","valor":null,"obligatorio":false,"fuente_esperada":"alta_rrhh"}]}]}};
+window.PRECARGA = {"../salidas/AP-2026-08841.json":{"expediente":"AP-2026-08841","origen":"cache_sintetica","recibido":"2026-09-08T07:41:00","persona":"FERRER AMAT, LUCÍA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"FERRER AMAT","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"LUCÍA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"48219073X","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"1999-04-17","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Alcalde Reig, 42, 3º B","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46006","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES13 0081 0158 18 0001 234567","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"FERRER AMAT, LUCIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10084521 33","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Atención al visitante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"2 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Atención al visitante» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"2 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Expediente completo y coherente. Nada que revisar.","decision":"listo_para_aprobar","motivos_excepcion":[],"revisiones":[],"accion":null,"tiempo_agente_s":7.8,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08842.json":{"expediente":"AP-2026-08842","origen":"cache_sintetica","recibido":"2026-09-08T07:52:00","persona":"RIVAS POVEDA, ÓSCAR","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"RIVAS POVEDA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"ÓSCAR","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"53870142W","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2003-11-02","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"Avda. del Puerto, 118, 1º","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46023","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES91 2100 0418 45 0200 051332","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"POVEDA SANCHIS, MANUELA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.71,"estado":"revisar","motivo":"El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10233907 81","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Norte","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Restauración · camarero/a","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"1 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"falla","detalle":"El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación."},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Restauración · camarero/a» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Norte"},{"id":"CONV-28","resultado":"ok","detalle":"1 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Todo correcto salvo la cuenta: el certificado está a nombre de otra persona. Hay que pedir un certificado a nombre del trabajador.","decision":"excepcion","motivos_excepcion":["CONV-07 · El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación.","Titular de la cuenta · El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"],"revisiones":[{"tipo":"regla","id":"CONV-07","campo":"Titular de la cuenta","indice":10,"detalle":"El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación."}],"accion":{"a":"oscar.rivas@correo-ejemplo.es","cc":"rrhh.parquenorte@artificialpark-ejemplo.es","asunto":"AP-2026-08842 · Certificado bancario a tu nombre","pide":"Certificado de titularidad a nombre de la persona contratada","cuerpo":"Hola Óscar:\n\nEstamos preparando tu alta para la temporada y nos falta una cosa para poder cerrarla.\n\nEl certificado bancario que nos has enviado está a nombre de Poveda Sanchis, Manuela. El convenio no permite abonar la nómina en una cuenta que no sea tuya, así que necesitamos un certificado de titularidad de una cuenta a tu nombre.\n\nLo puedes descargar desde la app de tu banco en un minuto. En cuanto nos llegue, seguimos.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"},"tiempo_agente_s":9.1,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08843.json":{"expediente":"AP-2026-08843","origen":"cache_sintetica","recibido":"2026-09-08T08:03:00","persona":"EL AMRANI BOUZID, NADIA","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"EL AMRANI BOUZID","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"NADIA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIE","valor":"X7392841L","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2001-01-29","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Marroquí","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Sagunto, 7, bajo","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46009","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES09 1465 0100 96 0019 382745","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"EL AMRANI BOUZID, NADIA","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.0,"estado":"ausente","motivo":"El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible."},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.44,"estado":"revisar","motivo":"Se lee «Genera…» parcialmente; inferido, no confirmado"},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Hotel Lakeside","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Camarero/a de pisos","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-28","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"0 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"falla","detalle":"No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible."},{"id":"CONV-14","resultado":"ok","detalle":"«Camarero/a de pisos» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-28 dentro de la ventana de temporada de Hotel Lakeside"},{"id":"CONV-28","resultado":"no_aplica","detalle":"Sin temporadas previas en el grupo"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"falla","detalle":"Falta informe de afiliación legible a la Seguridad Social"}],"resumen":"El informe de afiliación está ilegible y falta el NAF. Hay que volver a pedir el documento antes de dar el alta.","decision":"excepcion","motivos_excepcion":["CONV-11 · No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible.","CONV-35 · Falta informe de afiliación legible a la Seguridad Social","NAF · El bloque del NAF sale cortado y borroso en el escaneo (96 ppp). No es legible.","Régimen · Se lee «Genera…» parcialmente; inferido, no confirmado"],"revisiones":[{"tipo":"regla","id":"CONV-11","campo":"NAF","indice":11,"detalle":"No se ha podido obtener el NAF: el informe de afiliación aportado es ilegible."},{"tipo":"regla","id":"CONV-35","campo":null,"indice":-1,"detalle":"Falta informe de afiliación legible a la Seguridad Social"},{"tipo":"campo","id":null,"campo":"Régimen","indice":12,"detalle":"Se lee «Genera…» parcialmente; inferido, no confirmado"}],"accion":{"a":"nadia.elamrani@correo-ejemplo.es","cc":"rrhh.lakeside@artificialpark-ejemplo.es","asunto":"AP-2026-08843 · Informe de afiliación legible","pide":"Informe de afiliación a la Seguridad Social en calidad legible","cuerpo":"Hola Nadia:\n\nEstamos preparando tu alta y el informe de afiliación que nos has mandado no se lee: el número de afiliación sale cortado y borroso en el escaneo.\n\nNecesitamos que nos lo vuelvas a enviar. Lo puedes descargar en PDF desde la sede electrónica de la Seguridad Social con Cl@ve o certificado digital, y así se ve perfecto.\n\nNo hace falta que vayas a ninguna oficina.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"},"tiempo_agente_s":11.4,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08844.json":{"expediente":"AP-2026-08844","origen":"cache_sintetica","recibido":"2026-09-08T08:15:00","persona":"BELTRÁN NUÑO, SERGIO","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"BELTRÁN NUÑO","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"SERGIO","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"29471508K","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"1996-08-05","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Pintor Sorolla, 3, 5º A","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46002","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES91 0182 5566 72 0000 771204","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"BELTRAN NUÑO, SERGIO","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 09887412 05","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Levante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Operador de atracciones · categoría A","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"4 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"ok","detalle":"Persona mayor de edad en la fecha de llamamiento"},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Operador de atracciones · categoría A» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Levante"},{"id":"CONV-28","resultado":"ok","detalle":"4 temporadas previas reconocidas a efectos de nivel"},{"id":"CONV-31","resultado":"no_aplica","detalle":"No aplica: persona mayor de 18 años"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Expediente completo y coherente. Nada que revisar.","decision":"listo_para_aprobar","motivos_excepcion":[],"revisiones":[],"accion":null,"tiempo_agente_s":8.2,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/AP-2026-08845.json":{"expediente":"AP-2026-08845","origen":"cache_sintetica","recibido":"2026-09-08T08:27:00","persona":"MONTALT SERRA, IKER","documentos":["documento_identidad.pdf","certificado_titularidad.pdf","informe_afiliacion.pdf"],"campos":[{"infotipo":"0002 · Datos personales","campo":"Apellidos","valor":"MONTALT SERRA","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nombre","valor":"IKER","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.99,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"NIF","valor":"51204863D","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Fecha de nacimiento","valor":"2009-06-14","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0002 · Datos personales","campo":"Nacionalidad","valor":"Española","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Domicilio","valor":"C/ Xàtiva, 21, 4º","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.91,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Código postal","valor":"46007","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Población","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0006 · Direcciones","campo":"Provincia","valor":"Valencia","origen_doc":"documento_identidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"IBAN","valor":"ES25 0128 0733 24 0100 456188","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0009 · Datos bancarios","campo":"Titular de la cuenta","valor":"MONTALT SERRA, IKER","origen_doc":"certificado_titularidad.pdf","origen_pagina":1,"confianza":0.97,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"NAF","valor":"46 10456188 92","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.96,"estado":"ok","motivo":""},{"infotipo":"0013 · Seguridad Social","campo":"Régimen","valor":"General","origen_doc":"informe_afiliacion.pdf","origen_pagina":1,"confianza":0.98,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Centro","valor":"Parque Levante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0001 · Asignación organizativa","campo":"Función","valor":"Atención al visitante","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Tipo de contrato","valor":"Fijo discontinuo","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Fecha de llamamiento","valor":"2026-09-21","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""},{"infotipo":"0016 · Elementos del contrato","campo":"Antigüedad reconocida","valor":"0 temporadas","origen_doc":"alta_rrhh","origen_pagina":1,"confianza":1.0,"estado":"ok","motivo":""}],"convenio":[{"id":"CONV-03","resultado":"falla","detalle":"La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."},{"id":"CONV-07","resultado":"ok","detalle":"El titular del certificado coincide con la persona del alta"},{"id":"CONV-11","resultado":"ok","detalle":"NAF presente y coherente con el documento identificativo"},{"id":"CONV-14","resultado":"ok","detalle":"«Atención al visitante» figura en el anexo II de categorías"},{"id":"CONV-22","resultado":"ok","detalle":"Llamamiento 2026-09-21 dentro de la ventana de temporada de Parque Levante"},{"id":"CONV-28","resultado":"no_aplica","detalle":"Sin temporadas previas en el grupo"},{"id":"CONV-31","resultado":"no_aplica","detalle":"Persona menor de 18 años, pero «Atención al visitante» no es atracción de categoría B ni implica manejo de maquinaria"},{"id":"CONV-35","resultado":"ok","detalle":"Identidad, titularidad bancaria y afiliación aportadas"}],"resumen":"Los datos están completos, pero la persona es menor de edad en el llamamiento y falta la autorización paterna que exige el convenio. Hay que pedirla antes del alta.","decision":"excepcion","motivos_excepcion":["CONV-03 · La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."],"revisiones":[{"tipo":"regla","id":"CONV-03","campo":"Fecha de nacimiento","indice":3,"detalle":"La persona tendrá 17 años en la fecha de llamamiento. Entre 16 y 18 el convenio exige autorización paterna adjunta y el expediente no la incluye."}],"accion":{"a":"iker.montalt@correo-ejemplo.es","cc":"rrhh.levante@artificialpark-ejemplo.es","asunto":"AP-2026-08845 · Autorización paterna para el alta","pide":"Autorización paterna o del tutor legal, firmada","cuerpo":"Hola Iker:\n\nTenemos tu expediente completo y todo está correcto. Solo nos falta un documento.\n\nComo el día del llamamiento aún tendrás 17 años, el convenio nos pide la autorización firmada de tu padre, madre o tutor legal para poder dar el alta.\n\nTe adjuntamos el modelo: basta con rellenarlo, firmarlo y devolvérnoslo escaneado junto con el DNI de quien firma.\n\nEn cuanto lo tengamos, cerramos el alta.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"},"tiempo_agente_s":8.9,"modelo":"claude-opus-5","version_convenio":"2026.08","minutos_hoy":14},"../salidas/reglas.json":{"version":"2026.08","vigencia_desde":"2026-01-01","ambito":"Parques de ocio y alojamiento · fijos discontinuos y eventuales","reglas":[{"id":"CONV-03","titulo":"Edad mínima de contratación","texto":"No se admite el alta de menores de 16 años. Entre 16 y 18 se requiere autorización paterna adjunta.","campos":["0002.fecha_nacimiento"],"severidad":"bloqueante"},{"id":"CONV-07","titulo":"Titularidad de la cuenta bancaria","texto":"El IBAN de abono debe estar a nombre del propio trabajador. No se admiten cuentas de terceros ni cotitularidades no acreditadas.","campos":["0009.iban","0009.titular","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-11","titulo":"Número de afiliación a la Seguridad Social","texto":"El NAF es obligatorio en el alta y debe corresponder al NIF/NIE declarado.","campos":["0013.naf","0002.nif"],"severidad":"bloqueante"},{"id":"CONV-14","titulo":"Categoría profesional existente","texto":"La función declarada debe existir en el anexo II de categorías profesionales del convenio.","campos":["0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-22","titulo":"Ventana de llamamiento del fijo discontinuo","texto":"En contrato fijo discontinuo, la fecha de llamamiento debe caer dentro de la ventana de temporada declarada para el centro.","campos":["0016.tipo_contrato","0016.fecha_llamamiento"],"severidad":"bloqueante"},{"id":"CONV-28","titulo":"Antigüedad reconocida por temporadas previas","texto":"Las temporadas completas anteriores en el mismo grupo computan a efectos de nivel retributivo y deben reflejarse en el alta.","campos":["0016.antiguedad_reconocida"],"severidad":"advertencia"},{"id":"CONV-31","titulo":"Restricción de menores en atracciones categoría B","texto":"Los menores de 18 años no pueden ser asignados a atracciones de categoría B ni a puestos con manejo de maquinaria.","campos":["0002.fecha_nacimiento","0001.funcion"],"severidad":"bloqueante"},{"id":"CONV-35","titulo":"Documentación obligatoria completa","texto":"El expediente de alta requiere documento de identidad en vigor, certificado de titularidad bancaria e informe de afiliación a la Seguridad Social.","campos":["documentos"],"severidad":"bloqueante"}],"anexo_ii_categorias":["Atención al visitante","Operador de atracciones · categoría A","Operador de atracciones · categoría B","Restauración · ayudante de cocina","Restauración · camarero/a","Limpieza y mantenimiento de zonas","Recepción de alojamiento","Camarero/a de pisos","Socorrista"],"ventanas_temporada":{"Parque Norte":{"desde":"2026-03-14","hasta":"2026-11-01"},"Hotel Lakeside":{"desde":"2026-02-01","hasta":"2026-12-20"},"Parque Levante":{"desde":"2026-03-28","hasta":"2026-10-18"}},"umbral_confianza":0.85},"../plantilla/alta_sap.json":{"plantilla":"Alta de personal · SAP HCM","version":"1.3","vigente_desde":"2026-01-01","descripcion":"Estructura del alta que se escribe en SAP HCM. Un slot por campo de infotipo. Los valores llegan vacíos: los rellena el agente a partir de los documentos del expediente y del alta de RR. HH. Nada se escribe en SAP hasta que un gestor aprueba.","nota":"Contenido sintético construido para el demostrador de la Fase 0. No reproduce la configuración real de ningún sistema.","infotipos":[{"codigo":"0002","nombre":"Datos personales","campos":[{"campo":"Apellidos","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nombre","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"NIF / NIE","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Fecha de nacimiento","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Nacionalidad","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0006","nombre":"Direcciones","campos":[{"campo":"Domicilio","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Código postal","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Población","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"},{"campo":"Provincia","valor":null,"obligatorio":true,"fuente_esperada":"documento_identidad.pdf"}]},{"codigo":"0009","nombre":"Datos bancarios","campos":[{"campo":"IBAN","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"},{"campo":"Titular de la cuenta","valor":null,"obligatorio":true,"fuente_esperada":"certificado_titularidad.pdf"}]},{"codigo":"0013","nombre":"Seguridad Social","campos":[{"campo":"NAF","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"},{"campo":"Régimen","valor":null,"obligatorio":true,"fuente_esperada":"informe_afiliacion.pdf"}]},{"codigo":"0001","nombre":"Asignación organizativa","campos":[{"campo":"Centro","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Función","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"}]},{"codigo":"0016","nombre":"Elementos del contrato","campos":[{"campo":"Tipo de contrato","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Fecha de llamamiento","valor":null,"obligatorio":true,"fuente_esperada":"alta_rrhh"},{"campo":"Antigüedad reconocida","valor":null,"obligatorio":false,"fuente_esperada":"alta_rrhh"}]}]}};
 </script>
 </head>
 <body>
@@ -275,8 +369,7 @@ window.PRECARGA = {"../salidas/AP-2026-08841.json":{"expediente":"AP-2026-08841"
 
 <div class="marco">
   <aside class="cola">
-    <h2 id="colaTit">Pendientes de validación</h2>
-    <div id="lista"></div>
+    <div id="cola"></div>
     <div class="pie">Los expedientes y sus documentos están en
       <code>prototipo/expedientes/</code>. Las reglas, en <code>convenio/reglas.yaml</code>.</div>
   </aside>
@@ -326,13 +419,15 @@ window.PRECARGA = {"../salidas/AP-2026-08841.json":{"expediente":"AP-2026-08841"
   </div>
 </div>
 
+<div class="modal" id="modal"></div>
+
 <script>
 "use strict";
-const IDS = ["AP-2026-08841","AP-2026-08842","AP-2026-08843"];
+const IDS = ["AP-2026-08841","AP-2026-08842","AP-2026-08843","AP-2026-08844","AP-2026-08845"];
 const MIN_HOY = 14;                 // baseline medido en las semanas 1-2
 const MIN_GESTOR = 4;               // lo que cuesta revisar y decidir con el agente delante
 const GESTOR = "Marta Sanchis · RR. HH.";
-const CLAVE = "sapira.demo.v2";
+const CLAVE = "sapira.demo.v3";
 const RELLENO = new URLSearchParams(location.search).has("relleno") || !!window.REPUESTO;
 // En repuesto/alta-rellena.html los JSON viajan incrustados en la propia pagina (window.PRECARGA),
 // asi que funciona con doble clic y sin servidor. Aqui se leen del disco por fetch.
@@ -340,9 +435,18 @@ const cargarJSON = ruta => (window.PRECARGA && window.PRECARGA[ruta])
   ? Promise.resolve(window.PRECARGA[ruta])
   : fetch(ruta).then(r => r.json());
 
+// Las cuatro carpetas de la bandeja. Pendiente = no leido + en progreso.
+const SECCIONES = [
+  { fase:"no_leido",    et:"No leídos",   plegable:false, dot:"nuevo" },
+  { fase:"en_progreso", et:"En progreso", plegable:false, dot:"prog"  },
+  { fase:"aceptado",    et:"Aceptados",   plegable:true,  dot:"acep"  },
+  { fase:"rechazado",   et:"Rechazados",  plegable:true,  dot:"rech"  },
+];
+
 const estado = {
-  datos:{}, reglas:null, plantilla:null, actual:null,
-  procesado:new Set(), comentarios:{}, resolucion:{}, registro:[],
+  datos:{}, reglas:null, plantilla:null, actual:null, lote:false,
+  procesado:new Set(), fase:{}, seguimiento:{}, resoluciones:{}, comentarios:{}, registro:[],
+  plegado:{ aceptado:true, rechazado:true },
   animando:false, saltar:false, popAbierto:null
 };
 
@@ -350,21 +454,27 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const claseConf = c => c >= 0.85 ? "ok" : (c >= 0.5 ? "warn" : "bad");
 const ahora = () => new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
+const fase = id => estado.fase[id] || "no_leido";
+const enCurso = () => IDS.filter(id => fase(id)==="no_leido" || fase(id)==="en_progreso").length;
 
 /* ── persistencia ─────────────────────────────────────────────── */
 function guardar(){
   try{ localStorage.setItem(CLAVE, JSON.stringify({
-    procesado:[...estado.procesado], comentarios:estado.comentarios,
-    resolucion:estado.resolucion, registro:estado.registro })); }catch(e){}
+    procesado:[...estado.procesado], fase:estado.fase, seguimiento:estado.seguimiento,
+    resoluciones:estado.resoluciones, comentarios:estado.comentarios,
+    registro:estado.registro, plegado:estado.plegado })); }catch(e){}
 }
 function cargar(){
   try{
     const s = JSON.parse(localStorage.getItem(CLAVE) || "null");
     if(!s) return;
-    estado.procesado = new Set(s.procesado || []);
+    estado.procesado   = new Set(s.procesado || []);
+    estado.fase        = s.fase || {};
+    estado.seguimiento = s.seguimiento || {};
+    estado.resoluciones= s.resoluciones || {};
     estado.comentarios = s.comentarios || {};
-    estado.resolucion = s.resolucion || {};
-    estado.registro = s.registro || [];
+    estado.registro    = s.registro || [];
+    estado.plegado     = s.plegado || estado.plegado;
   }catch(e){}
 }
 function anotar(id, tipo, texto){
@@ -380,7 +490,10 @@ async function arrancar(){
   estado.plantilla = await cargarJSON("../plantilla/alta_sap.json");
 
   cargar();
-  if(RELLENO) IDS.forEach(id => estado.procesado.add(id));
+  if(RELLENO) IDS.forEach(id => {
+    estado.procesado.add(id);
+    if(fase(id) === "no_leido") estado.fase[id] = "en_progreso";
+  });
 
   $("#pipe").textContent = "demostrador local · datos sintéticos";
   $("#pipe").title = "Expedientes, convenio y salidas son ficticios y viven en esta carpeta. "
@@ -391,33 +504,66 @@ async function arrancar(){
 }
 
 /* ── cola ─────────────────────────────────────────────────────── */
-function pendientes(){ return IDS.filter(id => !estado.resolucion[id]).length; }
+function etiquetaItem(id){
+  const d = estado.datos[id], f = fase(id), seg = estado.seguimiento[id];
+  if(f === "aceptado")  return "Aprobada · enviada a SAP";
+  if(f === "rechazado") return "Rechazada · devuelta a RR. HH.";
+  if(f === "no_leido")  return "Sin procesar";
+  if(seg) return seg.enviado ? "Esperando documentación" : "Acción pendiente";
+  return d.decision === "excepcion" ? "Requiere revisión" : "Lista para aprobar";
+}
+function puntoItem(id){
+  const f = fase(id);
+  if(f === "aceptado")  return "acep";
+  if(f === "rechazado") return "rech";
+  if(f === "no_leido")  return "nuevo";
+  return estado.seguimiento[id] ? "prog"
+       : (estado.datos[id].decision === "excepcion" ? "exc" : "ok");
+}
 
 function pintarCola(){
-  const p = pendientes();
-  $("#colaTit").textContent = `Pendientes de validación · ${p}`;
+  const p = enCurso();
   const b = $("#badge");
-  b.textContent = p === 0 ? "cola vacía" : `${p} pendiente${p===1?"":"s"} de validación`;
+  b.textContent = p === 0 ? "bandeja vacía" : `${p} pendiente${p===1?"":"s"} de validación`;
   b.className = "badge" + (p === 0 ? " cero" : "");
 
-  $("#lista").innerHTML = IDS.map(id => {
-    const d = estado.datos[id], r = estado.resolucion[id];
-    const nc = (estado.comentarios[id] || []).length;
-    let cls = "pend", txt = "Sin procesar";
-    if(r){ cls = "done"; txt = r.tipo === "aprobada" ? "Aprobada · enviada a SAP" : "Rechazada · devuelta a RR. HH."; }
-    else if(estado.procesado.has(id)){
-      const exc = d.decision === "excepcion";
-      cls = exc ? "exc" : "ok";
-      txt = exc ? "Revisar antes de aprobar" : "Lista para aprobar";
-    }
-    return `<button class="item ${r?"cerrado":""}" data-id="${id}" aria-current="${id===estado.actual}">
-      <span class="id">${esc(id)} · ${esc(d.recibido.slice(11,16))}</span>
-      <div class="nm">${esc(d.persona)}</div>
-      <div class="meta"><span class="dot ${cls}"></span>${esc(txt)}
-        <span class="cn">${nc ? nc + (nc===1?" comentario":" comentarios") : ""}</span></div>
-    </button>`;
+  const sinLeer = IDS.filter(id => fase(id) === "no_leido");
+  const cabeza = sinLeer.length && !estado.animando
+    ? `<button class="lote-btn" id="loteBtn">Procesar las ${sinLeer.length} sin leer</button>`
+    : (estado.animando ? `<button class="lote-btn" disabled>Procesando…</button>` : "");
+
+  const secciones = SECCIONES.map(sec => {
+    const ids = IDS.filter(id => fase(id) === sec.fase);
+    const plegada = sec.plegable && estado.plegado[sec.fase];
+    const cab = sec.plegable
+      ? `<button class="sh" data-plegar="${sec.fase}" aria-expanded="${!plegada}">
+           <span class="tri">▶</span>${esc(sec.et)}<span class="c">${ids.length}</span></button>`
+      : `<div class="sh">${esc(sec.et)}<span class="c">${ids.length}</span></div>`;
+    const cuerpo = ids.length
+      ? ids.map(id => {
+          const d = estado.datos[id];
+          const nc = (estado.comentarios[id] || []).length;
+          const cerrado = fase(id) === "aceptado" || fase(id) === "rechazado";
+          return `<button class="item ${cerrado?"cerrado":""}" data-id="${id}" aria-current="${id===estado.actual}">
+            <span class="id">${esc(id)} · ${esc(d.recibido.slice(11,16))}</span>
+            <div class="nm">${esc(d.persona)}</div>
+            <div class="meta"><span class="dot ${puntoItem(id)}"></span>${esc(etiquetaItem(id))}
+              <span class="cn">${nc ? nc + (nc===1?" com.":" com.") : ""}</span></div>
+          </button>`;
+        }).join("")
+      : `<div class="nada">${sec.fase==="no_leido" ? "Todo leído." : "Nada aquí todavía."}</div>`;
+    return `<div class="seccion ${plegada?"plegada":""}">${cab}<div class="cuerpo">${cuerpo}</div></div>`;
   }).join("");
-  $("#lista").querySelectorAll(".item").forEach(b =>
+
+  $("#cola").innerHTML = cabeza + secciones;
+
+  $("#loteBtn")?.addEventListener("click", procesarLote);
+  $("#cola").querySelectorAll("[data-plegar]").forEach(b =>
+    b.addEventListener("click", () => {
+      estado.plegado[b.dataset.plegar] = !estado.plegado[b.dataset.plegar];
+      guardar(); pintarCola();
+    }));
+  $("#cola").querySelectorAll(".item").forEach(b =>
     b.addEventListener("click", () => { if(!estado.animando) abrir(b.dataset.id); }));
 }
 
@@ -431,11 +577,17 @@ function slotVacio(slot, i){
     <span></span>
   </div>`;
 }
-
-function filaCampo(c, i){
+function reglasPorCampo(d){
+  const m = {};
+  (d.revisiones || []).filter(r => r.tipo === "regla" && r.indice >= 0)
+    .forEach(r => (m[r.indice] ||= []).push(r.id));
+  return m;
+}
+function filaCampo(c, i, mapa){
   const id = estado.actual;
-  const cerrado = !!estado.resolucion[id];
+  const cerrado = fase(id) === "aceptado" || fase(id) === "rechazado";
   const mal = c.estado === "ausente", duda = c.estado === "revisar";
+  const reglas = (mapa || {})[i] || [];
   const g = claseConf(c.confianza);
   const mios = (estado.comentarios[id] || []).filter(x => x.indice === i);
   const src = c.origen_doc === "alta_rrhh"
@@ -446,8 +598,8 @@ function filaCampo(c, i){
   const marca = mios.length
     ? `<span class="mrk" title="${esc(mios.length + ' comentario(s)')}">${mios[0].n}</span>`
     : (cerrado ? "" : `<button class="mas" data-cmt="${i}" title="Comentar este campo" aria-label="Comentar ${esc(c.campo)}">+</button>`);
-  return `<div class="campo ${mal?"mal":duda?"duda":""} ${mios.length?"marcado":""}" id="f-${i}">
-    <span class="k">${esc(c.campo)}</span>
+  return `<div class="campo ${mal?"mal":duda?"duda":""} ${reglas.length?"tocado":""} ${mios.length?"marcado":""}" id="f-${i}">
+    <span class="k">${esc(c.campo)}${reglas.map(r => `<span class="tag">${esc(r)}</span>`).join("")}</span>
     <span class="v ${c.valor?"":"vacio"}">${c.valor ? esc(c.valor) : "no legible"}</span>
     ${src}
     <span class="conf"><span class="bar"><i class="g-${g}" style="width:${Math.round(c.confianza*100)}%"></i></span>
@@ -456,7 +608,6 @@ function filaCampo(c, i){
     ${c.motivo ? `<span class="porq">${esc(c.motivo)}</span>` : ""}
   </div>`;
 }
-
 function filaRegla(c, tit, pend){
   const icon = { ok:["✓","t-ok"], falla:["✕","t-bad"], no_aplica:["–",""] };
   const [i, cl] = icon[c.resultado];
@@ -472,19 +623,20 @@ function filaRegla(c, tit, pend){
 
 /* ── panel de expediente ──────────────────────────────────────── */
 function abrir(id){
-  estado.actual = id; estado.popAbierto = null;
+  estado.actual = id; estado.popAbierto = null; estado.lote = false;
   const d = estado.datos[id];
   const hecho = estado.procesado.has(id);
-  const res = estado.resolucion[id];
+  const f = fase(id);
+  const seg = estado.seguimiento[id];
   const exc = d.decision === "excepcion";
   const tit = Object.fromEntries((estado.reglas?.reglas || []).map(r => [r.id, r.titulo]));
+  const mapa = reglasPorCampo(d);
 
-  // columna izquierda: la plantilla, vacia o rellena
   let k = 0;
   const tabla = estado.plantilla.infotipos.map(it => {
     const filas = it.campos.map(slot => {
       const i = k++;
-      return hecho ? filaCampo(d.campos[i], i) : slotVacio(slot, i);
+      return hecho ? filaCampo(d.campos[i], i, mapa) : slotVacio(slot, i);
     }).join("");
     return `<div class="grupo"><div class="gh">${esc(it.codigo)} · ${esc(it.nombre)}
       <span class="n">${it.campos.length} campos</span></div>${filas}</div>`;
@@ -497,17 +649,29 @@ function abrir(id){
       <div class="txt"><b>Plantilla vacía.</b> Dieciocho campos esperando.
         En la carpeta hay tres documentos de esta persona y las reglas del convenio.
         El agente los lee y prepara el alta; no escribe nada en SAP.</div>
-      <div class="der">
-        <button class="btn pri" id="procesar">Procesar con el agente</button>
-      </div>
+      <div class="der"><button class="btn pri" id="procesar">Procesar con el agente</button></div>
       <div style="flex-basis:100%" id="progreso" hidden>
         <div class="barra"><i id="barraI"></i></div>
         <div class="ticker" id="ticker"></div>
       </div>
     </div>`;
 
+  const cajaSeg = seg ? `
+    <div class="seg">
+      <div class="t">⏳ En progreso · ${seg.enviado ? "esperando documentación" : "acción pendiente"}</div>
+      <div>El gestor no la ha rechazado: ha pedido lo que falta y el alta espera.</div>
+      <dl>
+        <dt>Se pide</dt><dd>${esc(seg.pide)}</dd>
+        <dt>Correo</dt><dd>${seg.enviado
+          ? `enviado a <b>${esc(seg.a)}</b> a las ${esc(seg.horaCorreo)}`
+          : `<span style="color:var(--bad)">sin enviar</span>`}</dd>
+        <dt>Desde</dt><dd>${esc(seg.hora)}</dd>
+      </dl>
+      ${seg.enviado ? "" : `<div style="margin-top:.8rem"><button class="mini pri" id="segCorreo">Enviar el correo ahora</button></div>`}
+    </div>` : "";
+
   const banda = !hecho ? "" : (exc
-    ? `<div class="banda exc"><div><span class="t">Revisar antes de aprobar</span>
+    ? `<div class="banda exc"><div><span class="t">Requiere revisión</span>
          <ul>${d.motivos_excepcion.map(m => `<li>${esc(m)}</li>`).join("")}</ul></div></div>`
     : `<div class="banda ok"><div><span class="t">Listo para aprobar</span> — ${esc(d.resumen)}</div></div>`);
 
@@ -519,7 +683,7 @@ function abrir(id){
       <div class="agente"><b>${hecho ? d.tiempo_agente_s + "s" : "—"}</b>tiempo del agente<br>
         <span style="color:var(--muted)">hoy son ${MIN_HOY} min de gestor</span></div>
     </div>
-    ${arranque}${banda}
+    ${arranque}${cajaSeg}${banda}
     <div class="cols">
       <div><h3 class="sec">Alta preparada · plantilla SAP HCM
         <span class="aux" id="contadorCampos"></span></h3>${tabla}</div>
@@ -532,14 +696,12 @@ function abrir(id){
     </div>
     <div id="zonaAcc"></div>`;
 
-  pintarRail();
-  pintarAcciones();
-  pintarContador();
+  pintarRail(); pintarAcciones(); pintarContador();
   $("#panel").scrollTop = 0;
   pintarCola();
 
-  const pb = $("#procesar");
-  if(pb) pb.addEventListener("click", () => procesar(id));
+  $("#procesar")?.addEventListener("click", () => procesar(id));
+  $("#segCorreo")?.addEventListener("click", () => modalCorreo(id));
 }
 
 function pintarContador(){
@@ -560,17 +722,24 @@ function saltarYa(){
   if(_tid){ clearTimeout(_tid); _tid = null; }
   if(_res){ const r = _res; _res = null; r(); }
 }
+function cerrarProcesado(id, d){
+  estado.procesado.add(id);
+  if(fase(id) === "no_leido") estado.fase[id] = "en_progreso";
+  anotar(id, "procesado",
+    `${d.campos.length} campos extraídos · ${d.convenio.length} reglas evaluadas · ${d.tiempo_agente_s}s`);
+}
 
 async function procesar(id){
   const d = estado.datos[id];
   estado.animando = true; estado.saltar = false;
 
   const btn = $("#procesar"); btn.disabled = true; btn.textContent = "Procesando…";
-  btn.insertAdjacentHTML("afterend",
-    `<button class="mini" id="saltar" title="Ir al final">Saltar</button>`);
+  btn.insertAdjacentHTML("afterend", `<button class="mini" id="saltar" title="Ir al final">Saltar</button>`);
   $("#saltar").addEventListener("click", saltarYa);
   $("#progreso").hidden = false;
+  pintarCola();
 
+  const mapa = reglasPorCampo(d);
   const total = d.campos.length + d.convenio.length;
   let n = 0;
   const avance = () => { n++; $("#barraI").style.width = (n/total*100).toFixed(1) + "%"; };
@@ -595,7 +764,7 @@ async function procesar(id){
     }
     const fila = document.getElementById("f-" + i);
     if(fila){
-      fila.outerHTML = filaCampo(c, i);
+      fila.outerHTML = filaCampo(c, i, mapa);
       document.getElementById("f-" + i).classList.add("aparece");
     }
     avance();
@@ -617,24 +786,88 @@ async function procesar(id){
     await dormir(msRegla);
   }
 
-  estado.procesado.add(id);
-  anotar(id, "procesado",
-    `${d.campos.length} campos extraídos · ${d.convenio.length} reglas evaluadas · ${d.tiempo_agente_s}s`);
+  cerrarProcesado(id, d);
   estado.animando = false;
   abrir(id);
-  pintarContador();
+}
+
+/* ── procesado en lote ────────────────────────────────────────── */
+async function procesarLote(){
+  const ids = IDS.filter(id => fase(id) === "no_leido");
+  if(!ids.length) return;
+  estado.lote = true; estado.actual = null; estado.animando = true; estado.saltar = false;
+  pintarCola();
+
+  $("#panel").innerHTML = `
+    <div class="cab"><div>
+      <div class="sub">Procesado en lote · ${ids.length} altas sin leer</div>
+      <h1>El agente vacía la bandeja</h1>
+      <div class="sub">Cada alta: leer tres documentos, rellenar los 18 campos y contrastar las 8 reglas</div>
+    </div><div class="agente"><b id="loteN">0/${ids.length}</b>completadas<br>
+      <span style="color:var(--muted)">hoy son ${MIN_HOY} min cada una</span></div></div>
+    <div class="barra" style="margin-bottom:1.2rem"><i id="barraI"></i></div>
+    <div class="lote">
+      <div class="lh"><span>Expediente</span><span>Persona</span><span>Resultado</span><span style="text-align:right">Tiempo</span></div>
+      ${ids.map(id => `<div class="lr" id="l-${id}">
+        <span class="ex">${esc(id)}</span>
+        <span class="nm">${esc(estado.datos[id].persona)}</span>
+        <span class="st">en cola</span>
+        <span class="tm">—</span></div>`).join("")}
+    </div>
+    <div id="loteFin"></div>`;
+
+  let n = 0;
+  for(const id of ids){
+    const d = estado.datos[id];
+    const fila = document.getElementById("l-" + id);
+    fila.classList.add("curso");
+    fila.querySelector(".st").innerHTML = `<span class="sp"></span> leyendo documentos…`;
+    await dormir(700);
+    fila.querySelector(".st").innerHTML = `<span class="sp"></span> contrastando el convenio…`;
+    await dormir(650);
+
+    cerrarProcesado(id, d);
+    const exc = d.decision === "excepcion";
+    fila.classList.remove("curso");
+    fila.classList.add(exc ? "rev" : "hecha");
+    fila.querySelector(".st").textContent = exc ? "✕ Requiere revisión" : "✓ Lista para aprobar";
+    fila.querySelector(".tm").textContent = d.tiempo_agente_s + "s";
+    n++;
+    $("#loteN").textContent = `${n}/${ids.length}`;
+    $("#barraI").style.width = (n/ids.length*100).toFixed(1) + "%";
+    pintarCola();
+    await dormir(180);
+  }
+
+  estado.animando = false;
+  const listas = ids.filter(id => estado.datos[id].decision !== "excepcion");
+  const revisar = ids.filter(id => estado.datos[id].decision === "excepcion");
+  const seg = ids.reduce((s,id) => s + estado.datos[id].tiempo_agente_s, 0).toFixed(1);
+  $("#loteFin").innerHTML = `
+    <div class="tally">
+      <div><div class="n t-ok">${listas.length}</div><div class="l">listas para<br>aprobar</div></div>
+      <div><div class="n t-bad">${revisar.length}</div><div class="l">requieren<br>revisión</div></div>
+      <div><div class="n">${seg}s</div><div class="l">del agente, en total<br>
+        <span style="color:var(--muted)">hoy: ${ids.length * MIN_HOY} min de gestor</span></div></div>
+    </div>
+    <div class="acc">
+      ${revisar.length ? `<button class="btn pri" id="irRevisar">Abrir la primera que requiere revisión</button>` : ""}
+      ${listas.length ? `<button class="btn" id="irLista">Abrir la primera lista para aprobar</button>` : ""}
+      <span class="nota">Ninguna se ha escrito en SAP. El agente prepara; decide una persona.</span>
+    </div>`;
+  $("#irRevisar")?.addEventListener("click", () => abrir(revisar[0]));
+  $("#irLista")?.addEventListener("click", () => abrir(listas[0]));
+  anotar("lote", "procesado", `Procesado en lote de ${ids.length} altas · ${listas.length} listas, ${revisar.length} a revisar`);
+  pintarCola();
 }
 
 /* ── comentarios ──────────────────────────────────────────────── */
 function siguienteN(id){
-  const cs = estado.comentarios[id] || [];
-  return cs.reduce((m,c) => Math.max(m, c.n), 0) + 1;
+  return (estado.comentarios[id] || []).reduce((m,c) => Math.max(m, c.n), 0) + 1;
 }
-
 function abrirPop(indice){
   cerrarPop();
-  const id = estado.actual;
-  const d = estado.datos[id];
+  const id = estado.actual, d = estado.datos[id];
   const nombre = indice === -1 ? "General" : d.campos[indice].campo;
   const destino = indice === -1 ? $("#rail") : document.getElementById("f-" + indice);
   if(!destino) return;
@@ -669,22 +902,19 @@ function guardarComentario(indice, nombre){
   (estado.comentarios[id] ||= []).push(
     { n:siguienteN(id), indice, campo:nombre, texto:t, hora:ahora(), autor:GESTOR });
   anotar(id, "comentario", `«${nombre}» — ${t}`);
-  guardar();
-  abrir(id);
+  guardar(); abrir(id);
 }
 function quitarComentario(n){
   const id = estado.actual;
   estado.comentarios[id] = (estado.comentarios[id] || []).filter(c => c.n !== n);
   guardar(); abrir(id);
 }
-
 function pintarRail(){
   const id = estado.actual;
   const cs = estado.comentarios[id] || [];
-  const cerrado = !!estado.resolucion[id];
+  const cerrado = fase(id) === "aceptado" || fase(id) === "rechazado";
   const hecho = estado.procesado.has(id);
   const rail = $("#rail"); if(!rail) return;
-
   const cuerpo = cs.length
     ? cs.map(c => `<div class="cmt">
         <span class="mrk">${c.n}</span>
@@ -696,49 +926,49 @@ function pintarRail(){
     : `<div class="vacia">${hecho
         ? "Ningún comentario todavía. Pasa por encima de un campo y pulsa <b>+</b> para anclar uno."
         : "Disponible cuando el agente haya preparado el alta."}</div>`;
-
   rail.innerHTML = cuerpo + (hecho && !cerrado
     ? `<button class="anadir" id="cmtGeneral">+ Comentario general</button>` : "");
-
   rail.querySelectorAll("[data-quitar]").forEach(b =>
     b.addEventListener("click", () => quitarComentario(Number(b.dataset.quitar))));
-  const g = $("#cmtGeneral");
-  if(g) g.addEventListener("click", () => abrirPop(-1));
-
+  $("#cmtGeneral")?.addEventListener("click", () => abrirPop(-1));
   document.querySelectorAll("[data-cmt]").forEach(b =>
     b.addEventListener("click", () => abrirPop(Number(b.dataset.cmt))));
 }
 
+/* ── modal generico ───────────────────────────────────────────── */
+function modal(cfg){
+  const m = $("#modal");
+  m.innerHTML = `<div class="caja ${cfg.tipo || ""}" role="dialog" aria-modal="true">
+      <div class="mh">
+        ${cfg.ico ? `<div class="ico">${cfg.ico}</div>` : ""}
+        <h2>${cfg.titulo}</h2>
+        ${cfg.sub ? `<div class="sub">${cfg.sub}</div>` : ""}
+      </div>
+      ${cfg.cuerpo ? `<div class="mb">${cfg.cuerpo}</div>` : ""}
+      <div class="mf">${(cfg.botones || []).map((b,i) =>
+        `<button class="btn ${b.cls || ""} ${b.izq ? "izq" : ""}" data-b="${i}">${esc(b.txt)}</button>`).join("")}</div>
+    </div>`;
+  m.setAttribute("open","");
+  m.querySelectorAll("[data-b]").forEach(b =>
+    b.addEventListener("click", () => {
+      const accion = cfg.botones[Number(b.dataset.b)];
+      if(accion.cerrar !== false) cerrarModal();
+      accion.fn?.();
+    }));
+  m.querySelector(".btn")?.focus();
+}
+function cerrarModal(){ $("#modal").removeAttribute("open"); $("#modal").innerHTML = ""; }
+
 /* ── OK / KO ──────────────────────────────────────────────────── */
 function pintarAcciones(){
-  const id = estado.actual;
-  const d = estado.datos[id];
+  const id = estado.actual, d = estado.datos[id];
   const z = $("#zonaAcc"); if(!z) return;
-  const res = estado.resolucion[id];
+  const f = fase(id);
   const cs = estado.comentarios[id] || [];
-
   if(!estado.procesado.has(id)){ z.innerHTML = ""; return; }
 
-  if(res){
-    const lista = cs.length
-      ? `\n\nComentarios adjuntos:\n` + cs.map(c => `  [${c.n}] ${c.campo} — ${c.texto}`).join("\n")
-      : "";
-    z.innerHTML = res.tipo === "aprobada"
-      ? `<div class="res ok"><div class="t">✓ Alta escrita en SAP HCM · ${esc(res.hora)}</div>
-          <div>Aprobada por ${esc(res.autor)}. Hasta ese clic no se había escrito nada.</div>
-          <pre>BAPI_EMPLOYEE_ENQUEUE  → ${esc(id)}
-HR_INFOTYPE_OPERATION  → 0002, 0006, 0009, 0013, 0001, 0016   [OK]
-BAPI_EMPLOYEE_DEQUEUE  → commit  ·  ${MIN_GESTOR} min de gestor${esc(lista)}</pre>
-          <div class="fine">Simulado: el demostrador no está conectado a SAP. Esa conexión es lo que construye la Fase&nbsp;1.</div>
-        </div>`
-      : `<div class="res ko"><div class="t">✕ Alta rechazada · devuelta a RR. HH. · ${esc(res.hora)}</div>
-          <div>Rechazada por ${esc(res.autor)}. No se ha escrito nada en SAP. El expediente
-            vuelve a Recursos Humanos con el motivo por escrito.</div>
-          <pre>ESTADO                 → RECHAZADA
-NOTIFICADO A           → RR. HH. · responsable del centro
-INFOTIPOS ESCRITOS     → ninguno${esc(lista)}</pre>
-          <div class="fine">El agente no vuelve a intervenir: la corrección la hace una persona.</div>
-        </div>`;
+  if(f === "aceptado" || f === "rechazado"){
+    z.innerHTML = bloqueResolucion(id, f, cs);
     return;
   }
 
@@ -750,33 +980,173 @@ INFOTIPOS ESCRITOS     → ninguno${esc(lista)}</pre>
         ? "El agente no deja aprobar esto: hay una regla del convenio en falla. La decisión no la toma el modelo, la calcula la política."
         : "Nada se escribe en SAP hasta este clic. Ni ahora, ni en producción."}</span>
     </div>`;
+  $("#aprobar")?.addEventListener("click", aprobar);
+  $("#rechazar").addEventListener("click", () => modalRechazo(id));
+}
 
-  $("#aprobar")?.addEventListener("click", () => resolver("aprobada"));
-  $("#rechazar").addEventListener("click", () => {
-    if(!cs.length){
-      $("#notaAcc").innerHTML = `<b style="color:var(--bad)">Para rechazar hace falta al menos un comentario.</b>
-        Ancla uno en el campo que falla: es lo que verá quien tenga que corregirlo.`;
-      abrirPop(exc ? indiceProblema(d) : -1);
-      return;
-    }
-    resolver("rechazada");
+function bloqueResolucion(id, f, cs){
+  const r = estado.resoluciones[id] || { hora:"—", autor:GESTOR };
+  const lista = cs.length
+    ? `\n\nComentarios adjuntos:\n` + cs.map(c => `  [${c.n}] ${c.campo} — ${c.texto}`).join("\n") : "";
+  if(f === "aceptado") return `<div class="res ok">
+      <div class="t">✓ Alta escrita en SAP HCM · ${esc(r.hora)}</div>
+      <div>Aprobada por ${esc(r.autor)}. Hasta ese clic no se había escrito nada.</div>
+      <pre>BAPI_EMPLOYEE_ENQUEUE  → ${esc(id)}
+HR_INFOTYPE_OPERATION  → 0002, 0006, 0009, 0013, 0001, 0016   [OK]
+BAPI_EMPLOYEE_DEQUEUE  → commit  ·  ${MIN_GESTOR} min de gestor${esc(lista)}</pre>
+      <div class="fine">Simulado: el demostrador no está conectado a SAP. Esa conexión es lo que construye la Fase&nbsp;1.</div>
+    </div>`;
+  return `<div class="res ko">
+      <div class="t">✕ Alta rechazada · devuelta a RR. HH. · ${esc(r.hora)}</div>
+      <div>Rechazada por ${esc(r.autor)}. No se ha escrito nada en SAP. El expediente vuelve a
+        Recursos Humanos con el motivo por escrito.</div>
+      <pre>ESTADO                 → RECHAZADA
+NOTIFICADO A           → RR. HH. · responsable del centro
+INFOTIPOS ESCRITOS     → ninguno${esc(lista)}</pre>
+      <div class="fine">El agente no vuelve a intervenir: la corrección la hace una persona.</div>
+    </div>`;
+}
+
+function listaRevisiones(d){
+  const rs = d.revisiones || [];
+  if(!rs.length) return `<div class="cuadro"><div class="ch">Sin incidencias del agente</div>
+    <div class="rev"><span class="ic">·</span><span><span class="cn">Nada que reprochar al expediente</span>
+      <div class="de">El rechazo sería una decisión del gestor, no del sistema.</div></span></div></div>`;
+  return `<div class="cuadro"><div class="ch">${rs.length} motivo${rs.length===1?"":"s"} · lo que no encaja</div>
+    ${rs.map(r => `<div class="rev"><span class="ic">✕</span><span>
+      <span class="cn">${esc(r.campo || "Documentación del expediente")}</span>
+      ${r.id ? `<span class="rid"> · ${esc(r.id)}</span>` : ""}
+      <div class="de">${esc(r.detalle)}</div></span></div>`).join("")}</div>`;
+}
+
+function modalRechazo(id){
+  const d = estado.datos[id];
+  const cs = estado.comentarios[id] || [];
+  const pide = d.accion?.pide;
+  modal({
+    tipo:"ko", ico:"✕", titulo:"Rechazar el alta",
+    sub:`${esc(d.persona)} · ${esc(id)}. Antes de decidir, esto es lo que no encaja.`,
+    cuerpo: listaRevisiones(d) + (cs.length
+        ? `<div class="cuadro"><div class="ch">${cs.length} comentario${cs.length===1?"":"s"} del gestor</div>
+            ${cs.map(c => `<div class="rev"><span class="mrk">${c.n}</span><span>
+              <span class="cn">${esc(c.campo)}</span>
+              <div class="de">${esc(c.texto)}</div></span></div>`).join("")}</div>` : "")
+      + (pide ? `<div class="aviso" style="margin-bottom:0">Para desbloquearlo hace falta
+            <b>${esc(pide)}</b>. Si lo dejas en progreso, el alta no se pierde: se queda esperando
+            ese documento y puedes pedirlo ahora mismo.</div>` : ""),
+    botones:[
+      { txt:"Cancelar", izq:true },
+      { txt:"Rechazar definitivamente", cls:"ko", fn:() => rechazarDefinitivo(id) },
+      { txt:"Mantener en progreso", cls:"pri", fn:() => mantenerEnProgreso(id) },
+    ]
   });
 }
 
-function indiceProblema(d){
-  const i = d.campos.findIndex(c => c.estado === "ausente" || c.estado === "revisar");
-  return i === -1 ? -1 : i;
+function aprobar(){
+  const id = estado.actual, d = estado.datos[id];
+  const cs = estado.comentarios[id] || [];
+  estado.fase[id] = "aceptado";
+  delete estado.seguimiento[id];
+  estado.resoluciones[id] = { hora:ahora(), autor:GESTOR };
+  anotar(id, "aceptada", `Escritura en SAP HCM · 6 infotipos${cs.length ? ` · ${cs.length} comentario(s) adjunto(s)` : ""}`);
+  guardar(); abrir(id);
+  modal({
+    tipo:"ok", ico:"✓", titulo:"Alta escrita en SAP HCM",
+    sub:`${esc(d.persona)} ya está de alta. Hasta el clic no se había escrito nada.`,
+    cuerpo:`<pre>BAPI_EMPLOYEE_ENQUEUE  → ${esc(id)}
+HR_INFOTYPE_OPERATION  → 0002, 0006, 0009, 0013, 0001, 0016   [OK]
+BAPI_EMPLOYEE_DEQUEUE  → commit</pre>
+      <div class="aviso" style="margin:.9rem 0 0">El expediente pasa a la carpeta
+        <b>Aceptados</b>. Quedan <b>${enCurso()}</b> altas pendientes de validación.</div>`,
+    botones:[{ txt:"Hecho", cls:"pri" }]
+  });
 }
 
-function resolver(tipo){
-  const id = estado.actual;
+function rechazarDefinitivo(id){
+  const d = estado.datos[id];
   const cs = estado.comentarios[id] || [];
-  estado.resolucion[id] = { tipo, hora:ahora(), autor:GESTOR, comentarios:cs.length };
-  anotar(id, tipo, tipo === "aprobada"
-    ? `Escritura en SAP HCM · 6 infotipos${cs.length ? ` · ${cs.length} comentario(s) adjunto(s)` : ""}`
-    : `Devuelta a RR. HH. · ${cs.length} comentario(s)`);
-  guardar();
-  abrir(id);
+  estado.fase[id] = "rechazado";
+  delete estado.seguimiento[id];
+  estado.resoluciones[id] = { hora:ahora(), autor:GESTOR };
+  anotar(id, "rechazada", `Devuelta a RR. HH. · ${cs.length} comentario(s)`);
+  guardar(); abrir(id);
+  modal({
+    tipo:"ko", ico:"✕", titulo:"Alta rechazada",
+    sub:`${esc(d.persona)} vuelve a Recursos Humanos con el motivo por escrito.`,
+    cuerpo:`<pre>ESTADO                 → RECHAZADA
+NOTIFICADO A           → RR. HH. · responsable del centro
+INFOTIPOS ESCRITOS     → ninguno</pre>
+      <div class="aviso" style="margin:.9rem 0 0">El expediente pasa a la carpeta
+        <b>Rechazados</b>. Quedan <b>${enCurso()}</b> altas pendientes de validación.</div>`,
+    botones:[{ txt:"Hecho", cls:"pri" }]
+  });
+}
+
+function mantenerEnProgreso(id){
+  const d = estado.datos[id];
+  const a = d.accion;
+  estado.fase[id] = "en_progreso";
+  estado.seguimiento[id] = {
+    pide: a?.pide || "Aclaración del gestor sobre los comentarios anotados",
+    a: a?.a || "", hora: ahora(), enviado:false
+  };
+  anotar(id, "en_progreso", `En progreso · pendiente de: ${estado.seguimiento[id].pide}`);
+  guardar(); abrir(id);
+  modalCorreo(id);
+}
+
+function borradorCorreo(id){
+  const d = estado.datos[id];
+  if(d.accion) return d.accion;
+  const cs = estado.comentarios[id] || [];
+  return {
+    a: "rrhh@artificialpark-ejemplo.es", cc: "",
+    asunto: `${id} · Documentación pendiente`,
+    pide: "Aclaración del gestor",
+    cuerpo: `Hola:\n\nEl alta ${id} de ${d.persona} queda en espera. Motivos anotados:\n\n`
+          + cs.map(c => `· ${c.campo}: ${c.texto}`).join("\n")
+          + `\n\nUn saludo,\n${GESTOR}`
+  };
+}
+
+function modalCorreo(id){
+  const d = estado.datos[id];
+  const b = borradorCorreo(id);
+  modal({
+    tipo:"aviso", ico:"✉", titulo:"¿Le pedimos lo que falta?",
+    sub:`El alta se queda en <b>En progreso</b>. El agente ha redactado el correo con el motivo del rechazo; revísalo antes de enviarlo.`,
+    cuerpo:`<div class="cuadro mail">
+        <div class="ch">Borrador</div>
+        <dl><dt>Para</dt><dd>${esc(b.a)}</dd></dl>
+        ${b.cc ? `<dl><dt>CC</dt><dd>${esc(b.cc)}</dd></dl>` : ""}
+        <dl><dt>Asunto</dt><dd>${esc(b.asunto)}</dd></dl>
+        <textarea id="mailTxt">${esc(b.cuerpo)}</textarea>
+      </div>
+      <div class="aviso" style="margin-bottom:0">Simulado: el demostrador no envía correo.
+        En producción sale por el buzón de RR. HH. y queda en el registro del expediente.</div>`,
+    botones:[
+      { txt:"Ahora no", izq:true, fn:() => abrir(id) },
+      { txt:"Enviar correo", cls:"pri", cerrar:false, fn:() => enviarCorreo(id, b) },
+    ]
+  });
+}
+
+function enviarCorreo(id, b){
+  const cuerpo = $("#mailTxt")?.value || b.cuerpo;
+  const seg = estado.seguimiento[id] || (estado.seguimiento[id] = { pide:b.pide, hora:ahora() });
+  seg.a = b.a; seg.enviado = true; seg.horaCorreo = ahora(); seg.asunto = b.asunto;
+  anotar(id, "correo", `Enviado a ${b.a} · ${b.asunto}`);
+  guardar(); abrir(id);
+  modal({
+    tipo:"ok", ico:"✓", titulo:"Correo enviado",
+    sub:`A <b>${esc(b.a)}</b> · ${esc(b.asunto)}`,
+    cuerpo:`<pre>${esc(cuerpo.split("\n").slice(0,4).join("\n"))}
+…</pre>
+      <div class="aviso" style="margin:.9rem 0 0">El alta se queda en <b>En progreso</b>,
+        esperando <b>${esc(seg.pide)}</b>. No se ha escrito nada en SAP y nadie tiene que
+        acordarse de perseguirlo: está en la bandeja.</div>`,
+    botones:[{ txt:"Hecho", cls:"pri" }]
+  });
 }
 
 /* ── cajones ──────────────────────────────────────────────────── */
@@ -822,10 +1192,10 @@ document.getElementById("reiniciar")?.addEventListener("click", () => {
   location.href = location.pathname;
 });
 document.addEventListener("keydown", e => {
-  if(e.key === "Escape"){
-    if(estado.popAbierto !== null){ cerrarPop(); return; }
-    document.querySelectorAll(".cajon[open]").forEach(c => c.removeAttribute("open"));
-  }
+  if(e.key !== "Escape") return;
+  if($("#modal").hasAttribute("open")){ cerrarModal(); return; }
+  if(estado.popAbierto !== null){ cerrarPop(); return; }
+  document.querySelectorAll(".cajon[open]").forEach(c => c.removeAttribute("open"));
 });
 
 arrancar().catch(err => {

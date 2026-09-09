@@ -235,6 +235,8 @@
   "resumen": "Expediente completo y coherente. Nada que revisar.",
   "decision": "listo_para_aprobar",
   "motivos_excepcion": [],
+  "revisiones": [],
+  "accion": null,
   "tiempo_agente_s": 7.8,
   "modelo": "claude-opus-5",
   "version_convenio": "2026.08",

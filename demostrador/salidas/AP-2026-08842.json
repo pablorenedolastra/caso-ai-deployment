@@ -238,6 +238,22 @@
     "CONV-07 · El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación.",
     "Titular de la cuenta · El titular del certificado (POVEDA SANCHIS, MANUELA) no es la persona del alta (RIVAS POVEDA, ÓSCAR)"
   ],
+  "revisiones": [
+    {
+      "tipo": "regla",
+      "id": "CONV-07",
+      "campo": "Titular de la cuenta",
+      "indice": 10,
+      "detalle": "El certificado de titularidad está a nombre de un tercero. El convenio no admite abono en cuenta ajena sin acreditación."
+    }
+  ],
+  "accion": {
+    "a": "oscar.rivas@correo-ejemplo.es",
+    "cc": "rrhh.parquenorte@artificialpark-ejemplo.es",
+    "asunto": "AP-2026-08842 · Certificado bancario a tu nombre",
+    "pide": "Certificado de titularidad a nombre de la persona contratada",
+    "cuerpo": "Hola Óscar:\n\nEstamos preparando tu alta para la temporada y nos falta una cosa para poder cerrarla.\n\nEl certificado bancario que nos has enviado está a nombre de Poveda Sanchis, Manuela. El convenio no permite abonar la nómina en una cuenta que no sea tuya, así que necesitamos un certificado de titularidad de una cuenta a tu nombre.\n\nLo puedes descargar desde la app de tu banco en un minuto. En cuanto nos llegue, seguimos.\n\nUn saludo,\nMarta Sanchis\nRecursos Humanos · Artificial PARK\n96 000 00 00 · rrhh@artificialpark-ejemplo.es"
+  },
   "tiempo_agente_s": 9.1,
   "modelo": "claude-opus-5",
   "version_convenio": "2026.08",
