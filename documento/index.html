@@ -713,6 +713,12 @@ body.adj .fx.locked .bar{display:block}
 .on-burgundy .model p{color:var(--ink)}
 .on-burgundy .model figcaption{color:var(--ink-2)}
 .on-burgundy .model .threshold b{color:var(--burgundy)}
+table.liq th.grp{border-left:2px solid var(--line)}
+table.liq td.grp{border-left:2px solid var(--line)}
+table.liq th.sub{font-size:.6rem;background:var(--burgundy-2)}
+table.liq td.tot{font-weight:700;color:var(--burgundy)}
+table.liq tr.nada td{background:rgba(214,54,62,.09)}
+table.liq tr.nada td:first-child{color:var(--red);font-weight:700}
 </style>
 
 <aside class="rail">
@@ -1652,9 +1658,10 @@ body.adj .fx.locked .bar{display:block}
       <p class="ar">→ se pagan con fijo</p>
       <p class="n">Cronometradas con vuestros gestores, sobre vuestros volúmenes, en las semanas
       1–2. No hay nada que demostrar, así que no hay nada que condicionar:
-      <b id="q1val">216.276 €/año</b> en régimen. Dentro de los 24 meses del contrato esa sola
-      palanca os devuelve <b id="q1v24">362.624 €</b> —y de ahí sale el fijo de la propuesta:
-      <b>300.000 €, que los paga entera la palanca ya medida, sin tocar un euro de desviación</b>.</p>
+      <b id="q1val">216.276 €/año</b> en régimen —<b id="q1v24">146.347 €</b> ya dentro del primer
+      año, con la rampa de las oleadas—. Y no caduca con el contrato: <b>es un salario fijo que
+      dejáis de pagar todos los años</b>. Por eso el fijo de la propuesta son 300.000 €: año y medio
+      de esa sola palanca, sin tocar un euro de desviación.</p>
     </div>
     <div>
       <p class="k">Palanca 2 · supuesta</p>
@@ -1675,10 +1682,10 @@ body.adj .fx.locked .bar{display:block}
         <span><span class="zk">Por adelantado</span><span class="zv big" id="o1f">390.000 €</span></span>
         <span><span class="zk">Del gap capturado</span><span class="zv">nada más</span></span>
       </div>
-      <p class="rk">Sapira a 24 meses · <span id="o1r">390.000 €</span></p>
+      <p class="rk">Total a Sapira · <span id="o1r">390.000 €</span></p>
       <p class="n">Precio cerrado, y son dos cosas: <b>300.000 € de fijo + 90.000 € por llevaros la
       desviación a precio cerrado</b>. Esos 90.000 € son <b>una décima de punto por temporada</b>: si
-      recuperamos más de una décima, ya habéis ganado. Soporte y evolución de los 24 meses dentro.
+      recuperamos más de una décima, ya habéis ganado. Soporte y evolución de los doce meses dentro.
       Es la más barata si el proyecto funciona —y quien la elige se cree nuestro número más que
       nosotros.</p>
     </div>
@@ -1688,11 +1695,12 @@ body.adj .fx.locked .bar{display:block}
         <span><span class="zk">Por adelantado</span><span class="zv big" id="o2f">300.000 €</span></span>
         <span><span class="zk">Del gap capturado</span><span class="zv big" id="o2t">10 %</span></span>
       </div>
-      <p class="rk">Sapira a 24 meses · <span id="o2r">476.000 €</span></p>
+      <p class="rk">Total a Sapira · <span id="o2r">388.000 €</span></p>
       <p class="n">El fijo cubre la palanca medida y el coste de construirlo. La tarifa se aplica
       <b>solo al gap</b>, sobre la masa real de cada temporada. Baja el suelo de vuestra factura de
-      390.000 a 300.000 €: <b>si la desviación no se mueve, os ahorráis 90.000 €</b>. El punto de
-      indiferencia con la opción 1 es <b>un punto de desviación por temporada</b>. Es la que
+      390.000 a 300.000 €: <b>si la desviación no se mueve, os ahorráis 90.000 €</b>. Y el punto de
+      indiferencia con la opción 1 cae justo en <b>los 2,00 puntos del escenario medio</b>: si
+      acertamos, las dos cuestan lo mismo; si nos equivocamos, ésta os sale más barata. Es la que
       recomendamos.</p>
     </div>
   </div>
@@ -1739,15 +1747,31 @@ body.adj .fx.locked .bar{display:block}
   </div>
 
   <div class="tblwrap">
-    <table>
+    <table class="liq">
       <thead>
-        <tr><th scope="col">Liquidación del mes 13 · si la desviación baja de <span id="lqBase">5,0 %</span> a…</th>
-        <th scope="col" class="num">Puntos</th><th scope="col" class="num">Vuestro ahorro</th>
-        <th scope="col" class="num">Factura opción 2</th></tr>
+        <tr>
+          <th scope="col" rowspan="2">Si la desviación baja de <span id="lqBase">5,0 %</span> a…</th>
+          <th scope="col" class="num" rowspan="2">Puntos</th>
+          <th scope="col" class="num" rowspan="2">Vuestro ahorro<br>a 12 meses</th>
+          <th scope="col" class="num grp" colspan="3">Opción 1 · todo fijo</th>
+          <th scope="col" class="num grp" colspan="3">Opción 2 · fijo + tarifa</th>
+        </tr>
+        <tr>
+          <th scope="col" class="num sub">Inicial</th>
+          <th scope="col" class="num sub">Variable</th>
+          <th scope="col" class="num sub">Total</th>
+          <th scope="col" class="num sub grp">Inicial</th>
+          <th scope="col" class="num sub">Variable</th>
+          <th scope="col" class="num sub">Total</th>
+        </tr>
       </thead>
       <tbody id="lqBody"></tbody>
     </table>
   </div>
+  <p class="small" style="margin:.7rem 0 0;max-width:66ch">El ahorro incluye las dos palancas:
+  los puestos liberados, que entran con la rampa de las oleadas, y la desviación de la temporada.
+  «Inicial» es lo que pagáis a la firma y durante los doce meses; «variable», la única liquidación,
+  el mes 13, cuando cierra la temporada. La Fase 0 no está: ya la pagasteis.</p>
 
   <p class="retk" style="margin-top:1.9rem">Cómo se mide</p>
   <div class="proto">
@@ -1761,8 +1785,8 @@ body.adj .fx.locked .bar{display:block}
       con el que gestionáis es el que factura.</span></div>
     <div class="r key"><span>Quién lo valida</span><span><b>Vuestro control de gestión firma el
       cálculo. Si no lo firma, no facturamos.</b></span></div>
-    <div class="r"><span>Cuándo</span><span>Dos liquidaciones, mes 13 y mes 25, las dos después de
-      cerrar temporada. Durante los doce primeros meses solo pagáis el fijo.</span></div>
+    <div class="r"><span>Cuándo</span><span><b>Una sola liquidación, el mes 13</b>, en cuanto
+      cierra la temporada. Durante los doce meses del contrato solo pagáis el fijo.</span></div>
   </div>
 
   <p class="escape"><span class="k">Y si no conseguimos acordar el baseline</span>
@@ -1791,18 +1815,18 @@ body.adj .fx.locked .bar{display:block}
         <p class="n" id="hPayN">Las dos se pagan solas dentro de los doce primeros meses.</p>
       </div>
       <div>
-        <p class="l">Retorno a 24 meses</p>
-        <p class="v" id="hRoi">3,96 – 4,72×</p>
-        <p class="n" id="hRoiN">Según la opción. El detalle, en la tabla de abajo.</p>
+        <p class="l">Retorno a 12 meses</p>
+        <p class="v" id="hRoi">2,28 – 2,29×</p>
+        <p class="n" id="hRoiN">Sobre todo lo pagado, Fase 0 incluida. El detalle, abajo.</p>
       </div>
     </div>
 
     <div class="tblwrap">
       <table>
         <thead>
-          <tr><th scope="col">Opción</th><th scope="col" class="num">Pagáis a 24 meses</th>
-          <th scope="col" class="num">Payback</th><th scope="col" class="num">Retorno 12 m</th>
-          <th scope="col" class="num">Retorno 24 m</th><th scope="col" class="num">Os quedáis</th></tr>
+          <tr><th scope="col">Opción</th><th scope="col" class="num">Pagáis en total</th>
+          <th scope="col" class="num">Payback</th><th scope="col" class="num">Retorno</th>
+          <th scope="col" class="num">Os quedáis</th></tr>
         </thead>
         <tbody id="cmp3"></tbody>
       </table>
@@ -1830,7 +1854,8 @@ body.adj .fx.locked .bar{display:block}
         entra plano todos los meses desde que cada oleada lo libera —la subida constante—; la
         <b>desviación</b> solo se recupera durante la temporada, de junio a septiembre, que es la
         franja marcada. El escalón es la temporada de 2027, y entra completa porque el panel está
-        vivo desde febrero. Si no llegara a junio, se iría a la temporada siguiente.
+        vivo desde febrero. Si no llegara a junio, se iría a la temporada siguiente y el contrato
+        se quedaría sin la palanca grande.
         <br><b>Dos curvas, una por opción:</b> la de trazo grueso es la <b>opción 2</b> y la
         discontinua la <b>opción 1</b>, que arranca más abajo porque pagáis más por adelantado. El
         escalón hacia abajo del mes 13 es la liquidación de la tarifa.
@@ -1854,8 +1879,8 @@ body.adj .fx.locked .bar{display:block}
               <tr class="total"><td>Impacto realizado en los 12 primeros meses</td><td class="num" id="t12">1.026.347 €</td><td>Con la rampa de las oleadas</td></tr>
               <tr><td>Coste Fase 0 (ya pagada)</td><td class="num">60.000 €</td><td>Contrato firmado en julio</td></tr>
               <tr><td>Fase 1 · opción 1, todo fijo</td><td class="num" id="tC1">390.000 €</td><td>Precio cerrado</td></tr>
-              <tr><td>Fase 1 · opción 2, fijo + tarifa</td><td class="num" id="tC2">476.000 €</td><td>Fijo + tarifa sobre el gap de dos temporadas</td></tr>
-              <tr class="total"><td>Coste total a recuperar · según la opción</td><td class="num" id="tCT">450.000 – 536.000 €</td><td>Fase 0 incluida, como prometimos</td></tr>
+              <tr><td>Fase 1 · opción 2, fijo + tarifa</td><td class="num" id="tC2">388.000 €</td><td>Fijo + tarifa sobre el gap de la temporada</td></tr>
+              <tr class="total"><td>Coste total a recuperar · según la opción</td><td class="num" id="tCT">448.000 – 450.000 €</td><td>Fase 0 incluida, como prometimos</td></tr>
             </tbody>
           </table>
         </div>
@@ -2374,6 +2399,9 @@ body.adj .fx.locked .bar{display:block}
        el 80%: moverla entre 65 y 100 mueve el impacto de las horas unos 9.000 EUR, asi que
        no merece una barra en pantalla. Va explicada en el desplegable. */
   var PRECIO = 390000, FASE0 = 60000, CONC = .80;
+  /* El contrato de la Fase 1 es de DOCE meses. La unica liquidacion de la tarifa cae en el
+     mes 13, en cuanto cierra la temporada: por eso el modelo corre hasta el mes 13 y no mas. */
+  var HOR = 13;
 
   /* Los escenarios mueven UN solo numero: los PUNTOS de desviacion que se recuperan.
      Van en centesimas de punto (200 = 2,00 puntos) para que la barra pise decimas exactas,
@@ -2454,7 +2482,7 @@ body.adj .fx.locked .bar{display:block}
     var imp12 = 0, imp24 = 0, horas12 = 0, desv12 = 0, desv24 = 0;
     var impCum = [0], desvCum = [0];
     pts.push([0, cum]);
-    for (var m = 1; m <= 24; m++){
+    for (var m = 1; m <= HOR; m++){
       var prev = cum;
       var hCash = salMes(m, hoursEur * H1, LIVE1) +
                   salMes(m, hoursEur * (1 - H1), LIVE3);
@@ -2471,23 +2499,23 @@ body.adj .fx.locked .bar{display:block}
 
     /* una serie de caja por opcion: la tarifa del año 1 se liquida en el mes 13 */
     var ops = OPC.map(function(o){
-      var rev24 = o.fijo + o.tar * desv24;
+      var rev24 = o.fijo + o.tar * desv12;
       var pagado = function(m){ return FASE0 + o.fijo + (m >= 13 ? o.tar * desv12 : 0); };
       var op = [], cr = null, pv = -pagado(0);
       op.push([0, pv]);
-      for (var m = 1; m <= 24; m++){
+      for (var m = 1; m <= HOR; m++){
         var val = impCum[m] - pagado(m);
         op.push([m, val]);
         if (cr === null && pv < 0 && val >= 0) cr = m - 1 + (0 - pv) / (val - pv);
         pv = val;
       }
       var pag12 = FASE0 + o.fijo + o.tar * desv12;
-      var pag24 = FASE0 + rev24;
+      var pag24 = pag12;
       return {
-        n:o.n, fijo:o.fijo, tar:o.tar, rev24:rev24,
+        n:o.n, fijo:o.fijo, tar:o.tar, rev24:rev24, varia: o.tar * desv12,
         pag12:pag12, pag24:pag24,
-        roi12: imp12 / pag12, roi24: imp24 / pag24,
-        neto24: imp24 - pag24,
+        roi12: imp12 / pag12, roi24: imp12 / pag12,
+        neto24: imp12 - pag12,
         pts:op, crossing:cr
       };
     });
@@ -2510,7 +2538,7 @@ body.adj .fx.locked .bar{display:block}
     var padY = (hi - lo) * .12 || 1;
     lo -= padY; hi += padY;
 
-    var X = function(m){ return PX.l + m / 24 * (PX.r - PX.l); };
+    var X = function(m){ return PX.l + m / HOR * (PX.r - PX.l); };
     var Y = function(v){ return PX.b - (v - lo) / (hi - lo) * (PX.b - PX.t); };
 
     function serie(id, pp){
@@ -2533,20 +2561,19 @@ body.adj .fx.locked .bar{display:block}
            'letter-spacing=".07em" fill="#562B2A" text-anchor="middle" stroke="none">' + txt + '</text>';
     }
     franja(8, 12, 20, ".30", "DESVIACIÓN · JUN–SEP");
-    franja(20, 24, 20, ".30", "DESVIACIÓN · JUN–SEP");
-    [[8, 12], [20, 24]].forEach(function(w){
+    [[8, 12]].forEach(function(w){
       g += '<rect x="' + X(w[0]).toFixed(1) + '" y="' + PX.t + '" width="' +
            (X(w[1]) - X(w[0])).toFixed(1) + '" height="' + (PX.b - PX.t) +
            '" fill="#D6363E" fill-opacity=".05" stroke="none"/>';
     });
-    [0, 6, 12, 18, 24].forEach(function(m){
+    [0, 3, 6, 9, 12].forEach(function(m){
       g += '<line x1="' + X(m).toFixed(1) + '" y1="' + PX.t +
            '" x2="' + X(m).toFixed(1) + '" y2="' + PX.b + '"/>';
     });
     document.getElementById("payGrid").innerHTML = g;
 
     document.getElementById("payAxis").innerHTML =
-      [0, 6, 12, 18, 24].map(function(m){
+      [0, 3, 6, 9, 12, 13].map(function(m){
         return '<text x="' + X(m).toFixed(1) + '" y="' + (PX.b + 18) + '" text-anchor="middle">' + m + '</text>';
       }).join("") +
       '<text x="' + (PX.l - 8) + '" y="' + (zy + 4) + '" text-anchor="end" font-weight="700">0 €</text>';
@@ -2554,7 +2581,7 @@ body.adj .fx.locked .bar{display:block}
     var dot = document.getElementById("payDot"), dot2 = document.getElementById("payDot2");
     var lbl = document.getElementById("payLbl");
     var cross2 = r.ops[1].crossing;
-    if (cross2 !== null && cross2 <= 24){
+    if (cross2 !== null && cross2 <= HOR){
       var cx = X(cross2), cy = zy;
       dot.setAttribute("cx", cx); dot.setAttribute("cy", cy);
       dot2.setAttribute("cx", cx); dot2.setAttribute("cy", cy);
@@ -2568,8 +2595,8 @@ body.adj .fx.locked .bar{display:block}
     }
 
     var end = document.getElementById("payEnd");
-    end.setAttribute("x", PX.r); end.setAttribute("y", Y(r.ops[1].pts[24][1]) - 10);
-    end.textContent = "mes 24 · " + eur(r.ops[1].pts[24][1]);
+    end.setAttribute("x", PX.r); end.setAttribute("y", Y(r.ops[1].pts[HOR][1]) - 10);
+    end.textContent = "mes 13 · " + eur(r.ops[1].pts[HOR][1]);
   }
 
   function render(){
@@ -2651,7 +2678,7 @@ body.adj .fx.locked .bar{display:block}
     document.getElementById("hImp").textContent = eur(r.imp12);
 
     var cro = r.ops.map(function(o){ return o.crossing; });
-    var vivos = cro.filter(function(c){ return c !== null && c <= 24; });
+    var vivos = cro.filter(function(c){ return c !== null && c <= HOR; });
     var hPay = document.getElementById("hPay");
     if (vivos.length === OPC.length){
       var lo = Math.min.apply(null, vivos), hi = Math.max.apply(null, vivos);
@@ -2665,7 +2692,7 @@ body.adj .fx.locked .bar{display:block}
       hPay.textContent = "—";
       hPay.className = "v bad";
       document.getElementById("hPayN").textContent =
-        "Con estos supuestos hay opciones que no se pagan antes del mes 24.";
+        "Con estos supuestos hay opciones que no se pagan dentro de los doce meses.";
     }
 
     var r24 = r.ops.map(function(o){ return o.roi24; });
@@ -2679,10 +2706,9 @@ body.adj .fx.locked .bar{display:block}
       return "<tr" + (i === 1 ? ' class="total"' : "") + ">" +
         "<td>Opción " + o.n + " · " + eur(o.fijo) + tar + "</td>" +
         "<td class='num'>" + eur(o.pag24) + "</td>" +
-        "<td class='num'>" + (o.crossing !== null && o.crossing <= 24
-          ? "mes " + nf1.format(o.crossing) + (ok ? "" : " ✕") : "> 24 m ✕") + "</td>" +
+        "<td class='num'>" + (o.crossing !== null && o.crossing <= HOR
+          ? "mes " + nf1.format(o.crossing) + (ok ? "" : " ✕") : "> 12 m ✕") + "</td>" +
         "<td class='num'>" + nf2.format(o.roi12) + "×</td>" +
-        "<td class='num'>" + nf2.format(o.roi24) + "×</td>" +
         "<td class='num'>" + eur(o.neto24) + "</td></tr>";
     }).join("");
 
@@ -2711,15 +2737,26 @@ body.adj .fx.locked .bar{display:block}
     /* ── la factura del mes 13, escenario a escenario ── */
     var dTA = v.desvTA / 10;
     document.getElementById("lqBase").textContent = nf1.format(dTA) + " %";
-    var filas = ['<tr><td><b>' + nf1.format(dTA) + ' % — no baja</b></td><td class="num">0</td>' +
-                 '<td class="num">0 €</td><td class="num">0 €</td></tr>'];
-    Object.keys(SCEN).forEach(function(k){
-      var ptsG = SCEN[k] / 100, gap = r.eurPto * ptsG;
-      filas.push("<tr" + (SCEN[k] === v.ptos ? ' class="total"' : "") + "><td>" +
-        nf2.format(dTA - ptsG) + " % <span style='opacity:.6'>· " + SCEN_NM[k] + "</span></td>" +
+    var f1 = r.ops[0], f2 = r.ops[1];
+    function fila(cls, etiq, ptsG){
+      var gap = r.eurPto * ptsG;              /* la desviacion recuperada esa temporada */
+      var ahorro = r.horas12 + gap;           /* las dos palancas, dentro de los doce meses */
+      var v2 = f2.tar * gap;                  /* la unica liquidacion de la opcion 2 */
+      return "<tr" + (cls ? ' class="' + cls + '"' : "") + "><td>" + etiq + "</td>" +
         "<td class='num'>" + nf2.format(ptsG) + "</td>" +
-        "<td class='num'>" + eur(gap) + "</td>" +
-        "<td class='num'>" + eur(r.ops[1].tar * gap) + "</td></tr>");
+        "<td class='num'>" + eur(ahorro) + "</td>" +
+        "<td class='num grp'>" + eur(f1.fijo) + "</td>" +
+        "<td class='num'>0 €</td>" +
+        "<td class='num tot'>" + eur(f1.fijo) + "</td>" +
+        "<td class='num grp'>" + eur(f2.fijo) + "</td>" +
+        "<td class='num'>" + eur(v2) + "</td>" +
+        "<td class='num tot'>" + eur(f2.fijo + v2) + "</td></tr>";
+    }
+    var filas = [fila("nada", "<b>" + nf1.format(dTA) + " % — no baja nada</b>", 0)];
+    Object.keys(SCEN).forEach(function(k){
+      var ptsG = SCEN[k] / 100;
+      filas.push(fila(SCEN[k] === v.ptos ? "total" : "",
+        nf2.format(dTA - ptsG) + " % <span style='opacity:.6'>· " + SCEN_NM[k] + "</span>", ptsG));
     });
     document.getElementById("lqBody").innerHTML = filas.join("");
 
