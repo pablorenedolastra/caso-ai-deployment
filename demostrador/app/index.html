@@ -64,10 +64,29 @@ button{font:inherit;cursor:pointer}
            border-top:1px solid var(--line2)}
 
 /* ── panel ── */
-.panel{overflow-y:auto;padding:1.5rem clamp(1.1rem,3vw,2.4rem) 3rem}
-.vacio{display:grid;place-items:center;height:100%;color:var(--muted);font-size:.9rem}
+.panel{display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;min-height:0}
+.pcab{background:var(--paper);border-bottom:1px solid var(--line);
+      padding:1.05rem clamp(1.1rem,3vw,2.4rem) .9rem;box-shadow:0 1px 0 rgba(60,59,58,.04)}
+.pcuerpo{overflow-y:auto;min-height:0;padding:1.3rem clamp(1.1rem,3vw,2.4rem) 3rem}
+/* En pantalla estrecha no hay dos scrolls: la cabecera se queda pegada y ya */
+@media (max-width:860px){
+  .panel{display:block;overflow:visible}
+  .pcuerpo{overflow:visible}
+  .pcab{position:sticky;top:2.9rem;z-index:12}
+}
+.vacio{display:grid;place-items:center;height:100%;min-height:14rem;color:var(--muted);font-size:.9rem}
 
-.cab{display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.1rem}
+/* barra de acción, dentro de la cabecera fija */
+.barra-acc{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;margin-top:.9rem}
+.barra-acc .nota{font-size:.76rem;color:var(--muted);line-height:1.4;max-width:31rem}
+.barra-acc .btn{padding:.5rem .95rem;font-size:.85rem}
+.chip-res{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:600;
+          padding:.4rem .75rem;border:1px solid;border-radius:2px}
+.chip-res.ok{color:var(--ok);border-color:var(--ok);background:var(--ok-bg)}
+.chip-res.ko{color:var(--bad);border-color:var(--bad);background:var(--bad-bg)}
+.chip-res.prog{color:var(--warn);border-color:var(--warn);background:var(--warn-bg)}
+
+.cab{display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap;margin-bottom:0}
 .cab h1{font-size:1.5rem;font-weight:600;letter-spacing:-.015em;margin:.1rem 0 .25rem;line-height:1.15}
 .cab .sub{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.04em}
 .cab .agente{margin-left:auto;text-align:right;font-size:.74rem;color:var(--ink2);line-height:1.6}
@@ -91,11 +110,11 @@ h3.sec .aux{margin-left:auto;text-transform:none;letter-spacing:0;font-family:va
 
 /* ── arranque: plantilla vacia y procesado ── */
 .arranque{border:1px solid var(--line);background:var(--white);padding:1rem 1.1rem;
-          margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+          margin-bottom:1.1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .arranque .txt{font-size:.85rem;color:var(--ink2);line-height:1.5;max-width:30rem}
 .arranque .txt b{color:var(--ink)}
 .arranque .der{margin-left:auto;display:flex;gap:.55rem;align-items:center}
-.barra{height:2px;background:var(--chip);margin:.75rem 0 0;position:relative;overflow:hidden}
+.barra{height:2px;background:var(--chip);margin:.7rem 0 0;position:relative;overflow:hidden}
 .barra i{position:absolute;inset:0 auto 0 0;background:var(--red);width:0;transition:width .18s linear}
 .ticker{font-family:var(--mono);font-size:.72rem;color:var(--ink2);margin-top:.5rem;
         display:flex;align-items:center;gap:.5rem;min-height:1.1rem}
@@ -363,7 +382,10 @@ button.sh:hover{color:var(--ink)}
       <code>prototipo/expedientes/</code>. Las reglas, en <code>convenio/reglas.yaml</code>.</div>
   </aside>
   <section class="panel" id="panel">
-    <div class="vacio">Selecciona un alta de la cola.</div>
+    <div class="pcab" id="pcab"></div>
+    <div class="pcuerpo" id="pcuerpo">
+      <div class="vacio">Selecciona un alta de la cola.</div>
+    </div>
   </section>
 </div>
 
@@ -637,12 +659,8 @@ function abrir(id){
     <div class="arranque" id="arranque">
       <div class="txt"><b>Plantilla vacía.</b> Dieciocho campos esperando.
         En la carpeta hay tres documentos de esta persona y las reglas del convenio.
-        El agente los lee y prepara el alta; no escribe nada en SAP.</div>
-      <div class="der"><button class="btn pri" id="procesar">Procesar con el agente</button></div>
-      <div style="flex-basis:100%" id="progreso" hidden>
-        <div class="barra"><i id="barraI"></i></div>
-        <div class="ticker" id="ticker"></div>
-      </div>
+        El agente los lee y prepara el alta; no escribe nada en SAP. El botón para lanzarlo
+        está arriba, en la cabecera.</div>
     </div>`;
 
   const cajaSeg = seg ? `
@@ -664,7 +682,8 @@ function abrir(id){
          <ul>${d.motivos_excepcion.map(m => `<li>${esc(m)}</li>`).join("")}</ul></div></div>`
     : `<div class="banda ok"><div><span class="t">Listo para aprobar</span> — ${esc(d.resumen)}</div></div>`);
 
-  $("#panel").innerHTML = `
+  // La cabecera no scrollea: el nombre y los CTAs se ven siempre, mires donde mires la ficha.
+  $("#pcab").innerHTML = `
     <div class="cab">
       <div><div class="sub">${esc(id)} · recibido ${esc(d.recibido.slice(11,16))} · convenio ${esc(d.version_convenio)}</div>
         <h1>${esc(d.persona)}</h1>
@@ -672,6 +691,13 @@ function abrir(id){
       <div class="agente"><b>${hecho ? d.tiempo_agente_s + "s" : "—"}</b>tiempo del agente<br>
         <span style="color:var(--muted)">hoy son ${MIN_HOY} min de gestor</span></div>
     </div>
+    <div class="barra-acc" id="barraAcc"></div>
+    <div id="progreso" hidden>
+      <div class="barra"><i id="barraI"></i></div>
+      <div class="ticker" id="ticker"></div>
+    </div>`;
+
+  $("#pcuerpo").innerHTML = `
     ${arranque}${cajaSeg}${banda}
     <div class="cols">
       <div><h3 class="sec">Alta preparada · plantilla SAP HCM
@@ -686,10 +712,9 @@ function abrir(id){
     <div id="zonaAcc"></div>`;
 
   pintarRail(); pintarAcciones(); pintarContador();
-  $("#panel").scrollTop = 0;
+  $("#pcuerpo").scrollTop = 0;
   pintarCola();
 
-  $("#procesar")?.addEventListener("click", () => procesar(id));
   $("#segCorreo")?.addEventListener("click", () => modalCorreo(id));
 }
 
@@ -787,14 +812,16 @@ async function procesarLote(){
   estado.lote = true; estado.actual = null; estado.animando = true; estado.saltar = false;
   pintarCola();
 
-  $("#panel").innerHTML = `
+  $("#pcab").innerHTML = `
     <div class="cab"><div>
       <div class="sub">Procesado en lote · ${ids.length} altas sin leer</div>
       <h1>El agente vacía la bandeja</h1>
       <div class="sub">Cada alta: leer tres documentos, rellenar los 18 campos y contrastar las 8 reglas</div>
     </div><div class="agente"><b id="loteN">0/${ids.length}</b>completadas<br>
       <span style="color:var(--muted)">hoy son ${MIN_HOY} min cada una</span></div></div>
-    <div class="barra" style="margin-bottom:1.2rem"><i id="barraI"></i></div>
+    <div class="barra"><i id="barraI"></i></div>`;
+
+  $("#pcuerpo").innerHTML = `
     <div class="lote">
       <div class="lh"><span>Expediente</span><span>Persona</span><span>Resultado</span><span style="text-align:right">Tiempo</span></div>
       ${ids.map(id => `<div class="lr" id="l-${id}">
@@ -844,6 +871,7 @@ async function procesarLote(){
       ${listas.length ? `<button class="btn" id="irLista">Abrir la primera lista para aprobar</button>` : ""}
       <span class="nota">Ninguna se ha escrito en SAP. El agente prepara; decide una persona.</span>
     </div>`;
+  $("#pcuerpo").scrollTop = 0;
   $("#irRevisar")?.addEventListener("click", () => abrir(revisar[0]));
   $("#irLista")?.addEventListener("click", () => abrir(listas[0]));
   anotar("lote", "procesado", `Procesado en lote de ${ids.length} altas · ${listas.length} listas, ${revisar.length} a revisar`);
@@ -951,24 +979,42 @@ function cerrarModal(){ $("#modal").removeAttribute("open"); $("#modal").innerHT
 /* ── OK / KO ──────────────────────────────────────────────────── */
 function pintarAcciones(){
   const id = estado.actual, d = estado.datos[id];
-  const z = $("#zonaAcc"); if(!z) return;
+  const bar = $("#barraAcc"), z = $("#zonaAcc");
+  if(!bar || !z) return;
   const f = fase(id);
   const cs = estado.comentarios[id] || [];
-  if(!estado.procesado.has(id)){ z.innerHTML = ""; return; }
+  const seg = estado.seguimiento[id];
+
+  // Sin procesar el CTA es otro, pero ocupa el mismo sitio: la barra no cambia de posicion.
+  if(!estado.procesado.has(id)){
+    z.innerHTML = "";
+    bar.innerHTML = `<button class="btn pri" id="procesar">Procesar con el agente</button>
+      <span class="nota">Lee los ${d.documentos.length} documentos del expediente y rellena los
+        18 campos de la plantilla. No escribe nada en SAP.</span>`;
+    $("#procesar").addEventListener("click", () => procesar(id));
+    return;
+  }
 
   if(f === "aceptado" || f === "rechazado"){
+    const r = estado.resoluciones[id] || { hora:"—" };
+    bar.innerHTML = f === "aceptado"
+      ? `<span class="chip-res ok">✓ Aprobada y escrita en SAP · ${esc(r.hora)}</span>
+         <span class="nota">El detalle de la escritura, al final de la ficha.</span>`
+      : `<span class="chip-res ko">✕ Rechazada · devuelta a RR. HH. · ${esc(r.hora)}</span>
+         <span class="nota">No se ha escrito nada en SAP.</span>`;
     z.innerHTML = bloqueResolucion(id, f, cs);
     return;
   }
 
   const exc = d.decision === "excepcion";
-  z.innerHTML = `<div class="acc">
-      <button class="btn pri" id="aprobar" ${exc?"disabled":""}>Aprobar y enviar a SAP</button>
-      <button class="btn ko" id="rechazar">Rechazar</button>
-      <span class="nota" id="notaAcc">${exc
-        ? "El agente no deja aprobar esto: hay una regla del convenio en falla. La decisión no la toma el modelo, la calcula la política."
-        : "Nada se escribe en SAP hasta este clic. Ni ahora, ni en producción."}</span>
-    </div>`;
+  z.innerHTML = "";
+  bar.innerHTML = `
+    <button class="btn pri" id="aprobar" ${exc?"disabled":""}>Aprobar y enviar a SAP</button>
+    <button class="btn ko" id="rechazar">Rechazar</button>
+    ${seg ? `<span class="chip-res prog">⏳ ${seg.enviado ? "Esperando documentación" : "Acción pendiente"}</span>` : ""}
+    <span class="nota" id="notaAcc">${exc
+      ? "El agente no deja aprobar esto: hay una regla del convenio en falla. La decisión no la toma el modelo, la calcula la política."
+      : "Nada se escribe en SAP hasta este clic. Ni ahora, ni en producción."}</span>`;
   $("#aprobar")?.addEventListener("click", aprobar);
   $("#rechazar").addEventListener("click", () => modalRechazo(id));
 }
@@ -1188,7 +1234,8 @@ document.addEventListener("keydown", e => {
 });
 
 arrancar().catch(err => {
-  $("#panel").innerHTML = `<div class="vacio" style="text-align:center;max-width:32rem">
+  $("#pcab").innerHTML = "";
+  $("#pcuerpo").innerHTML = `<div class="vacio" style="text-align:center;max-width:32rem">
     <div><b>No se han podido cargar los datos.</b><br><br>
     Abre el demostrador con <code>./servir.sh</code> y ve a
     <code>http://localhost:8765/app/</code>.<br>
